@@ -90,3 +90,20 @@ print("False Positive Rate:", fpr)
 print("True Negative Rate:", tnr)
 print("True Positive Rate:", tpr)
 print("False Negative Rate:", fnr)
+
+# Summary Analysis of Feature Importance
+# Get numerical feature importances
+importances = list(rf.feature_importances_)
+# List of tuples with variable and importance
+feature_importances = [(feature, round(importance, 2)) for feature, importance in zip(feature_list, importances)]
+# Sort the feature importances by most important first
+feature_importances = sorted(feature_importances, key = lambda x: x[1], reverse = True)
+# Print out the feature and importances 
+[print('Variable: {:20} Importance: {}'.format(*pair)) for pair in feature_importances];
+
+# Individual Analysis Score by Survey Question Buckets Normalised to a Max Score of 100
+# extract out the value of the importances and assign them 
+df["w_total"] = (df["w_1"]*importances[4] + df["w_2"]*importances[5] + df["w_3"]*importances[6])*100/(5*sum(importances[4:7]))
+df["o_total"] = (df["o_1"]*importances[7] + df["o_2"]*importances[8] + df["o_3"]*importances[9] + df["o_4"]*importances[10] + df["o_5"]*importances[11] + df["o_6"]*importances[12] + df["o_7"]*importances[13] + df["o_8"]*importances[14] + df["o_9"]*importances[15])*100/(5*sum(importances[7:16]))
+df["p_total"] = (df["p_1n"]*importances[16] + df["p_2n"]*importances[17] + df["p_3n"]*importances[18] + df["p_4n"]*importances[19] + df["p_5a"]*importances[20] + df["p_6a"]*importances[21] + df["p_7a"]*importances[22])*100/(5*sum(importances[16:]))
+df["EES"] = (df["w_1"]*importances[4] + df["w_2"]*importances[5] + df["w_3"]*importances[6] + df["o_1"]*importances[7] + df["o_2"]*importances[8] + df["o_3"]*importances[9] + df["o_4"]*importances[10] + df["o_5"]*importances[11] + df["o_6"]*importances[12] + df["o_7"]*importances[13] + df["o_8"]*importances[14] + df["o_9"]*importances[15] + df["p_1n"]*importances[16] + df["p_2n"]*importances[17] + df["p_3n"]*importances[18] + df["p_4n"]*importances[19] + df["p_5a"]*importances[20] + df["p_6a"]*importances[21] + df["p_7a"]*importances[22])*100/(5*sum(importances[4:]))
