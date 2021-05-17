@@ -16,12 +16,14 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
 from sklearn.metrics import confusion_matrix
+from yellowbrick.cluster import KElbowVisualizer
+from matplotlib import pyplot as plt
 
 """
 Skeleton Code for main functionality, not yet broken down into modular functions
 """
 
-""" Module 1 - Import, Clean Data & Data Manipulation (Works) """
+""" Start of Module 1 - Import, Clean Data & Data Manipulation (Works) """
 # Import Survey Results 
 # To change to pull request function
 survey = pd.read_excel("EES Survey Test 1.xlsx", header = None)
@@ -52,7 +54,33 @@ df["p_4n"] = df["p_4n"].map(mapping)
 # Extract Features for Prediction & Clustering
 features = df.iloc[:, 1:24]
 
-""" Module 2 - Model Training (Works)"""
+""" End of Module 1 - Import, Clean Data & Data Manipulation """
+
+""" Start of Module 2 - Model Training (Works)"""
+
+""" Start of Pre-work - Determining the right number of clusters"""
+### Run this code each time the model needs to be changed 
+model = KMeans()
+
+### 1. Elbow Method
+# k is range of number of clusters.
+visualizer = KElbowVisualizer(model, k=(2,30), timings= True)
+visualizer.fit(features) # Fit the data to the visualizer
+visualizer.show()        # Plot
+
+### 2. Silhouette Coefficient
+# k is range of number of clusters.
+visualizer = KElbowVisualizer(model, k=(2,30),metric='silhouette', timings= True)
+visualizer.fit(features) # Fit the data to the visualizer
+visualizer.show()        # Plot
+
+### 3. Calinski Harabasz Index
+# k is range of number of clusters.
+visualizer = KElbowVisualizer(model, k=(2,30),metric='calinski_harabasz', timings= True)
+visualizer.fit(features) # Fit the data to the visualizer
+visualizer.show()        # Plot
+
+""" End of Pre-work - Determining the right number of clusters"""
 
 """ Module 2a - Clustering (Works) """ 
 # K Means Clustering
@@ -107,3 +135,5 @@ df["w_total"] = (df["w_1"]*importances[4] + df["w_2"]*importances[5] + df["w_3"]
 df["o_total"] = (df["o_1"]*importances[7] + df["o_2"]*importances[8] + df["o_3"]*importances[9] + df["o_4"]*importances[10] + df["o_5"]*importances[11] + df["o_6"]*importances[12] + df["o_7"]*importances[13] + df["o_8"]*importances[14] + df["o_9"]*importances[15])*100/(5*sum(importances[7:16]))
 df["p_total"] = (df["p_1n"]*importances[16] + df["p_2n"]*importances[17] + df["p_3n"]*importances[18] + df["p_4n"]*importances[19] + df["p_5a"]*importances[20] + df["p_6a"]*importances[21] + df["p_7a"]*importances[22])*100/(5*sum(importances[16:]))
 df["EES"] = (df["w_1"]*importances[4] + df["w_2"]*importances[5] + df["w_3"]*importances[6] + df["o_1"]*importances[7] + df["o_2"]*importances[8] + df["o_3"]*importances[9] + df["o_4"]*importances[10] + df["o_5"]*importances[11] + df["o_6"]*importances[12] + df["o_7"]*importances[13] + df["o_8"]*importances[14] + df["o_9"]*importances[15] + df["p_1n"]*importances[16] + df["p_2n"]*importances[17] + df["p_3n"]*importances[18] + df["p_4n"]*importances[19] + df["p_5a"]*importances[20] + df["p_6a"]*importances[21] + df["p_7a"]*importances[22])*100/(5*sum(importances[4:]))
+
+""" End of Module 2 - Model Training """
