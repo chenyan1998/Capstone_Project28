@@ -10,9 +10,11 @@
 </template>
 
 <script>
+import Sidebar from '../components/Sidebar'
 import {ref} from 'vue'
 export default {
     name: 'ReportHomepage',
+    components: {Sidebar},
     setup(){
     const report_list = ref(['DepartmentReport', 'QuestionReport', 'IndividualReport'])
     return {report_list}

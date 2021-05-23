@@ -1,9 +1,8 @@
 <template>
   <el-row class="tac">
-  <el-col :span="4" left-align>
+  <el-col :span="4">
     <h5>Menu</h5>
     <el-menu
-      default-active="2"
       class="el-menu-vertical-demo"
       @open="handleOpen"
       @close="handleClose">
@@ -27,7 +26,7 @@
         <i class="el-icon-menu"></i>
         <span>Survey</span>
       </el-menu-item>
-      <el-menu-item index="4" @click="()=>{
+      <el-menu-item index="3" @click="()=>{
               this.$router.push({name: 'Profile'})}">
         <i class="el-icon-setting"></i>
         <span>Profile</span>
