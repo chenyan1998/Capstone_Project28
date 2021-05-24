@@ -13,7 +13,7 @@ router = APIRouter(
 
 @router.get('/', response_model=List[schemas.ShowEmployee])
 def all(db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
-    return employee.get_all(db)
+    return employeeRepo.get_all(db)
 
 # @router.get('/', response_model=List[schemas.ShowEmployee])
 # def all(db: Session = Depends(get_db)):
