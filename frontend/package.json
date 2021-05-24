@@ -8,7 +8,11 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+<<<<<<< HEAD
     "package.json": "^2.0.1",
+=======
+    "element-plus": "^1.0.2-beta.28",
+>>>>>>> ce23da1602d8912f540ba61d2f759dd993addba1
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"
   },
@@ -16,6 +20,7 @@
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0"
+    "@vue/compiler-sfc": "^3.0.0",
+    "vue-cli-plugin-element-plus": "~0.0.13"
   }
 }
