@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Sidebar />
+    <Sidebar :current_path="1" />
     <!-- <div v-for="nav in nav_list" :key="nav">
       <router-link :to="{name: nav}">
             <button>{{nav}}</button>

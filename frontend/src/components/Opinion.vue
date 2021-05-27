@@ -1,5 +1,5 @@
 <template>
-  <h1>This is QuestionReport Page</h1>
+  <h1>This is a Opinion Report page.</h1>
 </template>
 
 <script>

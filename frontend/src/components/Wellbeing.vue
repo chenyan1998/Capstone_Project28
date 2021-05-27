@@ -1,5 +1,5 @@
 <template>
-  <h1>This is IndividualReport Page</h1>
+  <h1>This is Wellbeing Report Page</h1>
 </template>
 
 <script>

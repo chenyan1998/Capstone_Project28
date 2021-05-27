@@ -1,5 +1,5 @@
 <template>
-  <h1>This is DepartmentReport Page</h1>
+  <h1>This is Personality Report Page</h1>
 </template>
 
 <script>

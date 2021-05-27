@@ -1,11 +1,13 @@
 <template>
-  
+      <Sidebar :current_path="3" />
 </template>
 
 <script>
-export default {
-    name: 'Profile'
+import Sidebar from '../components/Sidebar'
 
+export default {
+    name: 'Profile',
+    components: {Sidebar}
 }
 </script>
 
