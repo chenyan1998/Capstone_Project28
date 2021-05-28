@@ -21,7 +21,7 @@ import os
 
 here = os.path.dirname(os.path.abspath(__file__))
 
-filename = os.path.join(here, 'Employee Engagement Survey(1-33).xlsx')
+filename = os.path.join(here, 'Employee Engagement Survey(1-47).xlsx')
 
 """ Start of Module 1 - Import, Clean Data & Data Manipulation (Works) """
 # Import Survey Results 
@@ -48,7 +48,7 @@ encode = { "i_1": {"20-29": 1, "30-39": 2, "40-49": 3, "50-59": 4, "60 and above
 }
 df = df.replace(encode)
 
-# Reverse Scoring for Neuroticism
+# Reverse Scoring for Neuroticism as it is found to have a negative relation with Employee Engagement
 mapping = {1:5, 2: 4, 3: 3, 4: 2, 5: 1}
 df["p_1n"] = df["p_1n"].map(mapping)
 df["p_2n"] = df["p_2n"].map(mapping)

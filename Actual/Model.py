@@ -8,26 +8,31 @@ Created on Fri May 21 13:50:30 2021
 # Libraries Imported
 import pandas as pd
 import numpy as np
-import seaborn as sns
-import sklearn
-import scipy
 from sklearn.cluster import KMeans
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
 from sklearn.metrics import confusion_matrix
+from sklearn.tree import DecisionTreeClassifier
+from sklearn import tree
+from sklearn import svm
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB
 from yellowbrick.cluster import KElbowVisualizer
-from matplotlib import pyplot as plt
 import os
 
 here = os.path.dirname(os.path.abspath(__file__))
 
-filename = os.path.join(here, 'Employee Engagement Survey(1-33).xlsx')
+filename = os.path.join(here, 'Employee Engagement Survey(1-73).xlsx')
 
 """ Start of Module 1 - Import, Clean Data & Data Manipulation (Works) """
 # Import Survey Results 
 # To change to pull request function
 survey = pd.read_excel(filename, header = None)
+
+# test = survey
+
+# temp = test.iloc[1:,36].str.split(";", n = None, expand = True)
 
 # Pull out relevant columns in the excel
 df = survey.iloc[1:,6:35]
@@ -99,9 +104,8 @@ model = KMeans(n_clusters=2, random_state=0) # To determine the number of cluste
 kmeans = model.fit(features)
 df["Flight Risk"] = kmeans.labels_
 
-""" End of Module 2a - Clustering (Works) """
-
-""" Start of Module 2b - Random Forest (Works) """
+# Drop Employee ID, Job Level & Department, Dependent Variable - Flight Risk from Features
+# (Note: Output Results will be segmented by Individuals, Job Level & Department)
 labels = np.array(df['Flight Risk'])
 features = np.array(df.drop(['i_0', 'i_4', 'i_5', 'Flight Risk'], axis=1))
 feature_list = list(df.drop(['i_0', 'i_4', 'i_5', 'Flight Risk'], axis=1))
@@ -109,8 +113,11 @@ feature_list = list(df.drop(['i_0', 'i_4', 'i_5', 'Flight Risk'], axis=1))
 # Split Data into train-test set
 train_features, test_features, train_labels, test_labels = train_test_split(features, labels, test_size=0.3, random_state=0)
 
+""" End of Module 2a - Clustering (Works) """
+
+""" Start of Module 2b - Random Forest (Works) """
 # Run Random Forest
-rf = RandomForestClassifier(n_estimators = 1000, random_state = 0)
+rf = RandomForestClassifier(n_estimators = 64, random_state = 0) # Based on research, ideal number of estimators is between 64-128, to change n_estimators for model hyper tuning
 
 # Train the model on training data
 rf.fit(train_features, train_labels)
@@ -119,12 +126,12 @@ rf.fit(train_features, train_labels)
 predictions = rf.predict(test_features)
 conf_mat = confusion_matrix(test_labels, predictions)
 print(conf_mat)
-print(conf_mat[1][0])
 acc = metrics.accuracy_score(test_labels, predictions)
 fpr = conf_mat[1][0]/(conf_mat[1][0] + conf_mat[0][0]) # False Positive Rate
 tnr = conf_mat[0][0]/(conf_mat[1][0] + conf_mat[0][0]) # True Negative Rate
 tpr = conf_mat[1][1]/(conf_mat[1][1] + conf_mat[0][1]) # True Positive Rate
 fnr = conf_mat[0][1]/(conf_mat[1][1] + conf_mat[0][1]) # False Negative Rate
+print("Random Forest Performance")
 print("Accuracy:", acc)
 print("False Positive Rate:", fpr)
 print("True Negative Rate:", tnr)
@@ -141,6 +148,16 @@ feature_importances = sorted(feature_importances, key = lambda x: x[1], reverse 
 # Print out the feature and importances 
 [print('Variable: {:20} Importance: {}'.format(*pair)) for pair in feature_importances];
 
+# Determine Most Important Category
+w = sum(importances[3:8])
+o = sum(importances[8:13])
+p = sum(importances[13:20])
+c = sum(importances[20:])
+print("Wellbeing Weightage:", w)
+print("Opinion Weightage:", o)
+print("Personality Weightage:", p)
+print("Core Values Weightage:", c)
+
 # Individual Analysis Score by Survey Question Buckets Normalised to a Max Score of 100
 # extract out the value of the importances and assign them 
 df["w_total"] = (df["w_1"]*importances[3] + df["w_2"]*importances[4] + df["w_3"]*importances[5] + df["w_4"]*importances[6] + df["w_5"]*importances[7])*100/(5*sum(importances[3:8]))
@@ -150,6 +167,161 @@ df["c_total"] = (df["c_1"]*importances[20] + df["c_2"]*importances[21] + df["c_3
 df["EES"] = (df["w_1"]*importances[3] + df["w_2"]*importances[4] + df["w_3"]*importances[5] + df["w_4"]*importances[6] + df["w_5"]*importances[7] + df["o_1"]*importances[8] + df["o_2"]*importances[9] + df["o_3"]*importances[10] + df["o_4"]*importances[11] + df["o_5"]*importances[12] + df["p_1n"]*importances[13] + df["p_2n"]*importances[14] + df["p_3n"]*importances[15] + df["p_4n"]*importances[16] + df["p_5a"]*importances[17] + df["p_6a"]*importances[18] + df["p_7a"]*importances[19] + df["c_1"]*importances[20] + df["c_2"]*importances[21] + df["c_3"]*importances[22] + df["c_4"]*importances[23] + df["c_5"]*importances[24] + df["c_6"]*importances[25])*100/(5*sum(importances[3:]))
 
 """ End of Module 2b - Random Forest (Works) """
+
+""" Start of Module 2c - Decision Tree (Works) """
+# Run Decision Tree
+dt = DecisionTreeClassifier(max_depth = None, random_state = 0) # To change max_depth for hyper tuning
+
+# Fit Decision Tree with Training Data
+dt.fit(train_features, train_labels)
+
+# Visualise Decision Tree
+tree.plot_tree(dt)
+
+# Prediction & Model Performance Metrics for Model Validation
+predictions = dt.predict(test_features)
+conf_mat = confusion_matrix(test_labels, predictions)
+print(conf_mat)
+acc = metrics.accuracy_score(test_labels, predictions)
+fpr = conf_mat[1][0]/(conf_mat[1][0] + conf_mat[0][0]) # False Positive Rate
+tnr = conf_mat[0][0]/(conf_mat[1][0] + conf_mat[0][0]) # True Negative Rate
+tpr = conf_mat[1][1]/(conf_mat[1][1] + conf_mat[0][1]) # True Positive Rate
+fnr = conf_mat[0][1]/(conf_mat[1][1] + conf_mat[0][1]) # False Negative Rate
+print("Decision Tree Performance")
+print("Accuracy:", acc)
+print("False Positive Rate:", fpr)
+print("True Negative Rate:", tnr)
+print("True Positive Rate:", tpr)
+print("False Negative Rate:", fnr)
+
+# Summary Analysis of Feature Importance
+# Get numerical feature importances
+importances_dt = list(dt.feature_importances_)
+# List of tuples with variable and importance
+feature_importances = [(feature, round(importance, 2)) for feature, importance in zip(feature_list, importances_dt)]
+# Sort the feature importances by most important first
+feature_importances = sorted(feature_importances, key = lambda x: x[1], reverse = True)
+# Print out the feature and importances 
+[print('Variable: {:20} Importance: {}'.format(*pair)) for pair in feature_importances];
+
+# Determine Most Important Category
+w = sum(importances_dt[3:8])
+o = sum(importances_dt[8:13])
+p = sum(importances_dt[13:20])
+c = sum(importances_dt[20:])
+print("Wellbeing Weightage:", w)
+print("Opinion Weightage:", o)
+print("Personality Weightage:", p)
+print("Core Values Weightage:", c)
+
+""" End of Module 2c - Decision Tree (Works) """
+
+""" Start of Module 2d - K Nearest Neighbours (Works) """
+# Run K Nearest Neighbours
+knn = KNeighborsClassifier(n_neighbors = 5) # To change number of neighbours for hypertuning of model, default is 5
+
+# Fit K Nearest Neighbours with Training Data
+knn.fit(train_features, train_labels)
+
+# Prediction & Model Performance Metrics for Model Validation
+predictions = knn.predict(test_features)
+conf_mat = confusion_matrix(test_labels, predictions)
+print(conf_mat)
+acc = metrics.accuracy_score(test_labels, predictions)
+fpr = conf_mat[1][0]/(conf_mat[1][0] + conf_mat[0][0]) # False Positive Rate
+tnr = conf_mat[0][0]/(conf_mat[1][0] + conf_mat[0][0]) # True Negative Rate
+tpr = conf_mat[1][1]/(conf_mat[1][1] + conf_mat[0][1]) # True Positive Rate
+fnr = conf_mat[0][1]/(conf_mat[1][1] + conf_mat[0][1]) # False Negative Rate
+print("KNN Performance")
+print("Accuracy:", acc)
+print("False Positive Rate:", fpr)
+print("True Negative Rate:", tnr)
+print("True Positive Rate:", tpr)
+print("False Negative Rate:", fnr)
+
+# Note: No Feature Importance Method for KNN Classifier
+""" End of Module 2d - K Nearest Neighbours (Works) """
+
+""" Start of Module 2e - Support Vector Machine (Works) """
+# Run Support Vector Machine
+sv = svm.SVC(kernel='linear', random_state = 0)
+
+# Fit SVM with Training Data
+sv.fit(train_features, train_labels)
+
+# Prediction & Model Performance Metrics for Model Validation
+predictions = sv.predict(test_features)
+conf_mat = confusion_matrix(test_labels, predictions)
+print(conf_mat)
+acc = metrics.accuracy_score(test_labels, predictions)
+fpr = conf_mat[1][0]/(conf_mat[1][0] + conf_mat[0][0]) # False Positive Rate
+tnr = conf_mat[0][0]/(conf_mat[1][0] + conf_mat[0][0]) # True Negative Rate
+tpr = conf_mat[1][1]/(conf_mat[1][1] + conf_mat[0][1]) # True Positive Rate
+fnr = conf_mat[0][1]/(conf_mat[1][1] + conf_mat[0][1]) # False Negative Rate
+print("SVM Performance")
+print("Accuracy:", acc)
+print("False Positive Rate:", fpr)
+print("True Negative Rate:", tnr)
+print("True Positive Rate:", tpr)
+print("False Negative Rate:", fnr)
+
+# Summary Analysis of Feature Importance
+# Get numerical feature importances
+importances_sv_temp = []
+for i in sv.coef_:
+    importances_sv_temp.append(i**2)
+    
+# Normalise Importance Values to 1
+importances_sv = []
+for i in importances_sv_temp:
+    importances_sv.append(i/sum(importances_sv_temp[0]))
+print(sum(importances_sv[0]))
+
+importances_sv = importances_sv[0]
+
+# List of tuples with variable and importance
+feature_importances = [(feature, round(importance, 2)) for feature, importance in zip(feature_list, importances_sv)]
+# Sort the feature importances by most important first
+feature_importances = sorted(feature_importances, key = lambda x: x[1], reverse = True)
+# Print out the feature and importances 
+[print('Variable: {:20} Importance: {}'.format(*pair)) for pair in feature_importances];
+
+# Determine Most Important Category
+w = sum(importances_sv[3:8])
+o = sum(importances_sv[8:13])
+p = sum(importances_sv[13:20])
+c = sum(importances_sv[20:])
+print("Wellbeing Weightage:", w)
+print("Opinion Weightage:", o)
+print("Personality Weightage:", p)
+print("Core Values Weightage:", c)
+
+""" End of Module 2e - Support Vector Machine (Works)"""
+
+""" Start of Module 2f - Naive Bayes Classifier """
+# Run Naive Bayes Classifier
+nbc = GaussianNB()
+
+# Fit Naive Bayes Classifier with Training Data
+nbc.fit(train_features, train_labels)
+
+# Prediction & Model Performance Metrics for Model Validation
+predictions = nbc.predict(test_features)
+conf_mat = confusion_matrix(test_labels, predictions)
+print(conf_mat)
+acc = metrics.accuracy_score(test_labels, predictions)
+fpr = conf_mat[1][0]/(conf_mat[1][0] + conf_mat[0][0]) # False Positive Rate
+tnr = conf_mat[0][0]/(conf_mat[1][0] + conf_mat[0][0]) # True Negative Rate
+tpr = conf_mat[1][1]/(conf_mat[1][1] + conf_mat[0][1]) # True Positive Rate
+fnr = conf_mat[0][1]/(conf_mat[1][1] + conf_mat[0][1]) # False Negative Rate
+print("Naive Bayes Performance")
+print("Accuracy:", acc)
+print("False Positive Rate:", fpr)
+print("True Negative Rate:", tnr)
+print("True Positive Rate:", tpr)
+print("False Negative Rate:", fnr)
+
+""" End of Module 2f - Naive Bayes Classifier """
 
 """ End of Module 2 - Model Training """
 

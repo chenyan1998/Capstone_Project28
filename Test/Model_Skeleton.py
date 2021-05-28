@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Apr 28 14:49:12 2021
+Spyder Editor
 
-@author: uknow
+This is a temporary script file.
 """
-
 # Libraries Imported
 import pandas as pd
 import numpy as np
 import seaborn as sns
 import sklearn
 import scipy
+import yellowbrick
 from sklearn.cluster import KMeans
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
@@ -54,7 +54,7 @@ df["p_4n"] = df["p_4n"].map(mapping)
 # Extract Features for Prediction & Clustering
 features = df.iloc[:, 1:24]
 
-""" End of Module 1 - Import, Clean Data & Data Manipulation """
+""" End of Module 1 - Import, Clean Data & Data Manipulation (Works) """
 
 """ Start of Module 2 - Model Training (Works)"""
 
@@ -82,14 +82,17 @@ visualizer.show()        # Plot
 
 """ End of Pre-work - Determining the right number of clusters"""
 
-""" Module 2a - Clustering (Works) """ 
+""" Start of Module 2a - Clustering (Works) """ 
 # K Means Clustering
 # 0 -> High Flight Risk, 1-> Low Flight Risk
 model = KMeans(n_clusters=2, random_state=0) # To determine the number of clusters & random state is like a set.seed which ensures reproducibility in the results
 kmeans = model.fit(features)
 df["Flight Risk"] = kmeans.labels_
 
-""" Module 2b - Random Forest (Works) """
+""" End of Module 2a - Clustering (Works) """ 
+
+
+""" Start of Module 2b - Random Forest (Works) """
 labels = np.array(df['Flight Risk'])
 features = np.array(df.iloc[:,1:24])
 feature_list = list(df.iloc[:,1:24].columns)
@@ -107,7 +110,6 @@ rf.fit(train_features, train_labels)
 predictions = rf.predict(test_features)
 conf_mat = confusion_matrix(test_labels, predictions)
 print(conf_mat)
-print(conf_mat[1][0])
 acc = metrics.accuracy_score(test_labels, predictions)
 fpr = conf_mat[1][0]/(conf_mat[1][0] + conf_mat[0][0]) # False Positive Rate
 tnr = conf_mat[0][0]/(conf_mat[1][0] + conf_mat[0][0]) # True Negative Rate
@@ -136,4 +138,20 @@ df["o_total"] = (df["o_1"]*importances[7] + df["o_2"]*importances[8] + df["o_3"]
 df["p_total"] = (df["p_1n"]*importances[16] + df["p_2n"]*importances[17] + df["p_3n"]*importances[18] + df["p_4n"]*importances[19] + df["p_5a"]*importances[20] + df["p_6a"]*importances[21] + df["p_7a"]*importances[22])*100/(5*sum(importances[16:]))
 df["EES"] = (df["w_1"]*importances[4] + df["w_2"]*importances[5] + df["w_3"]*importances[6] + df["o_1"]*importances[7] + df["o_2"]*importances[8] + df["o_3"]*importances[9] + df["o_4"]*importances[10] + df["o_5"]*importances[11] + df["o_6"]*importances[12] + df["o_7"]*importances[13] + df["o_8"]*importances[14] + df["o_9"]*importances[15] + df["p_1n"]*importances[16] + df["p_2n"]*importances[17] + df["p_3n"]*importances[18] + df["p_4n"]*importances[19] + df["p_5a"]*importances[20] + df["p_6a"]*importances[21] + df["p_7a"]*importances[22])*100/(5*sum(importances[4:]))
 
-""" End of Module 2 - Model Training """
+""" End of Module 2b - Random Forest (Works) """
+
+""" End of Module 2 - Model Training (Works)"""
+
+
+""" Module 3 - Predicting & Output Function """
+# For Actual Use Case Purposes
+# Input Data as Dataframe + Data Cleaning as per Module 1
+# Run Model & Predict Flight Risk
+# Model and Variable Importance will be fixed
+# Label Flight Risk
+# Compute Flight Risk Score as per the code below
+# df["w_total"] = (df["w_1"]*importances[4] + df["w_2"]*importances[5] + df["w_3"]*importances[6])*100/(5*sum(importances[4:7]))
+# df["o_total"] = (df["o_1"]*importances[7] + df["o_2"]*importances[8] + df["o_3"]*importances[9] + df["o_4"]*importances[10] + df["o_5"]*importances[11] + df["o_6"]*importances[12] + df["o_7"]*importances[13] + df["o_8"]*importances[14] + df["o_9"]*importances[15])*100/(5*sum(importances[7:16]))
+# df["p_total"] = (df["p_1n"]*importances[16] + df["p_2n"]*importances[17] + df["p_3n"]*importances[18] + df["p_4n"]*importances[19] + df["p_5a"]*importances[20] + df["p_6a"]*importances[21] + df["p_7a"]*importances[22])*100/(5*sum(importances[16:]))
+# df["EES"] = (df["w_1"]*importances[4] + df["w_2"]*importances[5] + df["w_3"]*importances[6] + df["o_1"]*importances[7] + df["o_2"]*importances[8] + df["o_3"]*importances[9] + df["o_4"]*importances[10] + df["o_5"]*importances[11] + df["o_6"]*importances[12] + df["o_7"]*importances[13] + df["o_8"]*importances[14] + df["o_9"]*importances[15] + df["p_1n"]*importances[16] + df["p_2n"]*importances[17] + df["p_3n"]*importances[18] + df["p_4n"]*importances[19] + df["p_5a"]*importances[20] + df["p_6a"]*importances[21] + df["p_7a"]*importances[22])*100/(5*sum(importances[4:]))
+# Output results as Dataframe
