@@ -1,12 +1,8 @@
 <template>
-  <div class="home">
-    <Sidebar :current_path="1" />
-    <!-- <div v-for="nav in nav_list" :key="nav">
-      <router-link :to="{name: nav}">
-            <button>{{nav}}</button>
-      </router-link>
-    </div> -->
-  </div>
+  <el-row>
+        <el-col :span="4"><h5>menu</h5><Sidebar :current_path="1" /></el-col>  
+        <el-col :span="12"> <h2>Profile page</h2></el-col>
+  </el-row>
 </template>
 <script>
 import Sidebar from '../components/Sidebar'

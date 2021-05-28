@@ -1,7 +1,4 @@
 <template>
-  <el-row class="tac">
-  <el-col :span="4">
-    <h5>Menu</h5>
     <el-menu
       :default-active="current_path"
       class="el-menu-vertical-demo"
@@ -35,9 +32,6 @@
         <span>Profile</span>
       </el-menu-item>
     </el-menu>
-  </el-col>
-  
-</el-row>
 </template>
 
 <script>

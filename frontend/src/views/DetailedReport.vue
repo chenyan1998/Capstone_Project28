@@ -1,12 +1,13 @@
 <template>
-  <div>
-      <Sidebar />
-      <Wellbeing v-if="report_type === 'Wellbeing'" />
-      <CoreValues v-if="report_type === 'CoreValues'" />
-      <Personality v-if="report_type === 'Personality'" />
-      <Opinion v-if="report_type === 'Opinion'" />
-  </div>
-  
+  <el-row>
+      <el-col :span="4"><h5>menu</h5><Sidebar/></el-col>  
+      <el-col :span="12">
+        <Wellbeing v-if="report_type === 'Wellbeing'" />
+        <CoreValues v-if="report_type === 'CoreValues'" />
+        <Personality v-if="report_type === 'Personality'" />
+        <Opinion v-if="report_type === 'Opinion'" />
+      </el-col>
+  </el-row>
 </template>
 
 <script>
@@ -34,7 +35,6 @@ export default {
       onUnmounted(()=>{
             console.log('component unmounted')
         })
-      
     }
 
 }
