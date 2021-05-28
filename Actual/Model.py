@@ -30,9 +30,9 @@ filename = os.path.join(here, 'Employee Engagement Survey(1-73).xlsx')
 # To change to pull request function
 survey = pd.read_excel(filename, header = None)
 
-# test = survey
+test = survey
 
-# temp = test.iloc[1:,36].str.split(";", n = None, expand = True)
+temp = test.iloc[1:,35].str.split(";", n = None, expand = True)
 
 # Pull out relevant columns in the excel
 df = survey.iloc[1:,6:35]
