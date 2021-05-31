@@ -1,14 +1,14 @@
 from pymongo import MongoClient
 client = MongoClient()
 
-db = client["slack"]
-msg_collection = db["messages"]
+db = client["Department_Report"]
+msg_collection = db["Department_level_Report"]
 
 # Create a message dict
 message = {
-    "channel": "dev",
-    "author": "cerami",
-    "text": "Hello, world!"
+    "Department": "All",
+    "Feedback": "DB Schenker Best Company Forever",
+    "Risk_Level": "Low"
 }
 
 result = msg_collection.insert_one(message)

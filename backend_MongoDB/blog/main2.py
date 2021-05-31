@@ -5,15 +5,15 @@ from fastapi import FastAPI, status
 from pydantic import BaseModel
 from typing import List
 
-DB = "slack"
-MSG_COLLECTION = "messages"
+DB = "Department_Report"
+MSG_COLLECTION = "Department_level_Report"
 
 
 # Message class defined in Pydantic
 class Message(BaseModel):
-    channel: str
-    author: str
-    text: str
+    Department: str
+    Feedback: str
+    Risk_Level: str
 
 
 # Instantiate the FastAPI
@@ -26,21 +26,21 @@ def get_status():
     return {"status": "running"}
 
 
-@app.get("/channels", response_model=List[str])
+@app.get("/Department", response_model=List[str])
 def get_channels():
     """Get all channels in list form."""
     with MongoClient() as client:
         msg_collection = client[DB][MSG_COLLECTION]
-        distinct_channel_list = msg_collection.distinct("channel")
+        distinct_channel_list = msg_collection.distinct("Department")
         return distinct_channel_list
 
 
-@app.get("/messages/{channel}", response_model=List[Message])
-def get_messages(channel: str):
+@app.get("/Department/{Department}", response_model=List[Message])
+def get_messages(Department: str):
     """Get all messages for the specified channel."""
     with MongoClient() as client:
         msg_collection = client[DB][MSG_COLLECTION]
-        msg_list = msg_collection.find({"channel": channel})
+        msg_list = msg_collection.find()
         response_msg_list = []
         for msg in msg_list:
             response_msg_list.append(Message(**msg))
