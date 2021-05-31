@@ -40,15 +40,15 @@ def get_messages(Department: str):
     """Get all messages for the specified channel."""
     with MongoClient() as client:
         msg_collection = client[DB][MSG_COLLECTION]
-        msg_list = msg_collection.find()
+        msg_list = msg_collection.find({"Department":Department})
         response_msg_list = []
         for msg in msg_list:
             response_msg_list.append(Message(**msg))
         return response_msg_list
 
 
-@app.post("/post_message", status_code=status.HTTP_201_CREATED)
-def post_message(message: Message):
+@app.post("/post_report", status_code=status.HTTP_201_CREATED)
+def post_report(message: Message):
     """Post a new message to the specified channel."""
     with MongoClient() as client:
         msg_collection = client[DB][MSG_COLLECTION]
