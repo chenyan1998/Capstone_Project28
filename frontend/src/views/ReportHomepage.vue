@@ -27,7 +27,7 @@ export default {
     setup(){
     const report_list = ref(['DepartmentReport', 'QuestionReport', 'IndividualReport'])
     const {metrics, error, load} = getSummaryMetrics()
-    const value = new Date()
+    const value = ref(new Date())
     load()
     return {report_list, metrics, error, value}
   }
