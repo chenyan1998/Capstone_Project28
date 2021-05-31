@@ -16,3 +16,8 @@ class Employee(Base):
     position = Column(String)
     risk = Column(Integer)
 
+class SummaryMetric(Base):
+    __tablename__ = 'summaryMetrics'
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String)
+    content = Column(String)
