@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri May 21 13:50:30 2021
-
-@author: uknow
-"""
+""" Script for Model """
 
 # Libraries Imported
 import pandas as pd
@@ -23,17 +18,60 @@ import os
 
 here = os.path.dirname(os.path.abspath(__file__))
 
-filename = os.path.join(here, 'Employee Engagement Survey(1-73).xlsx')
+filename = os.path.join(here, 'Employee Engagement Survey(1-76).xlsx')
 
-""" Start of Module 1 - Import, Clean Data & Data Manipulation (Works) """
 # Import Survey Results 
 # To change to pull request function
 survey = pd.read_excel(filename, header = None)
 
+""" Start of Module 0 - Data Cleaning for Last Question (Works) """
+# Data Cleaning of Last Question with Multiple Answers
 test = survey
 
+# Split Response into Multiple Columns
 temp = test.iloc[1:,35].str.split(";", n = None, expand = True)
 
+# Obtain Frequency Count by Response Type
+temp_1 = pd.DataFrame(temp.iloc[1:,0].value_counts())
+temp_2 = pd.DataFrame(temp.iloc[1:,1].value_counts())
+temp_3 = pd.DataFrame(temp.iloc[1:,2].value_counts())
+temp_4 = pd.DataFrame(temp.iloc[1:,3].value_counts())
+temp_5 = pd.DataFrame(temp.iloc[1:,4].value_counts())
+temp_6 = pd.DataFrame(temp.iloc[1:,5].value_counts())
+temp_7 = pd.DataFrame(temp.iloc[1:,6].value_counts())
+temp_8 = pd.DataFrame(temp.iloc[1:,7].value_counts())
+# temp_9 = pd.DataFrame(temp.iloc[1:,8].value_counts())
+# temp_10 = pd.DataFrame(temp.iloc[1:,9].value_counts())
+
+# List of all DataFrames to be merged
+temp_all = [temp_2, temp_3, temp_4, temp_5, temp_6, temp_7, temp_8]
+
+# Merge all DataFrames
+for i in temp_all:
+    temp_1 = temp_1.merge(i,left_index = True, right_index = True, how = "outer")
+    
+# Drop Index of Invalid Response
+valid_response = ["Improved supervisory relations 监督关系之间的改善", 
+                  "Changes in supplies, tools, equipment 用品、工具、设备的变化", 
+                  "More freedom 更自由",
+                  "More authority 更大的权力、权限",
+                  "More and better information 更多更好的信息",
+                  "Changes in work environment 工作环境的变化",
+                  "Clearer responsibilities 更清晰的职责",
+                  "Additional manpower 额外人力",
+                  "More cooperation from other areas or departments 更多跨领域或部门的合作",
+                  "Better planning 更好的规划"
+]
+
+temp_1 = temp_1.loc[valid_response]
+temp_1["Frequency"] = temp_1.sum(axis = 1)
+
+# Output Frequency Count of Productivity Driver
+drivers = temp_1["Frequency"]
+
+""" End of Module 0 - Data Cleaning for Last Question (Works) """
+
+""" Start of Module 1 - Data Cleaning & Manipulation for Model (Works) """
 # Pull out relevant columns in the excel
 df = survey.iloc[1:,6:35]
 
@@ -47,12 +85,30 @@ df = survey.iloc[1:,6:35]
 names = ["i_0", "i_1", "i_2", "i_3", "i_4", "i_5", "w_1", "w_2", "w_3", "w_4", "w_5", "o_1", "o_2", "o_3", "o_4", "o_5", "p_1n", "p_2n", "p_3n", "p_4n", "p_5a", "p_6a", "p_7a", "c_1", "c_2", "c_3", "c_4", "c_5", "c_6"]
 df.columns = names
 
-# Encoding of Categorical Data to Ranked Numerical Order
+# Encoding of Categorical Data to Ranked Numerical Order & Data Cleaning
 # For i_2 and i_3, both "Below 2 years" and "Below 3 years" are considered the same category and this change was made as the survey option was corrected after the survey was launched
 encode = { "i_1": {"20-29": 1, "30-39": 2, "40-49": 3, "50-59": 4, "60 and above": 5 },
             "i_2": {"Below 2 years": 1, "Below 3 years": 1, "3-5 years": 2, "6-10 years": 3, "11-19 years": 4, "20 years and above": 5},
             "i_3": {"Below 2 years": 1, "Below 3 years": 1, "3-5 years": 2, "6-10 years": 3, "11-19 years": 4, "20 years and above": 5},
+            "i_4": {"CISCO SLC LVL 6": "Others", "cariuma": "Others"},
+            "i_5": {"storekeeper": "Non-Executives",
+                    "storkeeper": "Non-Executives",
+                    "store keeper": "Non-Executives",
+                    "Storekeeper": "Non-Executives",
+                    "Senior storekeeper": "Non-Executives",
+                    "Senior store keeper": "Non-Executives",
+                    "snr storekeeper": "Non-Executives",
+                    "S.STOREKEEPER": "Non-Executives", 
+                    "Logistic Assistant": "Non-Executives", 
+                    "officer": "Non-Executives",
+                    "logistics officer": "Non-Executives",
+                    "Senior Logistic officer": "Non-Executives",
+                    "senior shipping officer": "Non-Executives",
+                    "Management Associate": "Executives", 
+                    "Senior Executive": "Executives"
+                    }
 }
+            
 df = df.replace(encode)
 
 # Reverse Scoring for Neuroticism as it is found to have a negative relation with Employee Engagement
@@ -69,11 +125,11 @@ features = df.drop(['i_0', 'i_4', 'i_5'], axis=1)
 cols = ["i_1", "i_2", "i_3", "w_1", "w_2", "w_3", "w_4", "w_5", "o_1", "o_2", "o_3", "o_4", "o_5", "p_1n", "p_2n", "p_3n", "p_4n", "p_5a", "p_6a", "p_7a", "c_1", "c_2", "c_3", "c_4", "c_5", "c_6"]
 features[cols] = features[cols].apply(pd.to_numeric, errors='coerce', axis=1)
 df[cols] = df[cols].apply(pd.to_numeric, errors='coerce', axis=1)
-""" End of Module 1 - Import, Clean Data & Data Manipulation """
+""" End of Module 1 - Data Cleaning & Manipulation for Model (Works) """
 
 """ Start of Module 2 - Model Training (Works)"""
 
-""" Start of Pre-work - Determining the right number of clusters"""
+""" Start of Pre-work - Determining the right number of clusters (Works) """
 ### Run this code each time the model needs to be changed 
 model = KMeans()
 
@@ -95,7 +151,7 @@ visualizer = KElbowVisualizer(model, k=(2,30),metric='calinski_harabasz', timing
 visualizer.fit(features) # Fit the data to the visualizer
 visualizer.show()        # Plot
 
-""" End of Pre-work - Determining the right number of clusters"""
+""" End of Pre-work - Determining the right number of clusters (Works) """
 
 """ Start of Module 2a - Clustering (Works) """ 
 # K Means Clustering
@@ -298,7 +354,7 @@ print("Core Values Weightage:", c)
 
 """ End of Module 2e - Support Vector Machine (Works)"""
 
-""" Start of Module 2f - Naive Bayes Classifier """
+""" Start of Module 2f - Naive Bayes Classifier (Works)"""
 # Run Naive Bayes Classifier
 nbc = GaussianNB()
 
@@ -321,7 +377,8 @@ print("True Negative Rate:", tnr)
 print("True Positive Rate:", tpr)
 print("False Negative Rate:", fnr)
 
-""" End of Module 2f - Naive Bayes Classifier """
+# Note: No Feature Importance Method for KNN Classifier
+""" End of Module 2f - Naive Bayes Classifier (Works)"""
 
 """ End of Module 2 - Model Training """
 
@@ -375,6 +432,10 @@ results_individual = df
 
 """ End of Module 3 - Results & Query (Works) """
 
-# To do
-# 1. Data Cleaning of Others Responses for Department/Job Level Columns & Last Question
-# 2. Results for Last Question
+# List of all Dataframes to output
+# results_individual
+# results_department
+# results_age
+# results_job_level
+# results_organisation
+# drivers
