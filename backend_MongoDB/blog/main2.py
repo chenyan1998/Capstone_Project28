@@ -2,31 +2,24 @@
 # Illustrates basic usage of FastAPI w/ MongoDB
 from pymongo import MongoClient
 from fastapi import FastAPI, status
-from pydantic import BaseModel
+from . import models
 from typing import List
 
 DB = "Department_Report"
 MSG_COLLECTION = "Department_level_Report"
 
 
-# Message class defined in Pydantic
-class Message(BaseModel):
-    Department: str
-    Feedback: str
-    Risk_Level: str
-
-
 # Instantiate the FastAPI
 app = FastAPI()
 
 
-@app.get("/status")
+@app.get("/status" , tags=["Base Operations"])
 def get_status():
     """Get status of messaging server."""
     return {"status": "running"}
 
 
-@app.get("/Department", response_model=List[str])
+@app.get("/Department", response_model=List[str] , tags=["Employee"])
 def get_channels():
     """Get all channels in list form."""
     with MongoClient() as client:
@@ -35,7 +28,7 @@ def get_channels():
         return distinct_channel_list
 
 
-@app.get("/Department/{Department}", response_model=List[Message])
+@app.get("/Department/{Department}", response_model=List[models.Message], tags=["Employee"])
 def get_messages(Department: str):
     """Get all messages for the specified channel."""
     with MongoClient() as client:
@@ -43,12 +36,12 @@ def get_messages(Department: str):
         msg_list = msg_collection.find({"Department":Department})
         response_msg_list = []
         for msg in msg_list:
-            response_msg_list.append(Message(**msg))
+            response_msg_list.append(models.Message(**msg))
         return response_msg_list
 
 
-@app.post("/post_report", status_code=status.HTTP_201_CREATED)
-def post_report(message: Message):
+@app.post("/post_report", status_code=status.HTTP_201_CREATED , tags=["Analysis Report"])
+def post_report(message: models.Message):
     """Post a new message to the specified channel."""
     with MongoClient() as client:
         msg_collection = client[DB][MSG_COLLECTION]
