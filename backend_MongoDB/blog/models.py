@@ -1,6 +1,5 @@
-from sqlalchemy.sql.sqltypes import String
 from pydantic import BaseModel
-from typing import Optional, List
+from typing import Optional
 from bson import ObjectId
 
 # Message class defined in Pydantic
@@ -9,24 +8,25 @@ class Message(BaseModel):
     Feedback: str
     Risk_Level: str
 
+#Gentle information
 class User(BaseModel):
     __tablename__ = 'users'
-    id = String
-    name = String
-    email = String
-    password = String 
+    id : str
+    name : str
+    email : str
+    password :  str
 
 class Employee(BaseModel):
     __tablename__ = 'employees'
-    id = String
-    position = String
-    risk = String
-    individual_report = String
+    id : str
+    position :  str
+    risk : str
+    individual_report :  str
 
 class UserModel(BaseModel):
-    id= String
-    name= String
-    email= String
+    id :  str
+    name : str
+    email : str
     password: Optional[str]
 
     class Config:
@@ -43,7 +43,7 @@ class UserModel(BaseModel):
 
 class UpdateUsertModel(BaseModel):
     name: Optional[str]
-    email= String
+    email : str
     password: Optional[str]
 
     class Config:

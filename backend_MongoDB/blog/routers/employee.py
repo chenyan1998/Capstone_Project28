@@ -20,6 +20,11 @@ GET /{id} - view a single student.
 PUT /{id} - update a student.
 DELETE /{id} - delete a student.
 """
+#Connect to local database
+DB = "Department_Report"
+MSG_COLLECTION = "Department_level_Report"
+
+
 #Create Employee Route 
 
 router = APIRouter(
@@ -31,7 +36,7 @@ router = APIRouter(
 
 
 @router.get("/employee", response_model=List[str] , tags=["Employee"])
-def get_channels():
+async def get_channels():
     """Get all channels in list form."""
     with MongoClient() as client:
         msg_collection = client[DB][MSG_COLLECTION]
@@ -40,7 +45,7 @@ def get_channels():
 
 
 @router.get("/employee/{Department}", response_model=List[models.Message], tags=["Employee"])
-def get_messages(Department: str):
+async def get_messages(Department: str):
     """Get all messages for the specified channel."""
     with MongoClient() as client:
         msg_collection = client[DB][MSG_COLLECTION]

@@ -1,6 +1,7 @@
 from .. import models
 from pymongo import MongoClient
-
+from .. import schemas
+from .. import config
 import os
 from fastapi import APIRouter, Depends, FastAPI, Body, HTTPException, status
 from fastapi.responses import JSONResponse
@@ -9,6 +10,9 @@ from pydantic import BaseModel, Field, EmailStr
 from bson import ObjectId
 from typing import Optional, List
 
+#Connect to local database
+DB = "Department_Report"
+MSG_COLLECTION = "Department_level_Report"
 
 #Application Routes
 """
@@ -26,8 +30,12 @@ router = APIRouter(
     tags=['Users']
 )
 
+@router.get("/user/t1", response_model=List[models.Message], tags=["Users"])
+async def find_all_users():
+    return schemas.serializeList(config.db.cnn.local.user.find())
+
 @router.get("/user", response_model=List[models.Message], tags=["Users"])
-def get_messages(id: str):
+async def get_messages(id: str):
     """Get all messages for the specified channel."""
     with MongoClient() as client:
         msg_collection = client[DB][MSG_COLLECTION]
@@ -38,7 +46,7 @@ def get_messages(id: str):
         return response_msg_list
 
 @router.post("/user", status_code=status.HTTP_201_CREATED , tags=["Users"])
-def post_report(user: models.User):
+async def post_report(user: models.User):
     """Post a new user """
     with MongoClient() as client:
         msg_collection = client[DB][MSG_COLLECTION]

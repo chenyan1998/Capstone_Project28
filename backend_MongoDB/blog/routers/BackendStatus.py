@@ -17,6 +17,12 @@ GET /{id} - view a single student.
 PUT /{id} - update a student.
 DELETE /{id} - delete a student.
 """
+
+#Connect to local database
+DB = "Department_Report"
+MSG_COLLECTION = "Department_level_Report"
+
+
 #Create User Route 
 
 router = APIRouter(
@@ -25,6 +31,6 @@ router = APIRouter(
 )
 
 @router.get("/BackendStatus" , tags=["BackendStatus"])
-def get_status():
+async def get_status():
     """Get status of server."""
     return {"status": "running"}

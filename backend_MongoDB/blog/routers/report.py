@@ -18,6 +18,11 @@ GET /{id} - view a single student.
 PUT /{id} - update a student.
 DELETE /{id} - delete a student.
 """
+
+#Connect to local database
+DB = "Department_Report"
+MSG_COLLECTION = "Department_level_Report"
+
 #Create User Route 
 
 router = APIRouter(
@@ -26,7 +31,7 @@ router = APIRouter(
 )
 
 @router.post("/Report", status_code=status.HTTP_201_CREATED , tags=["Analysis Report"])
-def post_report(message: models.Message):
+async def post_report(message: models.Message):
     """Post a new message to the specified channel."""
     with MongoClient() as client:
         msg_collection = client[DB][MSG_COLLECTION]
