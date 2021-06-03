@@ -1,6 +1,8 @@
 from pymongo import MongoClient
 client = MongoClient()
 
+
+
 db = client["Department_Report"]
 msg_collection = db["Department_level_Report"]
 

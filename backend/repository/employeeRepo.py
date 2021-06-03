@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from .. import models, schemas
 from fastapi import HTTPException
+
 def get_all(db: Session):
     employees = db.query(models.Employee).all()
     return employees
