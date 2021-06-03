@@ -4,6 +4,7 @@ from ..utils import oauth2
 from sqlalchemy.orm import Session
 from typing import List
 from ..repository import employeeRepo
+
 get_db = database.get_db
 router = APIRouter(
     prefix="/employee",

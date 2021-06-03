@@ -1,9 +1,16 @@
 # A Bare Bones Slack API
 # Illustrates basic usage of FastAPI w/ MongoDB
 from pymongo import MongoClient
-from fastapi import FastAPI, status
 from . import models
-from typing import List
+import os
+from fastapi import FastAPI, Body, HTTPException, status
+from fastapi.responses import JSONResponse
+from fastapi.encoders import jsonable_encoder
+from pydantic import BaseModel, Field, EmailStr
+from bson import ObjectId
+from typing import Optional, List
+from .routers import authentication, user, employee , report , BackendStatus
+
 
 DB = "Department_Report"
 MSG_COLLECTION = "Department_level_Report"
@@ -11,40 +18,15 @@ MSG_COLLECTION = "Department_level_Report"
 
 # Instantiate the FastAPI
 app = FastAPI()
+# Step1 : Connect to MongoDB 
+# client = motor.motor_asyncio.AsyncIOMotorClient(os.environ["MONGODB_URL"])
+# db = client.college
+# We're using the async motor driver to create our MongoDB client, and then we specify our database name college.
 
 
-@app.get("/status" , tags=["Base Operations"])
-def get_status():
-    """Get status of messaging server."""
-    return {"status": "running"}
 
+app.include_router(BackendStatus.router)
+app.include_router(user.router)
+app.include_router(report.router)
+app.include_router(employee.router)
 
-@app.get("/Department", response_model=List[str] , tags=["Employee"])
-def get_channels():
-    """Get all channels in list form."""
-    with MongoClient() as client:
-        msg_collection = client[DB][MSG_COLLECTION]
-        distinct_channel_list = msg_collection.distinct("Department")
-        return distinct_channel_list
-
-
-@app.get("/Department/{Department}", response_model=List[models.Message], tags=["Employee"])
-def get_messages(Department: str):
-    """Get all messages for the specified channel."""
-    with MongoClient() as client:
-        msg_collection = client[DB][MSG_COLLECTION]
-        msg_list = msg_collection.find({"Department":Department})
-        response_msg_list = []
-        for msg in msg_list:
-            response_msg_list.append(models.Message(**msg))
-        return response_msg_list
-
-
-@app.post("/post_report", status_code=status.HTTP_201_CREATED , tags=["Analysis Report"])
-def post_report(message: models.Message):
-    """Post a new message to the specified channel."""
-    with MongoClient() as client:
-        msg_collection = client[DB][MSG_COLLECTION]
-        result = msg_collection.insert_one(message.dict())
-        ack = result.acknowledged
-        return {"insertion": ack}
