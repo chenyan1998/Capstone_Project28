@@ -28,7 +28,6 @@ class UserModel(BaseModel):
     name= String
     email= String
     password: Optional[str]
-    
 
     class Config:
         allow_population_by_field_name = True

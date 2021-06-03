@@ -1,6 +1,5 @@
 from .. import models
 from pymongo import MongoClient
-
 import os
 from fastapi import APIRouter, Depends,FastAPI, Body, HTTPException, status
 from fastapi.responses import JSONResponse
@@ -25,6 +24,7 @@ router = APIRouter(
     prefix="/Report",
     tags=['Analysis Report']
 )
+
 @router.post("/Report", status_code=status.HTTP_201_CREATED , tags=["Analysis Report"])
 def post_report(message: models.Message):
     """Post a new message to the specified channel."""

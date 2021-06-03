@@ -23,8 +23,6 @@ app = FastAPI()
 # db = client.college
 # We're using the async motor driver to create our MongoDB client, and then we specify our database name college.
 
-
-
 app.include_router(BackendStatus.router)
 app.include_router(user.router)
 app.include_router(report.router)

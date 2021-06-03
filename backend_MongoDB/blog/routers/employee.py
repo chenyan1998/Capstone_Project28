@@ -28,10 +28,6 @@ router = APIRouter(
 
 )
 
-# @app.get("/status" , tags=["Base Operations"])
-# def get_status():
-#     """Get status of messaging server."""
-#     return {"status": "running"}
 
 
 @router.get("/employee", response_model=List[str] , tags=["Employee"])
