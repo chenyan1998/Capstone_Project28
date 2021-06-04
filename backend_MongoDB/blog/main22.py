@@ -1,6 +1,6 @@
 # A Bare Bones Slack API
 # Illustrates basic usage of FastAPI w/ MongoDB
-from backend.models import User
+from .models import User
 from pymongo import MongoClient
 from . import models
 import os

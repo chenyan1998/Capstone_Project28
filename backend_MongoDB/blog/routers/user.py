@@ -11,31 +11,22 @@ from bson import ObjectId
 from typing import Optional, List
 
 #Connect to local database
-DB = "Department_Report"
-MSG_COLLECTION = "Department_level_Report"
+DB = "MongoDB_Database"
+MSG_COLLECTION = "user"
 
-#Application Routes
-"""
-Our application has five routes:
-
-POST / - creates a new student.
-GET / - view a list of all students.
-GET /{id} - view a single student.
-PUT /{id} - update a student.
-DELETE /{id} - delete a student.
-"""
 #Create User Route 
 router = APIRouter(
     prefix="/user",
     tags=['Users']
 )
 
-@router.get("/user/t1", response_model=List[models.Message], tags=["Users"])
+#Functions
+@router.get("/user/userlist", response_model=List[models.Message], tags=["Users"])
 async def find_all_users():
     return schemas.serializeList(config.db.cnn.local.user.find())
 
-@router.get("/user", response_model=List[models.Message], tags=["Users"])
-async def get_messages(id: str):
+@router.get("/user/{id}", response_model=List[models.Message], tags=["Users"])
+async def get_user_information(id: str):
     """Get all messages for the specified channel."""
     with MongoClient() as client:
         msg_collection = client[DB][MSG_COLLECTION]
@@ -46,7 +37,7 @@ async def get_messages(id: str):
         return response_msg_list
 
 @router.post("/user", status_code=status.HTTP_201_CREATED , tags=["Users"])
-async def post_report(user: models.User):
+async def post_new_user(user: models.User):
     """Post a new user """
     with MongoClient() as client:
         msg_collection = client[DB][MSG_COLLECTION]
@@ -54,7 +45,11 @@ async def post_report(user: models.User):
         ack = result.acknowledged
         return {"insertion": ack}
 
-@router.delete("/{user}", status_code=status.HTTP_201_CREATED , tags=["Users"],response_description="Delete a user")
+@router.put('/user/{id}')
+async def update_user(user: models.User):
+    return {"update": "update_user"}
+
+@router.delete("/user/{id}", status_code=status.HTTP_201_CREATED , tags=["Users"],response_description="Delete a user")
 async def delete_user(id: str):
     msg_collection = client[DB][MSG_COLLECTION]
     msg_list = msg_collection.find({"id":id})
