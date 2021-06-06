@@ -1,6 +1,6 @@
 """ Script for Cleaning Other Questions """
 
-# Libraries Imported
+# Standard Libraries Imported
 import pandas as pd
 
 names = ["i_0", "i_1", "i_2", "i_3", "i_4", "i_5", "w_1", "w_2", "w_3", "w_4", "w_5", "o_1", "o_2", "o_3", "o_4", "o_5", "p_1n", "p_2n", "p_3n", "p_4n", "p_5a", "p_6a", "p_7a", "c_1", "c_2", "c_3", "c_4", "c_5", "c_6"]
@@ -10,22 +10,31 @@ names = ["i_0", "i_1", "i_2", "i_3", "i_4", "i_5", "w_1", "w_2", "w_3", "w_4", "
 encode = { "i_1": {"20-29": 1, "30-39": 2, "40-49": 3, "50-59": 4, "60 and above": 5 },
             "i_2": {"Below 2 years": 1, "Below 3 years": 1, "3-5 years": 2, "6-10 years": 3, "11-19 years": 4, "20 years and above": 5},
             "i_3": {"Below 2 years": 1, "Below 3 years": 1, "3-5 years": 2, "6-10 years": 3, "11-19 years": 4, "20 years and above": 5},
-            "i_4": {"CISCO SLC LVL 6": "Others", "cariuma": "Others"},
+            "i_4": {"CISCO SLC LVL 6": "Contract Logistics/SCM  合同物流/供应链管理", "cariuma": "Contract Logistics/SCM  合同物流/供应链管理"},
             "i_5": {"storekeeper": "Non-Executives",
                     "storkeeper": "Non-Executives",
                     "store keeper": "Non-Executives",
                     "Storekeeper": "Non-Executives",
+                    "storekepper": "Non-Executives",
+                    "Store Assistance": "Non-Executives",
                     "Senior storekeeper": "Non-Executives",
+                    "Senior store keeper ": "Non-Executives",
                     "Senior store keeper": "Non-Executives",
+                    "Senior Storekeeper": "Non-Executives",
                     "snr storekeeper": "Non-Executives",
                     "S.STOREKEEPER": "Non-Executives", 
                     "Logistic Assistant": "Non-Executives", 
                     "officer": "Non-Executives",
+                    "Officer": "Non-Executives",
+                    "OFFICER": "Non-Executives",
                     "logistics officer": "Non-Executives",
                     "Senior Logistic officer": "Non-Executives",
                     "senior shipping officer": "Non-Executives",
+                    "customer services ": "Non-Executives",
                     "Management Associate": "Executives", 
-                    "Senior Executive": "Executives"
+                    "Senior Executive": "Executives",
+                    "Deputy G.M": "Manager",
+                    "AGM": "Manager"
                     }
 }
 

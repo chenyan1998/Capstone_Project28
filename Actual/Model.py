@@ -1,35 +1,31 @@
-""" Script for Model Execution """
+""" Script for Model Training """
 
-# Libraries Imported
+# Standard Libraries Imported
 import pandas as pd
 from sklearn.cluster import KMeans
 from yellowbrick.cluster import KElbowVisualizer
+import pickle
 import os
 
 here = os.path.dirname(os.path.abspath(__file__))
 
-filename = os.path.join(here, 'Employee Engagement Survey(1-76).xlsx')
+filename = os.path.join(here, 'Employee Engagement Survey(1-151).xlsx')
 
 # Import Model Data
 model_data = pd.read_excel(filename, header = None)
 
-""" Start of Module 0 - Data Cleaning for Last Question (Works) """
-# Module cleans last question survey data
+# Cleans last question survey data for model training
 import clean_last
 drivers = clean_last.clean_last_qns(model_data)
-""" End of Module 0 - Data Cleaning for Last Question (Works) """
 
-""" Start of Module 1 - Data Cleaning & Manipulation for Model (Works) """
-# Module cleans remaining questions survey data
+# Clean remaining questions survey data for model training
 import clean_others
 df, features = clean_others.clean(model_data)
-""" End of Module 1 - Data Cleaning & Manipulation for Model (Works) """
 
-""" Start of Module 2 - Model Training (Works)"""
+""" Start of Determine the right number of clusters """
 
-""" Start of Pre-work - Determining the right number of clusters (Works) """
 ### Run this code each time the model needs to be changed 
-model = KMeans()
+model = KMeans(random_state=0)
 
 ### 1. Elbow Method
 # k is range of number of clusters.
@@ -49,41 +45,37 @@ visualizer = KElbowVisualizer(model, k=(2,30),metric='calinski_harabasz', timing
 visualizer.fit(features) # Fit the data to the visualizer
 visualizer.show()        # Plot
 
-""" End of Pre-work - Determining the right number of clusters (Works) """
+""" End of Determine the right number of clusters """
 
-""" Start of Module 2a - Clustering (Works) """ 
+# Cluster data points and assign labels for supervised learning
 import clustering
 labels, features, feature_list, df = clustering.cluster(df, features)
-""" End of Module 2a - Clustering (Works) """
 
-""" Start of Module 2b - Random Forest (Works) """
+# Execute KFolds Cross Validation for Model Tuning and Improvements
+import kfolds
+acc_range = kfolds.cv(features, feature_list, labels, df)
+
+# Train Random Forest Model
 import train_rf
 rf, df = train_rf.train(features, feature_list, labels, df)
-""" End of Module 2b - Random Forest (Works) """
 
-""" Start of Module 2c - Decision Tree (Works) """
+# Train Decision Tree Model
 import train_dt
 dt = train_dt.train(features, feature_list, labels, df)
-""" End of Module 2c - Decision Tree (Works) """
 
-""" Start of Module 2d - K Nearest Neighbours (Works) """
+# Train KNN Classifier Model
 import train_knn
 knn = train_knn.train(features, feature_list, labels, df)
-""" End of Module 2d - K Nearest Neighbours (Works) """
 
-""" Start of Module 2e - Support Vector Machine (Works) """
+# Train SVM Model
 import train_svm
 sv = train_svm.train(features, feature_list, labels, df)
-""" End of Module 2e - Support Vector Machine (Works)"""
 
-""" Start of Module 2f - Naive Bayes Classifier (Works)"""
+# Train NBC Model
 import train_nbc
 nbc = train_nbc.train(features, feature_list, labels, df)
-""" End of Module 2f - Naive Bayes Classifier (Works)"""
 
-""" End of Module 2 - Model Training """
-
-""" Start of Module 3 - Results & Query (Works) """
+""" Start of Internal Checking of Output Dataframe & Predictions """
 # Aggregate Results
 # i_1, i_2, i_3 and Flight Risk are dropped from summary statistics as they are categorical data
 results_department = df.drop(['i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_4']).agg(['mean', 'std', 'min','median','max'])
@@ -131,24 +123,14 @@ results_organisation = df.drop(['i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).des
 # Individual Results
 results_individual = df
 
-""" End of Module 3 - Results & Query (Works) """
+""" End of Internal Checking of Output Dataframe & Predictions """
 
-""" Start of Module 4 - Processing of New Survey Results & Prediction (Works)"""
-filename = os.path.join(here, 'Employee Engagement Survey(1-44).xlsx')
-new_data = pd.read_excel(filename, header = None)
-new_drivers = clean_last.clean_last_qns(new_data)
-new_df, new_features = clean_others.clean(new_data)
-import results
-new_results_individual, new_results_department, new_results_job_level, new_results_age = results.get_results(rf, new_df, new_features)
-""" End of Module 4 - Processing of New Survey Results & Prediction (Works)"""
-
-# List of all Dataframes to output
-# new_results_individual
-# new_results_department
-# new_results_age
-# new_results_job_level
-# new_results_organisation
-# new_drivers
+# Save Trained Model for Future Execution
+pickle.dump(rf, open("rf.sav", "wb"))
+pickle.dump(dt, open("dt.sav", "wb"))
+pickle.dump(sv, open("sv.sav", "wb"))
+pickle.dump(knn, open("knn.sav", "wb"))
+pickle.dump(nbc, open("nbc.sav", "wb"))
 
 # Note for Final Script:
 # To remove all but one supervised learning modules once finalised

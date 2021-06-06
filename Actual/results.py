@@ -1,4 +1,4 @@
-""" Script for Processing Survey Results """
+""" Script for Processing Survey Results with Loaded Prediction Model"""
 
 name_list = ['w_1_mean', 'w_1_std', 'w_1_min', 'w_1_median', 'w_1_max',
              'w_2_mean', 'w_2_std', 'w_2_min', 'w_2_median', 'w_2_max',

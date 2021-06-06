@@ -1,6 +1,6 @@
 """ Script for Clustering """
 
-# Libraries Imported
+# Standard Libraries Imported
 import numpy as np
 from sklearn.cluster import KMeans
 
@@ -8,7 +8,7 @@ def cluster(dataframe, predictors):
 
     # K Means Clustering
     # 0 -> High Flight Risk, 1-> Low Flight Risk
-    model = KMeans(n_clusters=2, random_state=0) # To determine the number of clusters & random state is like a set.seed which ensures reproducibility in the results
+    model = KMeans(n_clusters=4, random_state=0) # To determine the number of clusters & random state is like a set.seed which ensures reproducibility in the results
     kmeans = model.fit(predictors)
     dataframe["Flight Risk"] = kmeans.labels_
     

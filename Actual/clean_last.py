@@ -1,6 +1,6 @@
 """ Script for Cleaning Last Question """
 
-# Libraries Imported
+# Standard Libraries Imported
 import pandas as pd
 
 valid_response = ["Improved supervisory relations 监督关系之间的改善", 

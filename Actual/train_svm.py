@@ -1,8 +1,8 @@
 """ Script for Model Training - SVM """
 
-# Libraries Imported
+# Standard Libraries Imported
 from sklearn.model_selection import train_test_split
-from sklearn import metrics
+from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn import svm
 
@@ -21,17 +21,14 @@ def train(features, feature_list, labels, df):
     predictions = sv.predict(test_features)
     conf_mat = confusion_matrix(test_labels, predictions)
     print(conf_mat)
-    acc = metrics.accuracy_score(test_labels, predictions)
-    fpr = conf_mat[1][0]/(conf_mat[1][0] + conf_mat[0][0]) # False Positive Rate
-    tnr = conf_mat[0][0]/(conf_mat[1][0] + conf_mat[0][0]) # True Negative Rate
-    tpr = conf_mat[1][1]/(conf_mat[1][1] + conf_mat[0][1]) # True Positive Rate
-    fnr = conf_mat[0][1]/(conf_mat[1][1] + conf_mat[0][1]) # False Negative Rate
+    
+    # Accuracy is the number of correct predictions
+    # Precision = True_Positive/ (True_Positive+ False_Positive) -> Measures % Correctly Predicted Class
+    # Recall = True_Positive/ (True_Positive+ False_Negative) -> Measures the fraction of samples from a class which are correctly predicted by the model
+    # F1 Score is the harmonic mean of Precision and recall for each category
+    # Support is the number of occurences for each class
     print("SVM Performance")
-    print("Accuracy:", acc)
-    print("False Positive Rate:", fpr)
-    print("True Negative Rate:", tnr)
-    print("True Positive Rate:", tpr)
-    print("False Negative Rate:", fnr)
+    print(classification_report(test_labels, predictions))
     
     # Summary Analysis of Feature Importance
     # Get numerical feature importances
@@ -43,7 +40,7 @@ def train(features, feature_list, labels, df):
     importances_sv = []
     for i in importances_sv_temp:
         importances_sv.append(i/sum(importances_sv_temp[0]))
-    print(sum(importances_sv[0]))
+    # print(sum(importances_sv[0]))
     
     importances = importances_sv[0]
     
@@ -52,17 +49,17 @@ def train(features, feature_list, labels, df):
     # Sort the feature importances by most important first
     feature_importances = sorted(feature_importances, key = lambda x: x[1], reverse = True)
     # Print out the feature and importances 
-    [print('Variable: {:20} Importance: {}'.format(*pair)) for pair in feature_importances];
+    # [print('Variable: {:20} Importance: {}'.format(*pair)) for pair in feature_importances];
     
     # Determine Most Important Category
     w = sum(importances[3:8])
     o = sum(importances[8:13])
     p = sum(importances[13:20])
     c = sum(importances[20:])
-    print("Wellbeing Weightage:", w)
-    print("Opinion Weightage:", o)
-    print("Personality Weightage:", p)
-    print("Core Values Weightage:", c)
+    # print("Wellbeing Weightage:", w)
+    # print("Opinion Weightage:", o)
+    # print("Personality Weightage:", p)
+    # print("Core Values Weightage:", c)
     
     # Individual Analysis Score by Survey Question Buckets Normalised to a Max Score of 100
     # extract out the value of the importances and assign them 
