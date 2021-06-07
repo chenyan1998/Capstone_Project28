@@ -24,7 +24,6 @@ MSG_COLLECTION = "Department_level_Report"
 
 
 #Create User Route 
-
 router = APIRouter(
     prefix="/BackendStatus",
     tags=['BackendStatus']
