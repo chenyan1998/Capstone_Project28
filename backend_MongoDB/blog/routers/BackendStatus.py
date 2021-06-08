@@ -19,9 +19,8 @@ DELETE /{id} - delete a student.
 """
 
 #Connect to local database
-DB = "Department_Report"
-MSG_COLLECTION = "Department_level_Report"
-
+DB = "MongoDB_Database"
+MSG_COLLECTION = "Backend_Status"
 
 #Create User Route 
 router = APIRouter(
@@ -29,6 +28,7 @@ router = APIRouter(
     tags=['BackendStatus']
 )
 
+#Functions
 @router.get("/BackendStatus" , tags=["BackendStatus"])
 async def get_status():
     """Get status of server."""
