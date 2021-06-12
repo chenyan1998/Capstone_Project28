@@ -1,6 +1,7 @@
 """ Script for Model Training - KNN """
 
 # Standard Libraries Imported
+import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
@@ -28,8 +29,8 @@ def train(features, feature_list, labels, df):
     # F1 Score is the harmonic mean of Precision and recall for each category
     # Support is the number of occurences for each class
     print("KNN Performance")
+    report = classification_report(test_labels, predictions, output_dict=True)
     print(classification_report(test_labels, predictions))
+    report = pd.DataFrame(report).transpose()
     
-    # Note: No Feature Importance Method for KNN Classifier
-    
-    return knn
+    return knn, report

@@ -9,7 +9,7 @@ import os
 
 here = os.path.dirname(os.path.abspath(__file__))
 
-filename = os.path.join(here, 'Employee Engagement Survey(1-151).xlsx')
+filename = os.path.join(here, 'Employee Engagement Survey(1-237).xlsx')
 
 # Import Survey Results 
 model_data = pd.read_excel(filename, header = None)
@@ -26,6 +26,7 @@ df, features = clean_others.clean(model_data)
 features.hist(color='steelblue', edgecolor='black', linewidth=1.0,
            xlabelsize=8, ylabelsize=8, grid=False)    
 plt.tight_layout(rect=(0, 0, 1.2, 1.2)) 
+plt.savefig("distribution.png", bbox_inches = 'tight')
 
 # Correlation Analysis
 # Plot Heatmap of all correlation values
@@ -36,6 +37,7 @@ hm_1 = sns.heatmap(round(corr,2), mask = mask, annot=True, ax=ax1, cmap="coolwar
                  linewidths=.5)
 f1.subplots_adjust(top=0.93)
 t1= f1.suptitle('Correlation Heatmap', fontsize=14)
+plt.savefig("all_heatmap.png", bbox_inches = 'tight')
 
 # Plot Heatmap of high correlation values
 high_corr = corr[corr >= 0.7]
@@ -45,3 +47,4 @@ hm_2 = sns.heatmap(round(high_corr,2), mask = mask, annot=True, ax=ax2, cmap="au
                  linewidths=.5)
 f2.subplots_adjust(top=0.93)
 t2= f2.suptitle('Correlation Heatmap', fontsize=14)
+plt.savefig("high_heatmap.png", bbox_inches = 'tight')

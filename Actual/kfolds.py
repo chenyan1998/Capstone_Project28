@@ -1,7 +1,6 @@
 """ Script for K-Fold Cross Validation """
 
 # Standard Libraries Imported
-from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
@@ -13,19 +12,16 @@ import numpy as np
 
 def cv(features, feature_list, labels, df):
     
-    # Split into Train-Test Set
-    train_features, test_features, train_labels, test_labels = train_test_split(features, labels, test_size=0.3, random_state=0)
-    
     # Run Repeated KFolds
     kfolds = RepeatedKFold(n_splits = 10, n_repeats = 50, random_state = 0)
     
-    rf = RandomForestClassifier(n_estimators = 64)
+    rf = RandomForestClassifier(n_estimators = 128)
     dt = DecisionTreeClassifier(max_depth = None)
     knn = KNeighborsClassifier(n_neighbors = 5)
-    nbc = GaussianNB()
     sv = svm.SVC(kernel='linear')
+    nbc = GaussianNB()
     
-    supervised_learning = [rf, dt, knn, nbc, sv]
+    supervised_learning = [rf, dt, knn, sv, nbc]
     
     output = []
     

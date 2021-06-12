@@ -32,28 +32,63 @@ name_list = ['w_1_mean', 'w_1_std', 'w_1_min', 'w_1_median', 'w_1_max',
 
 def get_results(model, df, features):
     
-    importances = list(model.feature_importances_)
-    # Individual Analysis Score by Survey Question Buckets Normalised to a Max Score of 100
-    # extract out the value of the importances and assign them 
-    df["w_total"] = (df["w_1"]*importances[3] + df["w_2"]*importances[4] + df["w_3"]*importances[5] + df["w_4"]*importances[6] + df["w_5"]*importances[7])*100/(5*sum(importances[3:8]))
-    df["o_total"] = (df["o_1"]*importances[8] + df["o_2"]*importances[9] + df["o_3"]*importances[10] + df["o_4"]*importances[11] + df["o_5"]*importances[12])*100/(5*sum(importances[8:13]))
-    df["p_total"] = (df["p_1n"]*importances[13] + df["p_2n"]*importances[14] + df["p_3n"]*importances[15] + df["p_4n"]*importances[16] + df["p_5a"]*importances[17] + df["p_6a"]*importances[18] + df["p_7a"]*importances[19])*100/(5*sum(importances[13:20]))
-    df["c_total"] = (df["c_1"]*importances[20] + df["c_2"]*importances[21] + df["c_3"]*importances[22] + df["c_4"]*importances[23] + df["c_5"]*importances[24] + df["c_6"]*importances[25])*100/(5*sum(importances[20:]))
-    df["EES"] = (df["w_1"]*importances[3] + df["w_2"]*importances[4] + df["w_3"]*importances[5] + df["w_4"]*importances[6] + df["w_5"]*importances[7] + df["o_1"]*importances[8] + df["o_2"]*importances[9] + df["o_3"]*importances[10] + df["o_4"]*importances[11] + df["o_5"]*importances[12] + df["p_1n"]*importances[13] + df["p_2n"]*importances[14] + df["p_3n"]*importances[15] + df["p_4n"]*importances[16] + df["p_5a"]*importances[17] + df["p_6a"]*importances[18] + df["p_7a"]*importances[19] + df["c_1"]*importances[20] + df["c_2"]*importances[21] + df["c_3"]*importances[22] + df["c_4"]*importances[23] + df["c_5"]*importances[24] + df["c_6"]*importances[25])*100/(5*sum(importances[3:]))
-    df["Flight Risk"] = model.predict(features)
+    # Introduce Try/Except Statement to capture scenarios where Supervised Learning Methods without Feature Importances are used
     
-    # Individual Results
-    results_individual = df
+    try: 
+        importances = list(model.feature_importances_)
+        # Individual Analysis Score by Survey Question Buckets Normalised to a Max Score of 100
+        # extract out the value of the importances and assign them
+        df["w_total"] = (df["w_1"]*importances[2] + df["w_2"]*importances[3] + df["w_3"]*importances[4] + df["w_4"]*importances[5] + df["w_5"]*importances[6])*100/(5*sum(importances[2:7]))
+        df["o_total"] = (df["o_1"]*importances[7] + df["o_2"]*importances[8] + df["o_4"]*importances[9] + df["o_5"]*importances[10])*100/(5*sum(importances[7:11]))
+        df["p_total"] = (df["p_1n"]*importances[11] + df["p_2n"]*importances[12] + df["p_3n"]*importances[13] + df["p_4n"]*importances[14] + df["p_5a"]*importances[15] + df["p_6a"]*importances[16] + df["p_7a"]*importances[17])*100/(5*sum(importances[11:18]))
+        df["c_total"] = (df["c_1"]*importances[18] + df["c_2"]*importances[19] + df["c_3"]*importances[20] + df["c_4"]*importances[21] + df["c_5"]*importances[22] + df["c_6"]*importances[23])*100/(5*sum(importances[18:]))
+        df["EES"] = (df["w_1"]*importances[2] + df["w_2"]*importances[3] + df["w_3"]*importances[4] + df["w_4"]*importances[5] + df["w_5"]*importances[6] + 
+                     df["o_1"]*importances[7] + df["o_2"]*importances[8] + df["o_4"]*importances[9] + df["o_5"]*importances[10] + 
+                     df["p_1n"]*importances[11] + df["p_2n"]*importances[12] + df["p_3n"]*importances[13] + df["p_4n"]*importances[14] + df["p_5a"]*importances[15] + df["p_6a"]*importances[15] + df["p_7a"]*importances[17] + 
+                     df["c_1"]*importances[18] + df["c_2"]*importances[19] + df["c_3"]*importances[20] + df["c_4"]*importances[21] + df["c_5"]*importances[22] + df["c_6"]*importances[23])*100/(5*sum(importances[2:]))
+        
+        # Note: o_3 is not included in scoring as it was dropped from prediction
+        
+        # Predict
+        df["Flight Risk"] = model.predict(features)
     
-    # Aggregate Results
-    # i_1, i_2, i_3 and Flight Risk are dropped from summary statistics as they are categorical data
-    results_department = df.drop(['i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_4']).agg(['mean', 'std', 'min','median','max'])
-    results_job_level = df.drop(['i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_5']).agg(['mean', 'std', 'min','median','max'])
-    results_age = df.drop(['i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_1']).agg(['mean', 'std', 'min','median','max'])
-    
-    # Rename Columns
-    results_department.columns = name_list
-    results_job_level.columns = name_list
-    results_age.columns = name_list
-    
-    return results_individual, results_department, results_job_level, results_age
+        # Aggregate Results
+        # i_1, i_2, i_3 and Flight Risk are dropped from summary statistics as they are categorical data
+        results_department = df.drop(['i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_4']).agg(['mean', 'std', 'min','median','max'])
+        results_job_level = df.drop(['i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_5']).agg(['mean', 'std', 'min','median','max'])
+        results_age = df.drop(['i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_1']).agg(['mean', 'std', 'min','median','max'])
+        results_organisation = df.drop(['i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).describe()
+        
+        # Rename Columns
+        results_department.columns = name_list
+        results_job_level.columns = name_list
+        results_age.columns = name_list
+        
+        # Individual Flags by Category -> If Category Score is in bottom 25%, assign flag for category
+        df['w_flag'] = df['w_total'].apply(lambda x: 'True' if x <= df['w_total'].quantile(0.25) else 'False')
+        df['o_flag'] = df['o_total'].apply(lambda x: 'True' if x <= df['o_total'].quantile(0.25) else 'False')
+        df['p_flag'] = df['p_total'].apply(lambda x: 'True' if x <= df['p_total'].quantile(0.25) else 'False')
+        df['c_flag'] = df['c_total'].apply(lambda x: 'True' if x <= df['c_total'].quantile(0.25) else 'False')
+        # Individual Results
+        results_individual = df
+        
+    except AttributeError:
+        # Predict
+        df["Flight Risk"] = model.predict(features)
+
+        # Individual Results
+        results_individual = df
+        
+        # Aggregate Results
+        # i_1, i_2, i_3 and Flight Risk are dropped from summary statistics as they are categorical data
+        results_department = df.drop(['i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_4']).agg(['mean', 'std', 'min','median','max'])
+        results_job_level = df.drop(['i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_5']).agg(['mean', 'std', 'min','median','max'])
+        results_age = df.drop(['i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_1']).agg(['mean', 'std', 'min','median','max'])
+        results_organisation = df.drop(['i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).describe()
+        
+        # Rename Columns
+        results_department.columns = name_list[0:115]
+        results_job_level.columns = name_list[0:115]
+        results_age.columns = name_list[0:115]
+        
+    return results_individual, results_department, results_job_level, results_age, results_organisation
