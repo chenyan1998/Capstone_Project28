@@ -11,6 +11,10 @@ class Employee(BaseModel):
     position: str
     risk: str
 
+class SummaryMetric(BaseModel):
+    title: str
+    content: str
+
 class ShowUser(BaseModel):
     name:str
     email:str
@@ -22,7 +26,13 @@ class ShowEmployee(BaseModel):
     risk: str
     class Config():
         orm_mode = True 
-        
+
+class ShowSummaryMetric(BaseModel):
+    title: str
+    content: str
+    class Config():
+        orm_mode = True
+
 class Login(BaseModel):
     username: str
     password: str
