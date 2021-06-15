@@ -6,7 +6,8 @@ const getSummaryMetrics = () =>{
 
     const load = async () =>{
       try {
-        let data = await fetch('http://127.0.0.1:8000/summary_metrics/')
+        
+        let data = await fetch('http://127.0.0.1:8000/employee/all')
         console.log(data)
         if (!data.ok){
           throw Error('no data available')

@@ -6,7 +6,7 @@
         <div v-if="metrics.length">
           <el-carousel :span="20">
             <el-carousel-item v-for="metric in metrics" :key="metric">
-              <h3>{{metric.title}} &nbsp; &nbsp; &nbsp; &nbsp; {{metric.content}}</h3>
+              <h3>{{metric.name}} &nbsp; &nbsp; &nbsp; &nbsp; {{metric._id}}</h3>
             </el-carousel-item>
           </el-carousel>
         </div>
