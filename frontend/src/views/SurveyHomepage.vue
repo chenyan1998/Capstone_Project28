@@ -194,9 +194,14 @@
 <script>
 import TopNavigationBar from '../components/TopNavigationBar.vue'
 import Sidebar from '../components/Sidebar'
+import getEmployeeList from '../composables/getEmployeeList'
 export default {
     name: 'ReportHomepage',
-    components: {Sidebar, TopNavigationBar}
+    components: {Sidebar, TopNavigationBar},
+    setup(){
+    const {metrics, error, load} = getEmployeeList()
+    return {metrics, error, load}
+  }
 }
 </script>
 

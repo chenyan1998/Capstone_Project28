@@ -39,10 +39,15 @@
 <script>
 import Sidebar from '../components/Sidebar'
 import TopNavigationBar from '../components/TopNavigationBar.vue'
+import getEmployeeID from '../composables/getEmployeeID.js'
 export default {
 
     name: 'Profile',
-    components: {Sidebar, TopNavigationBar}
+    components: {Sidebar, TopNavigationBar},
+    setup(){
+    const {metrics, error, load} = getEmployeeID()
+    return { metrics, error, load}
+  }
 }
 </script>
 

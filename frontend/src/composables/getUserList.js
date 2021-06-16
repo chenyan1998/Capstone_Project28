@@ -1,12 +1,12 @@
 import {ref} from 'vue'
 
-const getSummaryMetrics = () =>{
+const getUserList = () =>{
     const metrics = ref ([])
     const error = ref (null)
 
     const load = async () =>{
         try{
-            let data = await fetch ('http://127.0.0.1:8000/summary_metrics/')
+            let data = await fetch ('http://127.0.0.1:8000/user')
             console.log(data)
             if (!data.ok){
                 throw Error('no data available')
@@ -19,7 +19,7 @@ const getSummaryMetrics = () =>{
                 console.log (error.value)
             }
         }
-        return (metrics, errpr, load)
+        return (metrics, error, load)
     }
 
-export default getSummaryMetrics
+export default getUserList
