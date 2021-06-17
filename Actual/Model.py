@@ -57,7 +57,7 @@ labels, features, feature_list, df = clustering.cluster(df, features)
 
 # Execute KFolds Cross Validation for Model Tuning and Improvements
 import kfolds
-acc_range = kfolds.cv(features, feature_list, labels, df)
+acc_range = kfolds.cv(features, labels)
 
 # Train Random Forest Model
 import train_rf

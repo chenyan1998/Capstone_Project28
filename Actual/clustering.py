@@ -15,7 +15,7 @@ def cluster(dataframe, predictors):
     # Drop Employee ID, Job Level & Department, Dependent Variable - Flight Risk from Features
     # (Note: Output Results will be segmented by Individuals, Job Level & Department)
     labels = np.array(dataframe['Flight Risk'])
-    # Note: i_3 and o_3 are dropped as it results in an improvemnt in the prediction model
+    # Note: i_3 and o_3 are dropped as it results in an improvement in the prediction model
     #  (o_2 is strongly correlated with o_3 and i_2 is strongly correlated with i_3)
     features = np.array(dataframe.drop(['i_0', 'i_3', 'o_3', 'i_4', 'i_5', 'Flight Risk'], axis=1))
     feature_list = list(dataframe.drop(['i_0', 'i_3', 'o_3', 'i_4', 'i_5', 'Flight Risk'], axis=1))

@@ -10,7 +10,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn import svm
 import numpy as np
 
-def cv(features, feature_list, labels, df):
+def cv(features, labels):
     
     # Run Repeated KFolds
     kfolds = RepeatedKFold(n_splits = 10, n_repeats = 50, random_state = 0)
