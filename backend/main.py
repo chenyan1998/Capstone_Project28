@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from . import schemas, models
 from .database import engine
-from .routers import authentication, user, employee
+from .routers import authentication, user, employee, summaryMetric
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -24,3 +24,4 @@ models.Base.metadata.create_all(bind=engine)
 app.include_router(authentication.router)
 app.include_router(user.router)
 app.include_router(employee.router)
+app.include_router(summaryMetric.router)
