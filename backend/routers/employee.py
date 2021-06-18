@@ -1,37 +1,69 @@
-from fastapi import APIRouter, Depends
-from .. import schemas, database, models 
-from ..utils import oauth2
-from sqlalchemy.orm import Session
+from models import EmployeeModel,UpdateEmployeeModel
+from pymongo import MongoClient
+from database import app,client
+from fastapi import APIRouter,Body, HTTPException, status
+from fastapi.responses import JSONResponse
+from fastapi.encoders import jsonable_encoder
 from typing import List
-from ..repository import employeeRepo
-get_db = database.get_db
-router = APIRouter(
-    prefix="/employee",
-    tags=['employees']
 
+#Create User Route 
+app = APIRouter(
+    # prefix="/employee",
+    # tags=['Employee']
 )
 
-@router.get('/', response_model=List[schemas.ShowEmployee])
-def all(db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
-    return employeeRepo.get_all(db)
+db = client.employee
 
-# @router.get('/', response_model=List[schemas.ShowEmployee])
-# def all(db: Session = Depends(get_db)):
-#     return employeeRepo.get_all(db)
+#Create employee route 
+#Employee list , to check who already take this 
+@app.post("/employee", response_description="Add new employee", response_model=EmployeeModel,tags=['Employee'])
+async def create_employee(employee: EmployeeModel = Body(...)):
+    employee = jsonable_encoder(employee)
+    new_employee = await db["employees"].insert_one(employee)
+    created_employee = await db["employees"].find_one({"_id": new_employee.inserted_id})
+    return JSONResponse(status_code=status.HTTP_201_CREATED, content=created_employee)
 
-@router.post('/', status_code=201)
-def create(request: schemas.Employee, db: Session = Depends(get_db)):
-    return employeeRepo.create(request, db)
 
-@router.delete('/{id}', status_code=204)
-def destroy(id, db:Session = Depends(get_db)):
-    return employeeRepo.destroy(id, db)
+@app.get(
+    "/employee", response_description="List all employees", response_model=List[EmployeeModel],tags=['Employee']
+)
+async def list_employees():
+    employees= await db["employees"].find().to_list(1000)
+    return employees
 
-@router.put('/{id}', status_code=202)
-def update(id, request: schemas.Employee, db: Session = Depends(get_db)):
-    return employeeRepo.update(id, request, db)
 
-@router.get('/{id}', status_code=200, response_model=schemas.ShowEmployee)
-def show(id, db: Session = Depends(get_db)):
-    return employeeRepo.show(id, db)
+@app.get(
+    "/employee/{id}", response_description="Get a single employee", response_model=EmployeeModel,tags=['Employee']
+)
+async def show_employee(id: str):
+    if (employee := await db["employees"].find_one({"_id": id})) is not None:
+        return employee
 
+    raise HTTPException(status_code=404, detail=f"employee {id} not found")
+
+@app.put("/employee/{id}", response_description="Update an employee", response_model=EmployeeModel,tags=['Employee'])
+async def update_employee(id: str, employee: UpdateEmployeeModel = Body(...)):
+    employee = {k: v for k, v in employee.dict().items() if v is not None}
+
+    if len(employee) >= 1:
+        update_result = await db["employees"].update_one({"_id": id}, {"$set": employee})
+
+        if update_result.modified_count == 1:
+            if (
+                updated_employee := await db["employees"].find_one({"_id": id})
+            ) is not None:
+                return updated_employee
+
+    if (existing_employee := await db["employees"].find_one({"_id": id})) is not None:
+        return existing_employee
+
+    raise HTTPException(status_code=404, detail=f"employee {id} not found")
+
+@app.delete("/employee/{id}", response_description="Delete an employee",tags=['Employee'])
+async def delete_employee(id: str):
+    delete_result = await db["employees"].delete_one({"_id": id})
+
+    if delete_result.deleted_count == 1:
+        return JSONResponse(status_code=status.HTTP_204_NO_CONTENT)
+
+    raise HTTPException(status_code=404, detail=f"Employee {id} not found")

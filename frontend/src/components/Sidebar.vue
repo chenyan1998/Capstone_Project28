@@ -1,7 +1,12 @@
 <template>
+<html>
+  <el-row class="tac">
+  <el-col :span="4">
+    <h5>Menu</h5>
     <el-menu
       :default-active="current_path"
       class="el-menu-vertical-demo"
+      menu-trigger="click"
       >
       <el-submenu index="1">
         <template #title>
@@ -31,7 +36,15 @@
         <i class="el-icon-setting"></i>
         <span>Profile</span>
       </el-menu-item>
+      <el-menu-item index="4" @click="()=>{
+              this.$router.push({name: 'Login'})}">
+        <span>Sign Out</span>
+      </el-menu-item>
     </el-menu>
+  </el-col>
+  
+</el-row>
+</html>
 </template>
 
 <script>
