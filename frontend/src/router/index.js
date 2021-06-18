@@ -7,6 +7,7 @@ import ForgotPassword from '../views/ForgotPassword.vue'
 import Profile from '../views/Profile.vue'
 import DetailedReport from '../views/DetailedReport.vue'
 
+
 const routes = [
   {
     path: '/',
@@ -14,6 +15,7 @@ const routes = [
       name: 'Login'
     }
   },
+
   {
     path: '/login',
     name: 'Login',

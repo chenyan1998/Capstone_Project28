@@ -29,7 +29,7 @@ export default {
     const {metrics, error, load} = getSummaryMetrics()
     const value = ref(new Date())
     load()
-    return {report_list, metrics, error, value}
+    return { metrics, error, value}
   }
 }
 </script>
