@@ -1,7 +1,7 @@
 import {ref} from 'vue'
 
 const getEmployeeList = () =>{
-    const metrics = ref ([])
+    const employees = ref ([])
     const error = ref (null)
 
     const load = async () =>{
@@ -12,14 +12,14 @@ const getEmployeeList = () =>{
                 throw Error('no data available')
 
             }
-            metrics.value = await data.json()
+            employees.value = await data.json()
         }
             catch (err){
                 error.value = err.message
                 console.log (error.value)
             }
         }
-        return (metrics, error, load)
+        return (employees, error, load)
     }
 
 export default getEmployeeList

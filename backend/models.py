@@ -1,18 +1,144 @@
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.sql.schema import ForeignKey
-from .database import Base
-from sqlalchemy.orm import relationship
+from pydantic import BaseModel, Field, EmailStr
+from bson import ObjectId
+from typing import Optional, List
+from schemas import PyObjectId
 
-class User(Base):
-    __tablename__ = 'users'
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String)
-    email = Column(String)
-    password = Column(String)
+class UserModel(BaseModel):
+    id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
+    name: str = Field(...)
+    email: EmailStr = Field(...)
+    department: str = Field(...)
+    number_employee: float = Field(..., le=100.0)
 
-class Employee(Base):
-    __tablename__ = 'employees'
-    id = Column(Integer, primary_key=True, index=True)
-    position = Column(String)
-    risk = Column(Integer)
+    class Config:
+        allow_population_by_field_name = True
+        arbitrary_types_allowed = True
+        json_encoders = {ObjectId: str}
+        schema_extra = {
+            "example": {
+                "name": "Jane Doe",
+                "email": "jdoe@example.com",
+                "department": "IT",
+                "number_employee": "11.0",
+            }
+        }
 
+
+class UpdateUserModel(BaseModel):
+    name: Optional[str]
+    email: Optional[EmailStr]
+    department: Optional[str]
+    number_employee: Optional[float]
+
+    class Config:
+        arbitrary_types_allowed = True
+        json_encoders = {ObjectId: str}
+        schema_extra = {
+            "example": {
+                "name": "Jane Doe",
+                "email": "jdoe@example.com",
+                "department": "IT",
+                "number_employee": "11.0",
+            }
+        }
+
+
+class EmployeeModel(BaseModel):
+    id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
+    name: str = Field(...)
+    email: EmailStr = Field(...)
+    department: str = Field(...)
+    employee_details: str = Field(...)
+    employee_risk_level: float = Field(..., le=10.0)
+
+    class Config:
+        allow_population_by_field_name = True
+        arbitrary_types_allowed = True
+        json_encoders = {ObjectId: str}
+        schema_extra = {
+            "example": {
+                "name": "Jane Doe",
+                "email": "jdoe@example.com",
+                "department": "IT",
+                "employee_details": "details",
+                "employee_risk_level":"3.0",
+            }
+        }
+
+
+class UpdateEmployeeModel(BaseModel):
+    name: Optional[str]
+    email: Optional[EmailStr]
+    department: Optional[str]
+    employee_details: Optional[str]
+    employee_risk_level: Optional[float]
+
+    class Config:
+        arbitrary_types_allowed = True
+        json_encoders = {ObjectId: str}
+        schema_extra = {
+            "example": {
+                "name": "Jane Doe",
+                "email": "jdoe@example.com",
+                "department" : "IT",
+                "employee_details": "details",
+                "employee_risk_level":"3.0",
+            }
+        }
+
+class ReportModel(BaseModel):
+    id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
+    name: str = Field(...)
+    metric: str = Field(...)
+    department: str = Field(...)
+    year: str = Field(...)
+    # filter_type: str = Field(...)
+    # #report_format: float = Field(..., le=10.0)
+    report_format: str = Field(...)
+    question: str = Field(...)
+    label_x: str= Field(...)
+    label_y: str= Field(...)
+    data_x: Optional[List[str]] = Field(...)
+    data_y: Optional[List[str]] = Field(...)
+
+    class Config:
+        allow_population_by_field_name = True
+        arbitrary_types_allowed = True
+        json_encoders = {ObjectId: str}
+        schema_extra = {
+            "example": {
+                "name": "Jane Doe",
+                "metric": "wellbeing, coreValues, personality or opinion",
+                "department": "HR or Logistics",
+                "year": "2021",
+                "question": "1 or 2 or 3",
+                "report_format":"table or chart",
+                "label_x": "month or employee_id",
+                "label_y": "EEI Score",
+                "data_x": [1,2,3],
+                "data_y": [20,30,40]
+            }
+        }
+
+# class Surveyresult(BaseModel):
+#     id: str = Field(...)
+#     age: str= Field(...)
+#     Year: str= Field(...)
+#     department: str= Field(...)
+#     wellbeing: str= Field(...)
+#     core_values: str= Field(...)
+#     personality: str= Field(...)
+#     opinion: str= Field(...)
+
+#     class Config:
+#         allow_population_by_field_name = True
+#         arbitrary_types_allowed = True
+#         json_encoders = {ObjectId: str}
+#         schema_extra = {
+#             "example": {
+#                 "name": "Jane Doe",
+#                 "metric": "dynamic metric",
+#                 "filter_type": "Age,Years,Departments",
+#                 "report_format":"Tables or charts ",
+#             }
+#         }

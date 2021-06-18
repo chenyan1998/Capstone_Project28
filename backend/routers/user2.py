@@ -12,14 +12,14 @@ from typing import Optional, List
 
 #Create User Route 
 app = APIRouter(
-    # prefix="/user",
-    # tags=['Users']
+    prefix="/user",
+    tags=['Users']
 )
 
-db = client.user
+db = client.college
 
 #Create student route 
-@app.post("/user", response_description="Add new user", response_model=UserModel,tags=['Users'])
+@app.post("/", response_description="Add new user", response_model=UserModel)
 async def create_user(user: UserModel = Body(...)):
     user = jsonable_encoder(user)
     new_user = await db["students"].insert_one(user)
@@ -28,7 +28,7 @@ async def create_user(user: UserModel = Body(...)):
 
 
 @app.get(
-    "/user", response_description="List all user", response_model=List[UserModel],tags=['Users']
+    "/", response_description="List all user", response_model=List[UserModel]
 )
 async def list_users():
     users = await db["students"].find().to_list(1000)
@@ -36,7 +36,7 @@ async def list_users():
 
 
 @app.get(
-    "/user/{id}", response_description="Get a single user", response_model=UserModel,tags=['Users']
+    "/{id}", response_description="Get a single user", response_model=UserModel
 )
 async def show_user(id: str):
     if (user := await db["students"].find_one({"_id": id})) is not None:
@@ -45,7 +45,7 @@ async def show_user(id: str):
     raise HTTPException(status_code=404, detail=f"user {id} not found")
 
 
-@app.put("/user/{id}", response_description="Update a user", response_model=UserModel,tags=['Users'])
+@app.put("/{id}", response_description="Update a user", response_model=UserModel)
 async def update_user(id: str, user: UpdateUserModel = Body(...)):
     user = {k: v for k, v in user.dict().items() if v is not None}
 
@@ -63,25 +63,8 @@ async def update_user(id: str, user: UpdateUserModel = Body(...)):
 
     raise HTTPException(status_code=404, detail=f"user {id} not found")
 
-@app.put("/user/{id}", response_description="Send survey", response_model=UserModel,tags=['Users'])
-async def send_survey(id: str, user: UpdateUserModel = Body(...)):
-    user = {k: v for k, v in user.dict().items() if v is not None}
 
-    if len(user) >= 1:
-        update_result = await db["students"].update_one({"_id": id}, {"$set": user})
-
-        if update_result.modified_count == 1:
-            if (
-                updated_user := await db["students"].find_one({"_id": id})
-            ) is not None:
-                return updated_user
-
-    if (existing_user := await db["students"].find_one({"_id": id})) is not None:
-        return existing_user
-
-    raise HTTPException(status_code=404, detail=f"user {id} not found")
-
-@app.delete("/user/{id}", response_description="Delete a user",tags=['Users'])
+@app.delete("/{id}", response_description="Delete a user")
 async def delete_user(id: str):
     delete_result = await db["students"].delete_one({"_id": id})
 
