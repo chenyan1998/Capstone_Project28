@@ -1,35 +1,18 @@
-from sqlalchemy.sql.elements import RollbackToSavepointClause
-from pydantic import BaseModel
-from typing import List, Optional
+from pydantic import BaseModel, Field, EmailStr
+from bson import ObjectId
+from typing import Optional, List
 
-class User(BaseModel):
-    name:str
-    email:str
-    password: str
+class PyObjectId(ObjectId):
+    @classmethod
+    def __get_validators__(cls):
+        yield cls.validate
 
-class Employee(BaseModel):
-    position: str
-    risk: str
+    @classmethod
+    def validate(cls, v):
+        if not ObjectId.is_valid(v):
+            raise ValueError("Invalid objectid")
+        return ObjectId(v)
 
-class ShowUser(BaseModel):
-    name:str
-    email:str
-    class Config():
-        orm_mode = True 
-
-class ShowEmployee(BaseModel):
-    position: str
-    risk: str
-    class Config():
-        orm_mode = True 
-        
-class Login(BaseModel):
-    username: str
-    password: str
-
-class Token(BaseModel):
-    access_token: str
-    token_type: str
-
-class TokenData(BaseModel):
-    email: Optional[str] = None
+    @classmethod
+    def __modify_schema__(cls, field_schema):
+        field_schema.update(type="string")
