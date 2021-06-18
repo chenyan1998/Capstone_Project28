@@ -111,6 +111,13 @@
     <th>Phone Number</th>
     <th>Position</th>
   </tr>
+  <tr v-for="employee in employees" :key="employee">
+        <td>{{employee.name}}</td>
+        <td>{{employee._id}}</td>
+        <td>{{employee.email}}</td>
+        <td>{{employee.employee_details}}</td>
+        <td>{{employee.employee_risk_level}}</td>
+    </tr>
   <tr>
     <td>Alfreds Futterkiste</td>
     <td>1000001</td>
@@ -178,15 +185,7 @@
 </div>
 </div>
 </div>
-
 </div>
-   
-
-
-
-
-
-
 
 </html>
 </template>
@@ -195,13 +194,34 @@
 import TopNavigationBar from '../components/TopNavigationBar.vue'
 import Sidebar from '../components/Sidebar'
 import getEmployeeList from '../composables/getEmployeeList'
+import {ref} from 'vue'
 export default {
     name: 'ReportHomepage',
     components: {Sidebar, TopNavigationBar},
     setup(){
-    const {metrics, error, load} = getEmployeeList()
-    return {metrics, error, load}
-  }
+      const employees = ref ([])
+      const error = ref (null)
+
+      const load = async () =>{
+          try{
+              let data = await fetch ('http://127.0.0.1:8000/employee')
+              console.log(data)
+              if (!data.ok){
+                  throw Error('no data available')
+
+              }
+              employees.value = await data.json()
+          }
+              catch (err){
+                  error.value = err.message
+                  console.log (error.value)
+              }
+          }
+      load()
+      // const {employees, error, load} = getEmployeeList()
+      // load()
+      return{employees, error}
+    }
 }
 </script>
 
