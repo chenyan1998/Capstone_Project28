@@ -54,10 +54,10 @@ def get_results(model, df, features):
     
         # Aggregate Results
         # i_1, i_2, i_3 and Flight Risk are dropped from summary statistics as they are categorical data
-        results_department = df.drop(['i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_4']).agg(['mean', 'std', 'min','median','max'])
-        results_job_level = df.drop(['i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_5']).agg(['mean', 'std', 'min','median','max'])
-        results_age = df.drop(['i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_1']).agg(['mean', 'std', 'min','median','max'])
-        results_organisation = df.drop(['i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).describe()
+        results_department = df.drop(['Year', 'i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_4']).agg(['mean', 'std', 'min','median','max'])
+        results_job_level = df.drop(['Year', 'i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_5']).agg(['mean', 'std', 'min','median','max'])
+        results_age = df.drop(['Year', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_1']).agg(['mean', 'std', 'min','median','max'])
+        results_organisation = df.drop(['Year', 'i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).describe()
         
         # Rename Columns
         results_department.columns = name_list
@@ -81,10 +81,10 @@ def get_results(model, df, features):
         
         # Aggregate Results
         # i_1, i_2, i_3 and Flight Risk are dropped from summary statistics as they are categorical data
-        results_department = df.drop(['i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_4']).agg(['mean', 'std', 'min','median','max'])
-        results_job_level = df.drop(['i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_5']).agg(['mean', 'std', 'min','median','max'])
-        results_age = df.drop(['i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_1']).agg(['mean', 'std', 'min','median','max'])
-        results_organisation = df.drop(['i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).describe()
+        results_department = df.drop(['Year', 'i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_4']).agg(['mean', 'std', 'min','median','max'])
+        results_job_level = df.drop(['Year', 'i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_5']).agg(['mean', 'std', 'min','median','max'])
+        results_age = df.drop(['Year', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_1']).agg(['mean', 'std', 'min','median','max'])
+        results_organisation = df.drop(['Year', 'i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).describe()
         
         # Rename Columns
         results_department.columns = name_list[0:115]

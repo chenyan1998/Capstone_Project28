@@ -6,17 +6,28 @@ from sklearn.cluster import KMeans
 from yellowbrick.cluster import KElbowVisualizer
 import pickle
 import os
-from pymongo import MongoClient
+import pymongo
+import codecs
+import csv
 
-# Establish Connection with Database
-# client = MongoClient(host=, port=)
-# model_data = client["name of database"]
+# =============================================================================
+# # Actual Importing of Data for Production
+# # 链接mongo数据库
+# mongo_client = pymongo.MongoClient('mongodb+srv://Chenyan:Sutd30121998@cluster0.uxbcx.mongodb.net/test?authSource=admin&replicaSet=atlas-vtcq3b-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
+# db = mongo_client.Survey
+# my_collection = db['Survey1'] 
+# 
+# list_tmp = []
+# for r in my_collection.find():
+#     list_tmp.append(r)
+# model_data_1 = pd.DataFrame(list_tmp)
+# =============================================================================
 
+# Importing of Data for Local Testing
 here = os.path.dirname(os.path.abspath(__file__))
 
 filename = os.path.join(here, 'Employee Engagement Survey(1-237).xlsx')
 
-# Import Model Data
 model_data = pd.read_excel(filename, header = None)
 
 # Cleans last question survey data for model training
