@@ -52,7 +52,7 @@ async def update_user(id: str, user: UpdateUserModel = Body(...)):
     if len(user) >= 1:
         update_result = await db["students"].update_one({"_id": id}, {"$set": user})
 
-        if update_result.modified_count == 1:
+        if  update_result.modified_count == 1:
             if (
                 updated_user := await db["students"].find_one({"_id": id})
             ) is not None:
@@ -64,22 +64,12 @@ async def update_user(id: str, user: UpdateUserModel = Body(...)):
     raise HTTPException(status_code=404, detail=f"user {id} not found")
 
 @app.put("/user/{id}", response_description="Send survey", response_model=UserModel,tags=['Users'])
-async def send_survey(id: str, user: UpdateUserModel = Body(...)):
-    user = {k: v for k, v in user.dict().items() if v is not None}
-
-    if len(user) >= 1:
-        update_result = await db["students"].update_one({"_id": id}, {"$set": user})
-
-        if update_result.modified_count == 1:
-            if (
-                updated_user := await db["students"].find_one({"_id": id})
-            ) is not None:
-                return updated_user
-
-    if (existing_user := await db["students"].find_one({"_id": id})) is not None:
-        return existing_user
-
+async def send_survey(id: str, surveylink:str):
+    if (user := await db["students"].find_one({"_id": id})) is not None:
+        print("Survey sent successfully")
+        return None
     raise HTTPException(status_code=404, detail=f"user {id} not found")
+   
 
 @app.delete("/user/{id}", response_description="Delete a user",tags=['Users'])
 async def delete_user(id: str):
