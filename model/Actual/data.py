@@ -5,7 +5,7 @@ import pandas as pd
 # 链接mongo数据库
 mongo_client = pymongo.MongoClient('mongodb+srv://Chenyan:Sutd30121998@cluster0.uxbcx.mongodb.net/test?authSource=admin&replicaSet=atlas-vtcq3b-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
 db = mongo_client.Survey
-my_collection = db['survey'] 
+my_collection = db['Survey1'] 
 
 
 list_tmp = []

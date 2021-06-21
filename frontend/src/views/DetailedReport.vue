@@ -32,8 +32,6 @@ import Opinion from '../components/Opinion.vue'
 import Sidebar from '../components/Sidebar'
 import TopNavigationBar from '../components/TopNavigationBar.vue'
 import { onMounted, onUnmounted } from 'vue'
-// import getReportList from '../composables/getReportList'
-// import getReportSummaryTable from '../composables/getReportSummaryTable'
 import getReportMetric from '../composables/getReportMetric'
 
 export default {
