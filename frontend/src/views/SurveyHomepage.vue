@@ -113,7 +113,7 @@
   </tr>
   <tr v-for="employee in employees" :key="employee">
         <td>{{employee.name}}</td>
-        <td>{{employee._id}}</td>
+        <td>12345</td>
         <td>{{employee.email}}</td>
         <td>{{employee.employee_details}}</td>
         <td>{{employee.employee_risk_level}}</td>
@@ -132,20 +132,7 @@
     <td>-</td>
     <td>-</td>
   </tr>
-  <tr>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
+
   
   </table>
         </div>
@@ -170,7 +157,7 @@
   <div id = "e8">
 <el-dropdown >
   <el-button style="width:200px;">
-    Duration<i class="el-icon-arrow-down el-icon--right"></i>
+    Frequency<i class="el-icon-arrow-down el-icon--right"></i>
   </el-button>
   <template #dropdown>
     <el-dropdown-menu>

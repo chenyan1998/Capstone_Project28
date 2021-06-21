@@ -33,8 +33,12 @@
 
 <script>
 export default {
-
-}
+    methods: {
+      handleClick() {
+        alert('button click');
+      }
+    }
+  }
 </script>
 
 <style>

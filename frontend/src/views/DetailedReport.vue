@@ -1,6 +1,7 @@
 <template>
   <html>
     <TopNavigationBar/>
+    
   <body>
     <div id="container">
     <div id="sidebar">

@@ -1,25 +1,24 @@
 import {ref} from 'vue'
 
 const getSingleUser = () =>{
-    const metrics = ref ([])
+    const singleuser = ref ([])
     const error = ref (null)
 
     const load = async () =>{
         try{
-            let data = await fetch ('http://127.0.0.1:8000/user/id')
+            let data = await fetch ('http://127.0.0.1:8000/user/60bdb77c4b2ec88180c75d54')
             console.log(data)
             if (!data.ok){
                 throw Error('no data available')
-
             }
-            metrics.value = await data.json()
+            singleuser.value = await data.json()
         }
             catch (err){
                 error.value = err.message
                 console.log (error.value)
             }
         }
-        return (metrics, error, load)
+        return (singleuser, error, load)
     }
 
 export default getSingleUser
