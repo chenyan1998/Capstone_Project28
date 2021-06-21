@@ -37,5 +37,54 @@ def test_create_employee():
         }
         )
     assert response.status_code == 307
+def test_get_employee3():
+    response = client.get("/employee")
+
 def test_get_employee4():
     response = client.get("/employee")
+def test_get_employee5():
+    response = client.get("/employee")
+def test_get_employee6():
+    response = client.get("/employee")
+def test_get_employee7():
+    response = client.get("/employee")
+def test_get_employee8():
+    response = client.get("/employee")
+def test_get_employee9():
+    response = client.get("/employee")    
+def test_get_employee10():
+    response = client.get("/employee")
+def test_get_employee11():
+    response = client.get("/employee")
+def test_get_employee12():
+    response = client.get("/employee")
+def test_get_employee13():
+    response = client.get("/employee")
+def test_get_employee14():
+    response = client.get("/employee")
+def test_get_employee15():
+    response = client.get("/employee")
+def test_get_employee16():
+    response = client.get("/employee")
+def test_get_employee17():
+    response = client.get("/employee")
+def test_get_employee18():
+    response = client.get("/employee")
+def test_get_employee19():
+    response = client.get("/employee")
+def test_get_employee20():
+    response = client.get("/employee")
+def test_get_employee21():
+    response = client.get("/employee")    
+def test_get_employee22():
+    response = client.get("/employee")
+def test_get_employee23():
+    response = client.get("/employee")
+def test_get_employee24():
+    response = client.get("/employee")
+def test_get_employee25():
+    response = client.get("/employee")
+def test_get_employee26():
+    response = client.get("/employee")
+def test_get_employee27():
+    response = client.get("/employee")        
