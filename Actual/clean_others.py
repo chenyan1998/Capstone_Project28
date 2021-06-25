@@ -46,24 +46,20 @@ encode = { "i_1": {"20-29": 1, "30-39": 2, "40-49": 3, "50-59": 4, "60 and above
                     "Senior Executive": "Executives",
                     "Deputy G.M": "Manager",
                     "AGM": "Manager"},
-            # Not working
-            #"w_1": {"{'': {'': {'': '1'}}}": 1, "{'': {'': {'': '2'}}}": 2, "{'': {'': {'': '3'}}}": 3, "{'': {'': {'': '4'}}}": 4, "{'': {'': {'': '5'}}}": 5},
-            #"w_2": {"{'': {'': {'': '1'}}}": 1, "{'': {'': {'': '2'}}}": 2, "{'': {'': {'': '3'}}}": 3, "{'': {'': {'': '4'}}}": 4, "{'': {'': {'': '5'}}}": 5},
-            #"w_3": {"{'': {'': {'': '1'}}}": 1, "{'': {'': {'': '2'}}}": 2, "{'': {'': {'': '3'}}}": 3, "{'': {'': {'': '4'}}}": 4, "{'': {'': {'': '5'}}}": 5}
 }
 
 # Reverse Scoring for Neuroticism as it is found to have a negative relation with Employee Engagement
-mapping = {1:5, 2: 4, 3: 3, 4: 2, 5: 1}
+mapping = {"1":5, "2": 4, "3": 3, "4": 2, "5": 1}
 
 def clean(data):
     
     # Production Version
     # Extract Date
-    date = data.iloc[1:, 2]
+    date = data.iloc[0:, 2]
     date = pd.to_datetime(date).dt.year
     
     # Pull out relevant columns in the excel
-    df = data.iloc[1:, 6:35]
+    df = data.iloc[0:, 6:35]
     
     # Insert Year of Survey
     df.insert(0, "Year", date)
@@ -88,15 +84,19 @@ def clean(data):
     # c -> Core Values
     df.columns = names
     
-    # Encode Responses            
+    # Encode Responses for Categorical Data and Cleaning         
     df = df.replace(encode)
     
-    # Not working
     # Reverse Scoring for Neuroticism as it is found to have a negative relation with Employee Engagement
     df["p_1n"] = df["p_1n"].map(mapping)
     df["p_2n"] = df["p_2n"].map(mapping)
     df["p_3n"] = df["p_3n"].map(mapping)
     df["p_4n"] = df["p_4n"].map(mapping)
+    
+    # Cleaning for w_1, w_2, w_3 due to data conversion error from MongoDB
+    df['w_1'] = df['w_1'].apply(lambda x: x.get("", {}).get("",{}).get("",{}))
+    df['w_2'] = df['w_2'].apply(lambda x: x.get("", {}).get("",{}).get("",{}))
+    df['w_3'] = df['w_3'].apply(lambda x: x.get("", {}).get("",{}).get("",{}))
     
     # Extract Features for Prediction & Clustering
     features = df.drop(["Year",'i_0', 'i_4', 'i_5'], axis=1)

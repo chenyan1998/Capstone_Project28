@@ -11,6 +11,7 @@ def cluster(dataframe, predictors):
     model = KMeans(n_clusters=2, random_state=0) # To determine the number of clusters & random state is like a set.seed which ensures reproducibility in the results
     kmeans = model.fit(predictors)
     dataframe["Flight Risk"] = kmeans.labels_
+    dataframe['Flight Risk'] = np.where(dataframe['Flight Risk'] == 1, "High Flight Risk", "Low Flight Risk")
     
     # Drop Employee ID, Job Level & Department, Dependent Variable - Flight Risk from Features
     # (Note: Output Results will be segmented by Individuals, Job Level & Department)

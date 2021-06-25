@@ -21,7 +21,7 @@ def clean_last_qns(data):
     test = data
     
     # Split Response into Multiple Columns
-    temp = test.iloc[1:,35].str.split(";", n = None, expand = True)
+    temp = test.iloc[0:,35].str.split(";", n = None, expand = True)
     
     # Obtain Frequency Count by Response Type
     temp_1 = pd.DataFrame(temp.iloc[1:,0].value_counts())

@@ -7,34 +7,36 @@ import os
 import codecs
 import csv
 import pymongo
+from matplotlib import pyplot as plt
+import numpy as np
 
 # Actual Importing of Data for Production
 # 链接mongo数据库
+mongo_client = pymongo.MongoClient('mongodb+srv://Chenyan:Sutd30121998@cluster0.uxbcx.mongodb.net/test?authSource=admin&replicaSet=atlas-vtcq3b-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
+db = mongo_client.Survey
+my_collection = db['Survey2'] 
+ 
+list_tmp = []
+for r in my_collection.find():
+    list_tmp.append(r)
+model_data_1 = pd.DataFrame(list_tmp)
+model_data_1 = model_data_1.T.reset_index(drop=True).T
+
 # =============================================================================
-# mongo_client = pymongo.MongoClient('mongodb+srv://Chenyan:Sutd30121998@cluster0.uxbcx.mongodb.net/test?authSource=admin&replicaSet=atlas-vtcq3b-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
-# db = mongo_client.Survey
-# my_collection = db['Survey2'] 
+# # Importing of Data for Local Testing
+# here = os.path.dirname(os.path.abspath(__file__))
 # 
-# list_tmp = []
-# for r in my_collection.find():
-#     list_tmp.append(r)
-# model_data_1 = pd.DataFrame(list_tmp)
-# model_data_1 = model_data_1.T.reset_index(drop=True).T
+# filename = os.path.join(here, 'Employee Engagement Survey(1-237).xlsx')
+# 
+# model_data = pd.read_excel(filename, header = None)
 # =============================================================================
-
-# Importing of Data for Local Testing
-here = os.path.dirname(os.path.abspath(__file__))
-
-filename = os.path.join(here, 'Employee Engagement Survey(1-44).xlsx')
-
-model_data = pd.read_excel(filename, header = None)
 
 # Clean Survey Results
 import clean_last
-new_drivers = clean_last.clean_last_qns(model_data)
+new_drivers = clean_last.clean_last_qns(model_data_1)
 
 import clean_others
-new_df, new_features = clean_others.clean(model_data)
+new_df, new_features = clean_others.clean(model_data_1)
 
 # Note: i_3 and o_3 are dropped for model improvements
 new_features = new_features.drop(["i_3", "o_3"], axis=1)
@@ -121,4 +123,41 @@ for i in range(0, len(new_results_department.index)):
 # report_type_4_personality
 # report_type_4_core_values
 # report_type_5
+# =============================================================================
+
+""" Data Visualisation & Analysis for Review 3 Purposes """
+# =============================================================================
+# # df.plot(kind = 'bar', x = '', y = '')
+# 
+# # Department Comparison for EES
+# ees = report_type_3_department.get("EES_mean")
+# ees.plot(kind = 'bar')
+# plt.savefig("ees.png", bbox_inches = 'tight')
+# 
+# # Radar Chart for Individual
+# individual = report_type_2.get("10051")
+# categories = ["Wellbeing", "Opinions", " Personality", "Core Values", "EES Score"]
+# data = individual[0:5]
+# 
+# fig = plt.figure()
+# ax = fig.add_subplot(111, projection="polar")
+# 
+# # theta has 5 different angles, and the first one repeated
+# theta = np.arange(len(data) + 1) / float(len(data)) * 2 * np.pi
+# # values has the 5 values from 'Col B', with the first element repeated
+# values = data
+# values = np.append(values, data[0])
+# 
+# # draw the polygon and the mark the points for each angle/value combination
+# l1, = ax.plot(theta, values, color="C2", marker="o", label="Name of Col B")
+# plt.xticks(theta[:-1], categories, color='grey', size=12)
+# ax.tick_params(pad=10) # to increase the distance of the labels to the plot
+# # fill the area of the polygon with green and some transparency
+# ax.fill(theta, values, 'green', alpha=0.1)
+# ax.set_ylim(0,100)
+# # plt.legend() # shows the legend, using the label of the line plot (useful when there is more than 1 polygon)
+# plt.title("Employee 10051")
+# plt.show()
+# 
+# plt.savefig("radar.png", bbox_inches = 'tight')
 # =============================================================================
