@@ -6,22 +6,22 @@
 <div class = "top-left3">
   <div class = "heading">
   <h3> Personal Information </h3>
-   <table id ="profiletable" v-for="user in singleuser" :key="user">
+   <table id ="profiletable">
   <tr>
     <th>ID</th>
-    <td>{{user._id}}</td>
+    <td>{{singleuser._id}}</td>
   </tr>
   <tr>
     <th>Name</th>
-    <td>{{user.name}}</td>
+    <td>{{singleuser.name}}</td>
   </tr>
   <tr>
     <th>Department</th>
-    <td>{{user.department}}</td>
+    <td>{{singleuser.department}}</td>
   </tr>
   <tr>
     <th>Email</th>
-    <td>{{user.email}}</td>
+    <td>{{singleuser.email}}</td>
   </tr>
   
   </table>
