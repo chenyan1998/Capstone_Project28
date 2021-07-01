@@ -36,7 +36,8 @@
         <i class="el-icon-setting"></i>
         <span>Profile</span>
       </el-menu-item>
-      <el-menu-item index="4" @click="()=>{
+      
+      <el-menu-item name = "signout" index="4" @click="()=>{
               this.$router.push({name: 'Login'})}">
         <span>Sign Out</span>
       </el-menu-item>
