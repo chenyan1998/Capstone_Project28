@@ -125,6 +125,20 @@ for i in range(0, len(new_results_department.index)):
 # report_type_5
 # =============================================================================
 
+""" Upload Results to MongoDB """
+# =============================================================================
+# db.update(report_type_1, upsert = True)
+# db.update(report_type_2, upsert = True)
+# db.update(report_type_3_age, upsert = True)
+# db.update(report_type_3_department, upsert = True)
+# db.update(report_type_3_job_level, upsert = True)
+# db.update(report_type_4_wellbeing, upsert = True)
+# db.update(report_type_4_opinions, upsert = True)
+# db.update(report_type_4_personality, upsert = True)
+# db.update(report_type_4_core_values, upsert = True)
+# db.update(report_type_5, upsert = True)
+# 
+# =============================================================================
 """ Data Visualisation & Analysis for Review 3 Purposes """
 # =============================================================================
 # # df.plot(kind = 'bar', x = '', y = '')
