@@ -66,6 +66,7 @@ for i in range(0, len(new_results_individual.index)):
     employee_id = new_results_individual.iloc[i,1]
     report_type_1.update({employee_id: temp_1})
     report_type_2.update({employee_id: temp_2})
+# change to function
 
 # Report Type 3 - Comparison Report between age, job level, department
 report_type_3_age = {}
@@ -78,6 +79,7 @@ for i in metric_list:
     report_type_3_age.update({i: temp_1})
     report_type_3_job_level.update({i: temp_2})
     report_type_3_department.update({i: temp_3})
+# Change format to horizontal
 
 # Report Type 4 - Department Level Survey Report by Questions
 # Report Type 5 - Department Level Summary Report by Questions
@@ -100,6 +102,7 @@ for i in range(0, len(new_results_department.index)):
     report_type_4_personality.update({key: p_temp})
     report_type_4_core_values.update({key: c_temp})
     report_type_5.update({key: temp_1})
+# Change format to horizontal
     
 """ List of all Dataframes to output to Tables on frontend """
 # =============================================================================
