@@ -6,6 +6,7 @@ import Login from '../views/Login.vue'
 import ForgotPassword from '../views/ForgotPassword.vue'
 import Profile from '../views/Profile.vue'
 import DetailedReport from '../views/DetailedReport.vue'
+import Test from '../views/test.vue'
 
 const routes = [
   {
@@ -19,6 +20,13 @@ const routes = [
     name: 'Login',
     component: Login
   },
+
+  {
+    path: '/test',
+    name: 'test',
+    component: Test
+  },
+
   {
     path: '/home',
     name: 'Home',
