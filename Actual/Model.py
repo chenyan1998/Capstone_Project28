@@ -5,11 +5,7 @@ import pandas as pd
 from sklearn.cluster import KMeans
 from yellowbrick.cluster import KElbowVisualizer
 import pickle
-import os
 import pymongo
-import codecs
-import csv
-
 
 # Actual Importing of Data for Production
 # # 链接mongo数据库
@@ -20,25 +16,16 @@ my_collection = db['Survey1']
 list_tmp = []
 for r in my_collection.find():
     list_tmp.append(r)
-model_data_1 =pd.DataFrame(list_tmp)
-model_data_1 = model_data_1.T.reset_index(drop=True).T
-
-# =============================================================================
-# # Importing of Data for Local Testing
-# here = os.path.dirname(os.path.abspath(__file__))
-# 
-# filename = os.path.join(here, 'Employee Engagement Survey(1-237).xlsx')
-# 
-# model_data = pd.read_excel(filename, header = None)
-# =============================================================================
+model_data =pd.DataFrame(list_tmp)
+model_data = model_data.T.reset_index(drop=True).T
 
 # Cleans last question survey data for model training
 import clean_last
-drivers = clean_last.clean_last_qns(model_data_1)
+drivers = clean_last.clean_last_qns(model_data)
 
 # Clean remaining questions survey data for model training
 import clean_others
-df, features = clean_others.clean(model_data_1)
+df, features = clean_others.clean(model_data)
 
 """ Start of Determine the right number of clusters """
 

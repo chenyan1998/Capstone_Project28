@@ -1,6 +1,7 @@
 """ Script for Processing Survey Results with Loaded Prediction Model"""
 
 import numpy as np
+import pandas as pd
 
 name_list = ['w_1_mean', 'w_1_std', 'w_1_min', 'w_1_median', 'w_1_max',
              'w_2_mean', 'w_2_std', 'w_2_min', 'w_2_median', 'w_2_max',
@@ -94,5 +95,10 @@ def get_results(model, df, features):
         results_department.columns = name_list[0:115]
         results_job_level.columns = name_list[0:115]
         results_age.columns = name_list[0:115]
+    
+    # Remove entries with invalid employee_id
+    # Such entries are removed here as such responses can still be used to train the prediction model
+    results_individual["i_0"] = pd.to_numeric(results_individual["i_0"], errors = 'coerce')
+    results_individual = results_individual.dropna()
         
     return results_individual, results_department, results_job_level, results_age, results_organisation
