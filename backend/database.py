@@ -1,6 +1,5 @@
-from fastapi import FastAPI, Body, HTTPException, status
+from fastapi import FastAPI
 import motor.motor_asyncio
-from pymongo import MongoClient
 import os
 
 app = FastAPI()
