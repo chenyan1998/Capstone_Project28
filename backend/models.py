@@ -92,8 +92,6 @@ class ReportModel(BaseModel):
     metric: str = Field(...)
     department: str = Field(...)
     year: str = Field(...)
-    # filter_type: str = Field(...)
-    # #report_format: float = Field(..., le=10.0)
     report_format: str = Field(...)
     question: str = Field(...)
     label_x: str= Field(...)
@@ -120,6 +118,9 @@ class ReportModel(BaseModel):
             }
         }
 
+class EmailSchema(BaseModel):
+    email: List[EmailStr]
+    
 # class Surveyresult(BaseModel):
 #     id: str = Field(...)
 #     age: str= Field(...)

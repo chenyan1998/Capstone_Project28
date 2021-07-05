@@ -2,11 +2,8 @@ from fastapi import FastAPI, Body, HTTPException, status
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel, Field, EmailStr
-from bson import ObjectId
 from typing import Optional, List
-from database import client,app
-from models import StudentModel,UpdateStudentModel
-import motor.motor_asyncio
+from database import app
 import os
 #from .routers import authentication, user, employee , report , backendstatus
 from routers import user

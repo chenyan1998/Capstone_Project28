@@ -1,14 +1,9 @@
-import models
 from models import UpdateUserModel,UserModel
-from pymongo import MongoClient
-import database
 from database import app,client
-from fastapi import APIRouter, Depends, FastAPI, Body, HTTPException, status
+from fastapi import APIRouter,Body, HTTPException, status
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
-from pydantic import BaseModel, Field, EmailStr
-from bson import ObjectId
-from typing import Optional, List
+from typing import List
 
 #Create User Route 
 app = APIRouter(
