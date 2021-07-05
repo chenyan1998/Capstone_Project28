@@ -7,7 +7,6 @@ mongo_client = pymongo.MongoClient('mongodb+srv://Chenyan:Sutd30121998@cluster0.
 db = mongo_client.Survey
 my_collection = db['Survey1'] 
 
-
 list_tmp = []
 for r in my_collection.find():
     list_tmp.append(r)
