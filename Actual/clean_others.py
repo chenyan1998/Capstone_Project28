@@ -62,17 +62,6 @@ def clean(data):
     
     # Insert Year of Survey
     df.insert(0, "Year", date)
-    
-    # Local Version
-    # Extract Date
-    # date = data.iloc[1:,1]
-    # date = pd.to_datetime(date).dt.year
-
-    # Pull out relevant columns in the excel
-    # df = data.iloc[1:,6:35]
-    
-    # Insert Year of Survey
-    # df.insert(0, 'Year', date)
   
     # Rename Dataframe Columns
     # i -> Individual
@@ -96,6 +85,10 @@ def clean(data):
     df['w_1'] = df['w_1'].apply(lambda x: x.get("", {}).get("",{}).get("",{}))
     df['w_2'] = df['w_2'].apply(lambda x: x.get("", {}).get("",{}).get("",{}))
     df['w_3'] = df['w_3'].apply(lambda x: x.get("", {}).get("",{}).get("",{}))
+    
+    # Remove entries with invalid employee_id
+    df["i_0"] = pd.to_numeric(df["i_0"], errors = 'coerce')
+    df = df.dropna()
     
     # Extract Features for Prediction & Clustering
     features = df.drop(["Year",'i_0', 'i_4', 'i_5'], axis=1)

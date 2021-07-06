@@ -1,7 +1,6 @@
 """ Script for Processing Survey Results with Loaded Prediction Model"""
 
 import numpy as np
-import pandas as pd
 
 name_list = ['w_1_mean', 'w_1_std', 'w_1_min', 'w_1_median', 'w_1_max',
              'w_2_mean', 'w_2_std', 'w_2_min', 'w_2_median', 'w_2_max',
@@ -55,24 +54,25 @@ def get_results(model, df, features):
         # Predict
         df["Flight Risk"] = model.predict(features)
         df['Flight Risk'] = np.where(df['Flight Risk'] == 1, "High Flight Risk", "Low Flight Risk")
-    
+        
         # Aggregate Results
         # i_1, i_2, i_3 and Flight Risk are dropped from summary statistics as they are categorical data
-        results_department = df.drop(['Year', 'i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_4']).agg(['mean', 'std', 'min','median','max'])
-        results_job_level = df.drop(['Year', 'i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_5']).agg(['mean', 'std', 'min','median','max'])
-        results_age = df.drop(['Year', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_1']).agg(['mean', 'std', 'min','median','max'])
-        results_organisation = df.drop(['Year', 'i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).describe()
-        
+        results_department = df.drop(['Year', 'i_0', 'i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_4']).agg(['mean', 'std', 'min','median','max'])
+        results_job_level = df.drop(['Year', 'i_0', 'i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_5']).agg(['mean', 'std', 'min','median','max'])
+        results_age = df.drop(['Year', 'i_0', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_1']).agg(['mean', 'std', 'min','median','max'])
+        results_organisation = df.drop(['Year', 'i_0', 'i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).describe()
+
         # Rename Columns
         results_department.columns = name_list
         results_job_level.columns = name_list
         results_age.columns = name_list
-        
+
         # Individual Flags by Category -> If Category Score is in bottom 25%, assign flag for category
         df['w_flag'] = df['w_total'].apply(lambda x: 'True' if x <= df['w_total'].quantile(0.25) else 'False')
         df['o_flag'] = df['o_total'].apply(lambda x: 'True' if x <= df['o_total'].quantile(0.25) else 'False')
         df['p_flag'] = df['p_total'].apply(lambda x: 'True' if x <= df['p_total'].quantile(0.25) else 'False')
         df['c_flag'] = df['c_total'].apply(lambda x: 'True' if x <= df['c_total'].quantile(0.25) else 'False')
+
         # Individual Results
         results_individual = df
         
@@ -80,25 +80,20 @@ def get_results(model, df, features):
         # Predict
         df["Flight Risk"] = model.predict(features)
         df['Flight Risk'] = np.where(df['Flight Risk'] == 1, "High Flight Risk", "Low Flight Risk")
-
+        
         # Individual Results
         results_individual = df
         
         # Aggregate Results
         # i_1, i_2, i_3 and Flight Risk are dropped from summary statistics as they are categorical data
-        results_department = df.drop(['Year', 'i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_4']).agg(['mean', 'std', 'min','median','max'])
-        results_job_level = df.drop(['Year', 'i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_5']).agg(['mean', 'std', 'min','median','max'])
-        results_age = df.drop(['Year', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_1']).agg(['mean', 'std', 'min','median','max'])
-        results_organisation = df.drop(['Year', 'i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).describe()
+        results_department = df.drop(['Year', 'i_0', 'i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_4']).agg(['mean', 'std', 'min','median','max'])
+        results_job_level = df.drop(['Year', 'i_0', 'i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_5']).agg(['mean', 'std', 'min','median','max'])
+        results_age = df.drop(['Year', 'i_0', 'i_2', 'i_3', 'Flight Risk'], axis=1).groupby(['i_1']).agg(['mean', 'std', 'min','median','max'])
+        results_organisation = df.drop(['Year', 'i_0', 'i_1', 'i_2', 'i_3', 'Flight Risk'], axis=1).describe()
         
         # Rename Columns
         results_department.columns = name_list[0:115]
         results_job_level.columns = name_list[0:115]
         results_age.columns = name_list[0:115]
-    
-    # Remove entries with invalid employee_id
-    # Such entries are removed here as such responses can still be used to train the prediction model
-    results_individual["i_0"] = pd.to_numeric(results_individual["i_0"], errors = 'coerce')
-    results_individual = results_individual.dropna()
-        
+
     return results_individual, results_department, results_job_level, results_age, results_organisation
