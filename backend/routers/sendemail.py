@@ -1,40 +1,33 @@
-from fastapi import APIRouter
-from starlette.responses import JSONResponse
-from fastapi_mail import FastMail, MessageSchema,ConnectionConfig
-from typing import List
-from models import EmailSchema
+import smtplib
+from email.message import EmailMessage
+from email.parser import BytesParser, Parser
+from email.policy import default
 
-SURVEY_URL = 'https://www.google.com/'
+Email_Address = 'chenyan20210705@gmail.com'
+Email_Password = 'oqlpkmymmiqwjuuw'
+contacts = ['cyan72427@gmail.com', Email_Address]
 
-conf = ConnectionConfig(
-    MAIL_USERNAME = "vkeyfoo@gmail.com",
-    MAIL_PASSWORD = "!1qaz@2wsx",
-    MAIL_FROM = "vkeyfoo@email.com",
-    MAIL_PORT = 587,
-    MAIL_SERVER = "smtp.gmail.com",
-    MAIL_FROM_NAME="Project 28",
-    MAIL_TLS = True,
-    MAIL_SSL = False,
-    USE_CREDENTIALS = True,
-    VALIDATE_CERTS = True
-)
+msg = EmailMessage()
+msg['Subject'] = 'Notification: Finished the Survey'
+msg['From'] = Email_Address
+msg['To'] = contacts
+msg.set_content('Dear Employee, \n\nPlease finished this survey by 8th July \n\nSincerely, \nChen Yan ')
 
-app = APIRouter()
 
-html = f"""
-Hello, this is Project 28.
-We are pleased to invite you to join our survey. Below is the survey link.
-{SURVEY_URL}
-Thank you.
-"""
+with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
 
-@app.post("/email", response_description="Send email", tags=['Email'])
-async def simple_send(email: EmailSchema) -> JSONResponse:
-    message = MessageSchema(
-        subject="Project 28 Survey",
-        recipients=email.dict().get("email"),  # List of recipients, as many as you can pass 
-        body=html,
-        )
-    fm = FastMail(conf)
-    await fm.send_message(message)
-    return JSONResponse(status_code=200, content={"message": "email has been sent"})
+    smtp.login(Email_Address,Email_Password)
+    smtp.send_message(msg)
+    
+# Testing code 
+# with smtplib.SMTP('smtp.gmail.com', 1025) as smtp:
+#     subject = 'Notification: Finished the Survey  '
+#     body = 'How about dinner at 6pm this Saturday'
+
+#     msg = f'Subject:{subject}\n\n{body}'
+
+#     smtp.sendmail(Email_Address, Email_Address,msg)
+# Run command Line : (base) chenyan@ChenYan ~ % python3 -m smtpd -c DebuggingServer -n localhost:1025
+
+
+# Tutorial Link : https://www.youtube.com/watch?v=JRCJ6RtE3xU
