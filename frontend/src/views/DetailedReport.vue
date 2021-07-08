@@ -1,7 +1,6 @@
 <template>
   <html>
     <TopNavigationBar/>
-    
   <body>
     <div id="container">
     <div id="sidebar">
@@ -10,19 +9,16 @@
       <CoreValues v-if="report_type === 'CoreValues'" />
       <Personality v-if="report_type === 'Personality'" />
       <Opinion v-if="report_type === 'Opinion'" />
-    </div><!--
-    --><div id="content">
-
+    </div>
+    
+    <!-- <div id="content">
 		  <div id="main-content">
-        
-
-        
       </div>
-       </div>
+    </div> -->
+
     </div>
   </body>
   </html>
-
 </template>
 
 <script>
