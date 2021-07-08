@@ -1,8 +1,10 @@
 import smtplib
 from email.message import EmailMessage
-from email.parser import BytesParser, Parser
 from email.policy import default
+from typing import List
 
+
+# Send Functions 
 Email_Address = 'chenyan20210705@gmail.com'
 Email_Password = 'oqlpkmymmiqwjuuw'
 contacts = ['cyan72427@gmail.com', Email_Address]
@@ -18,7 +20,9 @@ with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
 
     smtp.login(Email_Address,Email_Password)
     smtp.send_message(msg)
-    
+
+print(" Finished ! ")
+
 # Testing code 
 # with smtplib.SMTP('smtp.gmail.com', 1025) as smtp:
 #     subject = 'Notification: Finished the Survey  '

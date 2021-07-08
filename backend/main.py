@@ -7,7 +7,8 @@ from typing import Optional, List
 from database import client,app
 import motor.motor_asyncio
 import os
-from routers import user,backendstatus,employee,report
+from routers import user,backendstatus,employee,report,surveyemployee,SendEmail2
+
 from fastapi.middleware.cors import CORSMiddleware
 
 origins = [
@@ -23,8 +24,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(backendstatus.router)
+app.include_router(backendstatus.app)
 app.include_router(employee.app)
 app.include_router(user.app)
 app.include_router(report.app)
-#app.include_router(user2.app)
+app.include_router(surveyemployee.app)
+app.include_router(SendEmail2.app)
