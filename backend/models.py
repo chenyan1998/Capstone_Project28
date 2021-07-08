@@ -112,8 +112,6 @@ class ReportModel(BaseModel):
     metric: str = Field(...)
     department: str = Field(...)
     year: str = Field(...)
-    # filter_type: str = Field(...)
-    # #report_format: float = Field(..., le=10.0)
     report_format: str = Field(...)
     question: str = Field(...)
     label_x: str= Field(...)
@@ -139,7 +137,37 @@ class ReportModel(BaseModel):
                 "data_y": [20,30,40]
             }
         }
+class IndividualReportModel(BaseModel):
+    id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
+    Employee_id: str = Field(...)
+    EES_score: str= Field(...)
+    Opinion: str= Field(...)
+    Wellbeing: str = Field(...)
+    Core_values: str = Field(...)
+    Personality: str = Field(...)    
+    Flight_risk_label: str = Field(...)
 
+    class Config:
+        allow_population_by_field_name = True
+        arbitrary_types_allowed = True
+        json_encoders = {ObjectId: str}
+        schema_extra = {
+            "example": {
+                "Employee_id": "1000023",
+                "EES_score": "91",
+                "Opinion": "97",
+                "Wellbeing": "89",
+                "Core_values": "85",
+                "Personality":"99",
+                "Flight_risk_label":"1:High"
+            }
+        }
+
+
+
+class EmailSchema(BaseModel):
+    email: List[EmailStr]
+    
 # class Surveyresult(BaseModel):
 #     id: str = Field(...)
 #     age: str= Field(...)
