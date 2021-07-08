@@ -48,6 +48,13 @@ export default {
   left: 350px;
 }
 
+.top-left4 {
+  position: absolute;
+  top: 0px;
+  left: 1000px;
+  width : 180px;
+}
+
 
 .html {
   height: 100%;

@@ -1,16 +1,15 @@
 <template>
 <html>
+  <MonthlyChart/>
   <div class = "top-left">
   <div class = "heading">
   <h3> Core Values Report</h3>
   <p class ="toppara"> DB Schenker's Core Values : 
-    <br>1.  Play fair, be honest  
-    <br>2.  Be one team with one goal 
-    <br>3.  Walk the talk
-    <br>4.  Win together  
-    <br>5.  Push limits 
-    <br>6.  Take customers further </p>
+    <br>1.  Play fair, be honest &nbsp;&nbsp;&nbsp; 2.  Be one team with one goal 
+    <br>3.  Walk the talk &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.  Win together  
+    <br>5.  Push limits   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6.  Take customers further </p>
   </div>
+
   <div id = "e1">
 <el-dropdown>
   <el-button style="width:200px;">
@@ -26,19 +25,45 @@
     </el-dropdown-menu>
   </template>
 </el-dropdown>
+
+</div>
+<div class = "graph1">
+<div class = "top-left2">
+<p> Average Score by Question </p>
+<column-chart :data="report_data3"></column-chart>
+<!-- <column-chart :data="[['Qn 1', 3.97], ['Qn 2', 3.98], ['Qn 3', 3.9], ['Qn 4', 3.78],['Qn 5', 3.68],['Qn 6', 3.71],['Qn 7', 3.72]] " width= "900px" height= "400px"></column-chart> -->
 </div>
 </div>
+</div>
+
 </html>
 </template>
 
 <script>
 export default {
-    methods: {
-      handleClick() {
-        alert('button click');
-      }
-    }
-  }
+    
+  data() {
+    return {
+      report_data3: [],
+    };
+  },
+  async mounted() {
+    let data3 = await fetch ('http://127.0.0.1:8000/report/coreValues');
+    const data = await data3.json()
+    const data_x = data[0]["data_x"];
+    const data_y = data[0]["data_y"];
+    console.log("datax", data_x);
+    console.log("datay", data_y);
+    let arr = [];
+    data_x.forEach((element, index) => {
+      arr.push([element, parseInt(data_y[index])])
+    
+    });
+    this.report_data3  = arr
+    console.log(report_data3)
+  },
+};
+    
 </script>
 
 <style>

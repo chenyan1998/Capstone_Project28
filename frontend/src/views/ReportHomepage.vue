@@ -1,7 +1,7 @@
 <template>
 <html>
   <TopNavigationBar/>
-  <Sidebar :current_path="1" />
+  <Sidebar :current_path="2" />
   <div class="home">
     <div v-for="report_type in report_list" :key="report_type">
       <router-link :to="{name: 'DetailedReport', params: {report_type : report_type}}">

@@ -66,23 +66,92 @@
 <div class = "graph1">
 <div class = "top-left2">
 <p> Average Score by Question </p>
-<p>
-<img src = "@/assets/wellbeing.png" width ="900" height = "450">  </p>
+<!-- <column-chart :data="[['Qn 1', 3.97], ['Qn 2', 3.98], ['Qn 3', 3.9], ['Qn 4', 3.78],['Qn 5', 3.68],['Qn 6', 3.71],['Qn 7', 3.72]] " width= "900px" height= "400px" min="3" :max="4"></column-chart> -->
+
+<column-chart :data="report_data"></column-chart>
+
+
 </div>
 </div>
 </div>
+
 </html>
 </template>
 
 <script>
 
+import {ref} from 'vue'
+
+  // export default {
+  //   methods: {
+  //     handleClick() {
+  //       alert('button click');
+  //     }, 
+  //   },
+
+  //   setup(){
+  //   const wellbeingmetrics = ref([])
+  //   const error = ref (null)
+  //   const data_x = ref([])
+  //   const data_y = ref([])
+  //   const report_data = ref([])
+  //   const load = async () =>{
+  //       try{
+  //           let data = await fetch ('http://127.0.0.1:8000/report/wellbeing')
+  //           if (!data.ok){
+  //               throw Error('no data available')
+  //           }
+  //           wellbeingmetrics.value = await data.json()
+  //           // console.log(wellbeingmetrics.value[0]['data_x'])
+  //           const data_x = wellbeingmetrics.value[0]['data_x']
+  //           const data_y = wellbeingmetrics.value[0]['data_y']
+  //           // console.log('datax',data_x)
+  //           data_x.forEach((element, index) => {report_data.value.push([element, parseInt(data_y[index])])})
+  //           // console.log(report_data.value)
+  //       }
+  //           catch (err){
+  //               error.value = err.message
+  //               console.log (error.value)
+  //           }
+  //       }
+  //   load()
+  //   // let currentreport = wellbeingmetrics.value
+  //   // const data_x = wellbeingmetrics.value[0]['data_x']
+  //   // const data_y = ref(wellbeingmetrics.value[0]['data_y'])
+  //   console.log('report is', report_data.value)
+  //   return {report_data, error}
+  // }
+
+      
+  // }
+
   export default {
-    methods: {
-      handleClick() {
-        alert('button click');
-      }
-    }
-  }
+    
+  data() {
+    return {
+      report_data: [],
+    };
+  },
+  async mounted() {
+    console.log("hello");
+    let data1 = await fetch ('http://127.0.0.1:8000/report/wellbeing');
+    console.log("hello2");
+    const data = await data1.json()
+    const data_x = data[1]["data_x"];
+    const data_y = data[1]["data_y"];
+    console.log("datax", data_x);
+    console.log("datay", data_y);
+    let arr = [];
+    data_x.forEach((element, index) => {
+      arr.push([element, parseInt(data_y[index])])
+    
+    });
+    this.report_data  = arr
+    console.log(report_data)
+  },
+};
+
+
 </script>
 
 
@@ -135,7 +204,7 @@
 #e1 {padding-left : 350px; float:left;}
 #e2 {padding-left : 150px; float:left;}
 #e3 {padding-left : 150px; float:left;}
-#e4 {padding-left : 500px; float:left;}
+#e4 {padding-left : 400px; float:left;}
 #e5 {float:middle;}
 #e6 {padding-left : 350px; float:left;}
 #e8 {float :right;padding-top: 200px;}

@@ -20,19 +20,47 @@
     </el-dropdown-menu>
   </template>
 </el-dropdown>
+
+</div>
+<div class = "graph1">
+<div class = "top-left2">
+<p> Average Score by Question </p>
+<column-chart :data="report_data2"></column-chart>
 </div>
 </div>
+</div>
+
+
 </html>
+
 </template>
 
 <script>
+
+
 export default {
-    methods: {
-      handleClick() {
-        alert('button click');
-      }
-    }
-  }
+    
+  data() {
+    return {
+      report_data2: [],
+    };
+  },
+  async mounted() {
+    let data2 = await fetch ('http://127.0.0.1:8000/report/personality');
+    const data = await data2.json()
+    const data_x = data[0]["data_x"];
+    const data_y = data[0]["data_y"];
+    console.log("datax", data_x);
+    console.log("datay", data_y);
+    let arr = [];
+    data_x.forEach((element, index) => {
+      arr.push([element, parseInt(data_y[index])])
+    
+    });
+    this.report_data2  = arr
+    console.log(report_data2)
+  },
+};
 </script>
 
 <style>

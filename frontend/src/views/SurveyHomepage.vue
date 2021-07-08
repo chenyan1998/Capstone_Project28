@@ -1,10 +1,14 @@
 <template>
 <html>
       <TopNavigationBar/>
-      <Sidebar :current_path="2" />
+      <Sidebar :current_path="3" />
+     
 <div class = "top-left">
   <div class = "heading">
   <h3> Survey Completion Rate </h3>
+  <div class ="top-left4">
+  <pie-chart :data="[['Completed', 258], ['Uncompleted', 119]]" ></pie-chart>
+  </div>
   </div>
   <div id = "e1">
 <el-dropdown>
@@ -32,6 +36,11 @@
 
 <br>
 <br>
+<br> 
+<br>
+<br>
+<br> 
+<br> 
 <br> 
 <br> 
 
@@ -142,7 +151,10 @@
 <br>
 <br>
 <br> 
-
+<br> 
+<br> 
+<br> 
+<br> 
 <div class="row1">
     <div class="row1a">
         <div class="column1">
@@ -198,6 +210,7 @@ export default {
 
               }
               employees.value = await data.json()
+              console.log(employees.value[0])
           }
               catch (err){
                   error.value = err.message
@@ -207,6 +220,7 @@ export default {
       load()
       // const {employees, error, load} = getEmployeeList()
       // load()
+      console.log('value is', employees)
       return{employees, error}
     }
 }
@@ -237,7 +251,7 @@ padding-left: 550px;
   border-collapse: collapse;
 
   position: absolute;
-  top: 280px;
+  top: 380px;
   left: 620px;
 }
 
@@ -256,13 +270,13 @@ padding-left: 550px;
 
 #send {
   position: absolute;
-  top: 500px;
+  top: 580px;
   right: 70px;
 }
 
 .middle-left{
   position: absolute;
-  top: 550px;
+  top: 640px;
   left: 370px;
 }
 </style>

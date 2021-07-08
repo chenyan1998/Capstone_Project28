@@ -1,7 +1,7 @@
 <template>
 <html>
       <TopNavigationBar/>
-      <Sidebar :current_path="3" />
+      <Sidebar :current_path="4" />
 <img  src= "@/assets/avatar.png" alt="Avatar" class="avatar1" width ="100" height = "100">
 <div class = "top-left3">
   <div class = "heading">

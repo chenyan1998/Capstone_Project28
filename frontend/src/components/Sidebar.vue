@@ -8,36 +8,47 @@
       class="el-menu-vertical-demo"
       menu-trigger="click"
       >
-      <el-submenu index="1">
+      <el-menu-item index="1" @click="()=>{
+              this.$router.push({name: 'Home'})}">
+              <i class="el-icon-s-home"></i>
+        <span>Home</span>
+      </el-menu-item>
+      <el-submenu index="2">
         <template #title>
           <i class="el-icon-document"></i>
           <span>Report</span>
         </template>
-          <el-menu-item index="1-1" @click="()=>{
+          <el-menu-item index="2-1" @click="()=>{
               this.$router.push({name: 'DetailedReport', params: {report_type : 'Wellbeing'}});
               }">Wellbeing Report</el-menu-item>
-          <el-menu-item index="1-2" @click="()=>{
+          <el-menu-item index="2-2" @click="()=>{
               this.$router.push({name: 'DetailedReport', params: {report_type : 'CoreValues'}});
               }">Core Values Report</el-menu-item>
-          <el-menu-item index="1-3" @click="()=>{
+          <el-menu-item index="2-3" @click="()=>{
               this.$router.push({name: 'DetailedReport', params: {report_type : 'Personality'}});
               }">Personality Report</el-menu-item>    
-          <el-menu-item index="1-4" @click="()=>{
+          <el-menu-item index="2-4" @click="()=>{
               this.$router.push({name: 'DetailedReport', params: {report_type : 'Opinion'}});
               }">Opinion Report</el-menu-item>    
       </el-submenu>
-      <el-menu-item index="2" @click="()=>{
+      <el-menu-item index="3" @click="()=>{
               this.$router.push({name: 'SurveyHomepage'})}">
         <i class="el-icon-menu"></i>
         <span>Survey</span>
       </el-menu-item>
-      <el-menu-item index="3" @click="()=>{
+      <el-menu-item index="4" @click="()=>{
               this.$router.push({name: 'Profile'})}">
         <i class="el-icon-setting"></i>
         <span>Profile</span>
       </el-menu-item>
-      <el-menu-item index="4" @click="()=>{
+      <el-menu-item index="5" @click="()=>{
+              this.$router.push({name: 'Individual'})}">
+              <i class="el-icon-user"></i>
+        <span>Individual</span>
+      </el-menu-item>
+      <el-menu-item index="6" @click="()=>{
               this.$router.push({name: 'Login'})}">
+              <i class="el-icon-switch-button"></i>
         <span>Sign Out</span>
       </el-menu-item>
     </el-menu>

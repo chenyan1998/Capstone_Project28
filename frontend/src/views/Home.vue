@@ -1,9 +1,9 @@
 <template>
 <html>
   <TopNavigationBar/>
+  <Sidebar :current_path="1" />
   <div class="home">
     
-    <Sidebar :current_path="1" />
     <!-- <div v-for="nav in nav_list" :key="nav">
       <router-link :to="{name: nav}">
             <button>{{nav}}</button>
@@ -25,8 +25,8 @@
           <span>Pending completion</span>
         </div>
       </template>
-      <div v-for="o in 6" :key="o" class="text item">
-        {{ 'List item ' + o }}
+      <div v-for="user1 in userlist" :key="user1" class="text item">
+        {{ user1.name }}
       </div>
       <br>
       <div class="button">
@@ -127,30 +127,22 @@
 <br>
 <br>
 
-
-  <el-table
-    :data="tableData" id="table1"
-    border
-    style="width: 50%">
-    <el-table-column
-      prop="name"
-      label="Name"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="id"
-      label="Employee ID"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="department"
-      label="Department">
-    </el-table-column>
-    <el-table-column
-      prop="position"
-      label="Position">
-    </el-table-column>
-  </el-table>
+<table id ="hometable">
+  <tr>
+    <th>Name</th>
+    <th>Employee ID</th>
+    <th>Department</th>
+    <th>Email</th>
+    <th>Risk Level</th>
+  </tr>
+  <tr v-for="employee1 in employeelist" :key="employee1">
+        <td>{{employee1.name}}</td>
+        <td>{{employee1._id}}</td>
+        <td>{{employee1.department}}</td>
+        <td>{{employee1.email}}</td>
+        <td>{{employee1.employee_risk_level}}</td>
+  </tr>
+</table>
 
 <div class="dropdown5">
   <el-dropdown>
@@ -181,30 +173,48 @@ import TopNavigationBar from '../components/TopNavigationBar.vue'
 import getEmployeeList from '../composables/getEmployeeList'
 
 export default {
-  name: 'Home',
-  components: {Sidebar, TopNavigationBar},
-  setup(){
-    const nav_list = ref(['Profile','ReportHomepage','SurveyHomepage'])
-    const {metrics, error, load} = getEmployeeList
-    return {nav_list, metrics, error, load}
-  },
-data() {
-      return {
-        tableData: [{
-          name: 'Tom',
-          id: '123456',
-          department: 'HR',
-          position: 'Manager'
-        }, {
-          name: 'Alex',
-          id: '123545',
-          department: 'HR',
-          position: 'Executive'
-        }]
-      }
-    }
+
+    name: 'Home',
+    components: {Sidebar, TopNavigationBar},
+    setup(){
+      const userlist = ref ([])
+      const error = ref (null)
+      const load = async () =>{
+          try{
+              let data = await fetch ('http://127.0.0.1:8000/user')
+              console.log(data)
+              if (!data.ok){
+                  throw Error('no data available')
+              }
+              userlist.value = await data.json()
+          }
+              catch (err){
+                  error.value = err.message
+                  console.log (error.value)
+              }
+          }
+      load()
+      const employeelist = ref ([])
+      const error2 = ref (null)
+      const load2 = async () =>{
+          try{
+              let data = await fetch ('http://127.0.0.1:8000/employee')
+              console.log(data)
+              if (!data.ok){
+                  throw Error('no data available')
+              }
+              employeelist.value = await data.json()
+          }
+              catch (err){
+                  error2.value = err.message
+                  console.log (error2.value)
+              }
+          }
+      load2()
+
+    return {userlist, employeelist, error,error2}
     
-}
+}}
 </script>
 
 <style>
@@ -307,6 +317,26 @@ data() {
   top: 1240px;
   left: 0px;
 }
+
+#hometable {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+
+  position: absolute;
+  top: 500px;
+  left: 370px;
+}
+
+#hometable td, th {
+  border: 1px solid #b8bcc0;
+  text-align: left;
+  padding: 12px;
+}
+
+#hometable tr:nth-child(1) {
+  background-color: #D7DCE1;
+}
+#hometable tr {
+  background-color: #ffffff;
+}
 </style>
-
-

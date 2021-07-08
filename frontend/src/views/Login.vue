@@ -1,6 +1,6 @@
 <template>
 <html>
-  <Sidebar :current_path="4" />
+  <Sidebar :current_path="6" />
 
   <img src= "@/assets/login.jpeg" class="loginbackground" width ="1050" height = "730" align = "left">
   <br>
