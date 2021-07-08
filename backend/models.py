@@ -23,6 +23,26 @@ class UserModel(BaseModel):
             }
         }
 
+class SurveyEmployeeModel(BaseModel):
+    id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
+    name: str = Field(...)
+    email: EmailStr = Field(...)
+    department: str = Field(...)
+
+    class Config:
+        allow_population_by_field_name = True
+        arbitrary_types_allowed = True
+        json_encoders = {ObjectId: str}
+        schema_extra = {
+            "example": {
+                "name": "Jane Doe",
+                "email": "jdoe@example.com",
+                "department": "IT",
+            }
+        }
+
+class EmailSchema(BaseModel):
+    email: List[EmailStr]
 
 class UpdateUserModel(BaseModel):
     name: Optional[str]
