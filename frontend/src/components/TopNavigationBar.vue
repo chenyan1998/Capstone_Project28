@@ -5,13 +5,13 @@
 
     <div class="NavBarA">
       <div class="NavBarColumn">
-      <img src = "@/assets/dbschenkerlogo.png" width ="150" height = "30">  
+      <img src = "@/assets/dbschenkerlogo.png" width ="170" height = "40">  
     </div>
     </div>
 
     <div class="NavBarB">
       <div class="NavBarColumn">
-      <img src= "@/assets/avatar.png" alt="Avatar" class="avatar" width ="30" height = "30">
+      <img src= "@/assets/avatar.png" alt="Avatar" class="avatar" width ="40" height = "40">
     </div>
     </div>
   </div>
@@ -21,7 +21,7 @@
 
 <style>
 div.NavBarA { text-align : left ;}
-div.NavBarA img { margin-left : 10px;}
+div.NavBarA img { margin-left : 15px;}
 div.NavBarB { text-align : right ;}
 div.NavBarB img { margin-right : 0px;}
 
@@ -31,7 +31,7 @@ div.NavBarB img { margin-right : 0px;}
   float: left;
   background:white ;
   width: 48.5%;
-  padding: 5px;
+  padding: 8px;
   margin:0px ;
 }
 .NavBarRow::after {

@@ -5,6 +5,7 @@ import installElementPlus from './plugins/element'
 import 'chartjs-adapter-moment';
 import VueChartkick from 'vue-chartkick'
 import 'chartkick/chart.js'
+
 import ECharts from 'vue-echarts'
 import { use } from "echarts/core"
 

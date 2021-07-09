@@ -3,8 +3,8 @@
   <div class = "top-left">
 
     <div class = "heading">
-    <h3> Personality Report</h3>
-    <p class ="toppara"> Understanding personality help to build our leadership style, to resolve conflicts more effectively, to communicate more effectively, to understand how others make decisions and to retain key staff. </p>
+      <h3> Personality Report</h3>
+      <p class ="toppara"> Understanding personality help to build our leadership style, to resolve conflicts more effectively, to communicate more effectively, to understand how others make decisions and to retain key staff. </p>
     </div>
 
     <div id = "e1">
@@ -28,6 +28,7 @@
       <p> Average Score by Question </p>
       <column-chart :data="report_data2"></column-chart>
       </div>
+
     </div>
 
 </html>
