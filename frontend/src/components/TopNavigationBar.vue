@@ -1,16 +1,16 @@
 <template>
  <html>
   
-  <div class="row">
+  <div class="NavBarRow">
 
-    <div class="a">
-      <div class="column">
+    <div class="NavBarA">
+      <div class="NavBarColumn">
       <img src = "@/assets/dbschenkerlogo.png" width ="150" height = "30">  
     </div>
     </div>
 
-    <div class="b">
-      <div class="column">
+    <div class="NavBarB">
+      <div class="NavBarColumn">
       <img src= "@/assets/avatar.png" alt="Avatar" class="avatar" width ="30" height = "30">
     </div>
     </div>
@@ -20,20 +20,21 @@
 </template>
 
 <style>
-div.a { text-align : left ;}
-div.a img { margin-left : 10px;}
-div.b { text-align : right ;}
-div.b img { margin-right : 0px;}
-.column {
+div.NavBarA { text-align : left ;}
+div.NavBarA img { margin-left : 10px;}
+div.NavBarB { text-align : right ;}
+div.NavBarB img { margin-right : 0px;}
+
+.NavBarColumn {
   top: 0;
   left: 0;
   float: left;
   background:white ;
-  width: 49.8%;
+  width: 48.5%;
   padding: 5px;
   margin:0px ;
 }
-.row::after {
+.NavBarRow::after {
   top: 0;
   right: 0;
   background:white ;

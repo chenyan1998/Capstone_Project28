@@ -3,11 +3,7 @@
   <el-row class="tac">
   <el-col :span="4">
     <h5>Menu</h5>
-    <el-menu
-      :default-active="current_path"
-      class="el-menu-vertical-demo"
-      menu-trigger="click"
-      >
+    <el-menu :default-active="current_path" class="el-menu-vertical-demo" menu-trigger="click">
       <el-menu-item index="1" @click="()=>{
               this.$router.push({name: 'Home'})}">
               <i class="el-icon-s-home"></i>

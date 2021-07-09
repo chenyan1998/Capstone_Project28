@@ -170,7 +170,6 @@
 import Sidebar from '../components/Sidebar'
 import {ref} from 'vue'
 import TopNavigationBar from '../components/TopNavigationBar.vue'
-import getEmployeeList from '../composables/getEmployeeList'
 
 export default {
 

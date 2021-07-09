@@ -166,7 +166,7 @@
   </div>
   <div class="row1c">
         <div class="column1">
-  <div id = "e8">
+  <div id = "e4">
 <el-dropdown >
   <el-button style="width:200px;">
     Frequency<i class="el-icon-arrow-down el-icon--right"></i>
@@ -192,7 +192,6 @@
 <script>
 import TopNavigationBar from '../components/TopNavigationBar.vue'
 import Sidebar from '../components/Sidebar'
-import getEmployeeList from '../composables/getEmployeeList'
 import {ref} from 'vue'
 export default {
     name: 'ReportHomepage',

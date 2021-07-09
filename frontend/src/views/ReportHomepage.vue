@@ -19,15 +19,9 @@
 import Sidebar from '../components/Sidebar'
 import {ref} from 'vue'
 import TopNavigationBar from '../components/TopNavigationBar.vue'
-import getReportMetric from '../composables/getReportMetric'
 export default {
     name: 'ReportHomepage',
-    components: {Sidebar, TopNavigationBar},
-    setup(){
-    const report_list = ref(['DepartmentReport', 'QuestionReport', 'IndividualReport'])
-    const {metrics, error, load} = getReportMetric()
-    return {report_list, metrics, error, load}
-  }
+    components: {Sidebar, TopNavigationBar}
 }
 </script>
 

@@ -24,13 +24,12 @@
       </el-dropdown>
     </div>
 
-    <div class = "graph1">
-      <div class = "top-left2">
+      <div class = "reportgraph">
       <p> Average Score by Question </p>
       <column-chart :data="report_data2"></column-chart>
       </div>
     </div>
-  </div>
+
 </html>
 </template>
 
@@ -57,6 +56,6 @@ export default {
 </script>
 
 
-
 <style>
+
 </style>

@@ -42,12 +42,6 @@ export default {
   left: 20px;
 }
 
-.top-left2 {
-  position: absolute;
-  top: 200px;
-  left: 350px;
-}
-
 .top-left4 {
   position: absolute;
   top: 0px;

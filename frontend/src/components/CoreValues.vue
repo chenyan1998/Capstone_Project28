@@ -1,7 +1,7 @@
 <template>
 <html>
-  <MonthlyChart/>
   <div class = "top-left">
+
   <div class = "heading">
   <h3> Core Values Report</h3>
   <p class ="toppara"> DB Schenker's Core Values : 
@@ -11,7 +11,7 @@
   </div>
 
   <div id = "e1">
-<el-dropdown>
+  <el-dropdown>
   <el-button style="width:200px;">
     Survey Year<i class="el-icon-arrow-down el-icon--right"></i>
   </el-button>
@@ -24,15 +24,13 @@
       <el-dropdown-item>2017</el-dropdown-item>
     </el-dropdown-menu>
   </template>
-</el-dropdown>
+  </el-dropdown>
+  </div>
 
-</div>
-<div class = "graph1">
-<div class = "top-left2">
+
+<div class = "reportgraph">
 <p> Average Score by Question </p>
 <column-chart :data="report_data3"></column-chart>
-<!-- <column-chart :data="[['Qn 1', 3.97], ['Qn 2', 3.98], ['Qn 3', 3.9], ['Qn 4', 3.78],['Qn 5', 3.68],['Qn 6', 3.71],['Qn 7', 3.72]] " width= "900px" height= "400px"></column-chart> -->
-</div>
 </div>
 </div>
 
@@ -57,11 +55,10 @@ export default {
     let arr = [];
     data_x.forEach((element, index) => {
       arr.push([element, parseInt(data_y[index])])
-    
     });
     this.report_data3  = arr
     console.log(report_data3)
-  },
+    },
 };
     
 </script>

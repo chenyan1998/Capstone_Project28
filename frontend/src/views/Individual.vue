@@ -14,7 +14,6 @@ import {ref} from 'vue'
 export default {
     name: 'Individual',
     components: {Sidebar, TopNavigationBar},
-
   }
 
 </script>

@@ -35,7 +35,6 @@
 <script>
 import Sidebar from '../components/Sidebar'
 import TopNavigationBar from '../components/TopNavigationBar.vue'
-import getSingleUser from '../composables/getSingleUser.js'
 import {ref} from 'vue'
 export default {
 

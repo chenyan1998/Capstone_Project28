@@ -5,6 +5,7 @@
   <h3> Wellbeing Report</h3>
   <p class ="toppara"> Good health and wellbeing is a core enabler of employee engagement and organisational performance. </p>
   </div>
+
 <div id = "e1">
 <el-dropdown>
   <el-button style="width:200px;">
@@ -21,6 +22,7 @@
   </template>
 </el-dropdown>
 </div>
+
 <div id = "e2">
 <el-dropdown>
   <el-button style="width:200px;">
@@ -37,6 +39,7 @@
   </template>
 </el-dropdown>
 </div>
+
 <div id = "e3">
 <el-dropdown>
   <el-button style="width:200px;">
@@ -61,20 +64,12 @@
 </el-dropdown>
 </div>
 
-
-
-<div class = "graph1">
-<div class = "top-left2">
+<div class = "reportgraph">
 <p> Average Score by Question </p>
-<!-- <column-chart :data="[['Qn 1', 3.97], ['Qn 2', 3.98], ['Qn 3', 3.9], ['Qn 4', 3.78],['Qn 5', 3.68],['Qn 6', 3.71],['Qn 7', 3.72]] " width= "900px" height= "400px" min="3" :max="4"></column-chart> -->
-
-<column-chart :data="report_data"></column-chart>
-
-
-</div>
-</div>
+<column-chart :data="report_data" xtitle="Question" ytitle="EEI Score"></column-chart>
 </div>
 
+</div>
 </html>
 </template>
 
@@ -163,50 +158,41 @@ import {ref} from 'vue'
   margin-left: 350px;
 }
 
-.heading h3 {
-  padding: 0 350px;
-  text-align: left;
-}
-.heading p {
-  padding-left :350px;
-  padding-right : 100px;
-  text-align: left;
-}
 .div container1{
   width: 300px;
   height: 100px;
   padding: 50px;
   border: 1px solid red;
 }
+
 .el-dropdown {
     vertical-align: top;
+}
 
-  }
-  .el-dropdown + .el-dropdown {
+.el-dropdown + .el-dropdown {
     margin-left: 15px;
-
-  }
-  .el-icon-arrow-down {
+}
+  
+.el-icon-arrow-down {
     font-size: 12px;
-  }
+ }
+
 .el-dropdown-menu {
    max-height:200px;
    overflow:scroll; 
 }
 
 .toppara {
-
   text-align: center;
   padding-left: 50px;
   padding-right: 50px;
 }
 
+/* Report */
 #e1 {padding-left : 350px; float:left;}
 #e2 {padding-left : 150px; float:left;}
 #e3 {padding-left : 150px; float:left;}
-#e4 {padding-left : 400px; float:left;}
-#e5 {float:middle;}
-#e6 {padding-left : 350px; float:left;}
-#e8 {float :right;padding-top: 200px;}
+/* Survey  */
+#e4 {float :right;padding-top: 100px;}
   
 </style>

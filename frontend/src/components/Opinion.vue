@@ -1,10 +1,13 @@
 <template>
 <html>
+
 <div class = "top-left">
+  
   <div class = "heading">
   <h3> Opinion Report</h3>
   <p class ="toppara"> Employees' opinions helps us in finding problems in workforce, whether it's a problem with other employees or ones the employee themselves has.   </p>
   </div>
+
 <div id = "e1">
 <el-dropdown>
   <el-button style="width:200px;">
@@ -47,12 +50,9 @@
 </div>
 
 
-
-<div class = "graph1">
-<div class = "top-left2">
+<div class = "reportgraph">
 <p> Average Score by Question </p>
 <column-chart :data="report_data4"></column-chart>
-</div>
 </div>
 </div>
 
