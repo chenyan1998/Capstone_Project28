@@ -1,26 +1,24 @@
 <template>
 <html>
-<div class="container">
-  <img src="@/assets/resetpassword.png" alt="Snow" style="width:100%;">
-  <div class="centered">
-    <h3>Note : If you continue, DB Schenker will send a link to your company email address. Click the link in the message, and enter a new password on the page that opens.
-      </h3>
-    <div class="resetpassword1">
-  <form method="post" action="">
-    <p><input type="text" name="login" value="" placeholder="Username or Email"></p>
-    <br>
-    <p class="submit"><input type="submit" name="commit" value="Reset Password"></p>
-  </form>
-  
-  
+  <div class="container">
+      <img src="@/assets/resetpassword.png" alt="Snow" style="width:100%;">
+
+      <div class="centered">
+        <h3>Note : If you continue, DB Schenker will send a link to your company email address. Click the link in the message, and enter a new password on the page that opens.</h3>
+        <div class="resetpassword1">
+          <form method="post" action="">
+            <p><input type="text" name="login" value="" placeholder="Username or Email"></p>
+            <br>
+            <p class="submit"><input type="submit" name="commit" value="Reset Password"></p>
+          </form>
+        </div>
+    
+        <div id = "nav4">
+          <router-link to ="/"> Back to Login Page </router-link>
+        </div>
+        <router-view/>
+      </div>
   </div>
-  
-    <div id = "nav4">
-    <router-link to ="/"> Back to Login Page </router-link>
-    </div>
-    <router-view/>
-  </div>
-</div>
 </html>
 </template>
 
@@ -49,7 +47,6 @@ export default {
   width : 180px;
 }
 
-
 .html {
   height: 100%;
 }
@@ -63,12 +60,10 @@ export default {
 }
 
 .submit {
-  text-align : right
-
+  text-align : right;
 }
 
 #nav4 {
-  text-align : right
-
+  text-align : right;
 }
 </style>

@@ -24,13 +24,12 @@
       </el-dropdown>
     </div>
 
-      <div class = "reportgraph">
+    <div class = "reportgraph">
       <p> Average Score by Question </p>
       <column-chart :data="report_data2"></column-chart>
-      </div>
-
     </div>
 
+  </div> 
 </html>
 </template>
 

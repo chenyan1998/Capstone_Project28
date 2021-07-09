@@ -2,55 +2,40 @@
 <html>
   <Sidebar :current_path="6" />
 
-  <img src= "@/assets/login.jpeg" class="loginbackground" width ="1050" height = "730" align = "left">
-  <br>
-  <br>
-  <br>
-  <br>
-  <img src= "@/assets/dbschenkerlogo2.png" class="logo" width ="300" height = "180" align = "middle" top ="10">
-  <div class="login">
+    <img src= "@/assets/login.jpeg" class="loginbackground" width ="1050" height = "730" align = "left">
+    <br>
+    <br>
+    <br>
+    <br>
+    <img src= "@/assets/dbschenkerlogo2.png" class="logo" width ="300" height = "180" align = "middle" top ="10">
     <div class="login">
-      
-  <h1>Login to Web App</h1>
-  <form method="post" action="">
-    <p><input type="text" name="login" value="" placeholder="Username or Email"></p>
-    <p><input type="password" name="password" value="" placeholder="Password"></p>
-    
-    <p class="remember_me">
-      <label>
-        <input type="checkbox" name="remember_me" id="remember_me">
-        Remember me on this computer
-      </label>
-  
-    
-    </p>
-    
-    <div id = "nav">
-    <router-link to ="/home"> Login </router-link>
-    </div>
-    <router-view/>
-   
+        <div class="login">
+            <h1>Login to Web App</h1>
+            <form method="post" action="">
+                <p><input type="text" name="login" value="" placeholder="Username or Email"></p>
+                <p><input type="password" name="password" value="" placeholder="Password"></p>
+                
+                <p class="remember_me">
+                    <label>
+                        <input type="checkbox" name="remember_me" id="remember_me">
+                        Remember me on this computer
+                    </label>
+                </p>
+                <div id = "nav">
+                    <router-link to ="/home"> Login </router-link>
+                </div>
+                <router-view/>
+            </form>
+            <br> 
+        </div>
 
-  </form>
-  
-  <br> 
-  </div>
-  
- 
-  <p class="a"> Forgot your password?   <a href="#">
-    
-    <div id = "nav2"> 
-      <router-link to ="/forgotpassword"> Click here to reset it. </router-link> 
-    </div>
-    </a>
-  </p>
-
-  </div>
-  
-
-
-
-  
+        <p class="a"> Forgot your password?   <a href="#">
+            <div id = "nav2"> 
+               <router-link to ="/forgotpassword"> Click here to reset it. </router-link> 
+            </div>
+            </a>
+        </p>
+     </div>
 </html>
 </template>
 

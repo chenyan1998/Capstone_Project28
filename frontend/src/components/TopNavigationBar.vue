@@ -1,22 +1,23 @@
 <template>
- <html>
+<html>
   
   <div class="NavBarRow">
 
     <div class="NavBarA">
       <div class="NavBarColumn">
-      <img src = "@/assets/dbschenkerlogo.png" width ="170" height = "40">  
-    </div>
+        <img src = "@/assets/dbschenkerlogo.png" width ="170" height = "40">  
+      </div>
     </div>
 
     <div class="NavBarB">
       <div class="NavBarColumn">
-      <img src= "@/assets/avatar.png" alt="Avatar" class="avatar" width ="40" height = "40">
+        <img src= "@/assets/avatar.png" alt="Avatar" class="avatar" width ="40" height = "40">
+      </div>
     </div>
-    </div>
+
   </div>
   
-  </html>
+</html>
 </template>
 
 <style>

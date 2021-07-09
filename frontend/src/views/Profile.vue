@@ -2,33 +2,30 @@
 <html>
       <TopNavigationBar/>
       <Sidebar :current_path="4" />
-<img  src= "@/assets/avatar.png" alt="Avatar" class="avatar1" width ="100" height = "100">
-<div class = "top-left3">
-  <div class = "heading">
-  <h3> Personal Information </h3>
-   <table id ="profiletable">
-  <tr>
-    <th>ID</th>
-    <td>{{singleuser._id}}</td>
-  </tr>
-  <tr>
-    <th>Name</th>
-    <td>{{singleuser.name}}</td>
-  </tr>
-  <tr>
-    <th>Department</th>
-    <td>{{singleuser.department}}</td>
-  </tr>
-  <tr>
-    <th>Email</th>
-    <td>{{singleuser.email}}</td>
-  </tr>
-  
-  </table>
-  </div>
-
-  </div>
-
+      <img  src= "@/assets/avatar.png" alt="Avatar" class="avatar1" width ="100" height = "100">
+      <div class = "top-left3">
+          <div class = "heading">
+            <h3> Personal Information </h3>
+            <table id ="profiletable">
+              <tr>
+                <th>ID</th>
+                <td>{{singleuser._id}}</td>
+              </tr>
+              <tr>
+                <th>Name</th>
+                <td>{{singleuser.name}}</td>
+              </tr>
+              <tr>
+                <th>Department</th>
+                <td>{{singleuser.department}}</td>
+              </tr>
+              <tr>
+                <th>Email</th>
+                <td>{{singleuser.email}}</td>
+              </tr>
+            </table>
+          </div>
+      </div>
 </html>
 </template>
 

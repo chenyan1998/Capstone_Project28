@@ -3,15 +3,13 @@
   <TopNavigationBar/>
   <Sidebar :current_path="2" />
   <div class="home">
-    <div v-for="report_type in report_list" :key="report_type">
-      <router-link :to="{name: 'DetailedReport', params: {report_type : report_type}}">
-            <button>{{report_type}}</button>
-      </router-link>
-    </div>
-    <button>Export</button>
+      <div v-for="report_type in report_list" :key="report_type">
+          <router-link :to="{name: 'DetailedReport', params: {report_type : report_type}}">
+                <button>{{report_type}}</button>
+          </router-link>
+      </div>
+      <button>Export</button>
   </div>
-
-  
 </html>
 </template>
 

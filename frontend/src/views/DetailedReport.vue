@@ -1,23 +1,17 @@
 <template>
   <html>
     <TopNavigationBar/>
-  <body>
-    <div id="container">
-    <div id="sidebar">
-      <Sidebar />
-      <Wellbeing v-if="report_type === 'Wellbeing'" />
-      <CoreValues v-if="report_type === 'CoreValues'" />
-      <Personality v-if="report_type === 'Personality'" />
-      <Opinion v-if="report_type === 'Opinion'" />
-    </div>
-    
-    <!-- <div id="content">
-		  <div id="main-content">
+    <body>
+      <div id="container">
+        <div id="sidebar">
+          <Sidebar />
+          <Wellbeing v-if="report_type === 'Wellbeing'" />
+          <CoreValues v-if="report_type === 'CoreValues'" />
+          <Personality v-if="report_type === 'Personality'" />
+          <Opinion v-if="report_type === 'Opinion'" />
+        </div>
       </div>
-    </div> -->
-
-    </div>
-  </body>
+    </body>
   </html>
 </template>
 

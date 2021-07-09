@@ -2,165 +2,166 @@
 <html>
   <TopNavigationBar/>
   <Sidebar :current_path="1" />
-  <div class="home">
-    
-    <!-- <div v-for="nav in nav_list" :key="nav">
-      <router-link :to="{name: nav}">
-            <button>{{nav}}</button>
-      </router-link>
-    </div> -->
-  </div>
   <div class="heading1">
-  <h5> What are employee's completion rate over time? </h5>
+   <h5> What are employee's completion rate over time? </h5>
   </div>
+
   <div class="graph1">
-  <img src="@/assets/wellbeing.png" class="image1" width ="500" height = "250" align = "middle" top ="10">
+    <img src="@/assets/wellbeing.png" class="image1" width ="500" height = "250" align = "middle" top ="10">
   </div>
 
   <div class="box">
     <el-space direction="vertical">
-    <el-card class="box-card" style="width: 250px" v-for="i in 1" :key="i">
-      <template #header>
-        <div class="card-header">
-          <span>Pending completion</span>
+      <el-card class="box-card" style="width: 250px" v-for="i in 1" :key="i">
+        <template #header>
+          <div class="card-header">
+            <span>Pending completion</span>
+          </div>
+        </template>
+        <div v-for="user1 in userlist" :key="user1" class="text item">
+          {{ user1.name }}
         </div>
-      </template>
-      <div v-for="user1 in userlist" :key="user1" class="text item">
-        {{ user1.name }}
-      </div>
-      <br>
-      <div class="button">
-      <el-button style="width:130px;" type="primary">Details</el-button>
-      <br>
-      <br>
-      <el-button style="width:130px;" type="primary">Send reminder</el-button>
-      </div>
-    </el-card>
-  </el-space>
+        <br>
+        <div class="button">
+          <el-button style="width:130px;" type="primary">
+            Details
+          </el-button>
+          <br>
+          <br>
+          <el-button style="width:130px;" type="primary">
+            Send reminder
+          </el-button>
+        </div>
+      </el-card>
+    </el-space>
   </div>
 
   <div class="dropdown1">
-  <el-dropdown>
-  <el-button style="width:200px;">
-    Department<i class="el-icon-arrow-down el-icon--right"></i>
-  </el-button>
-  <template #dropdown>
-    <el-dropdown-menu>
-      <el-dropdown-item>Last 7 days</el-dropdown-item>
-      <el-dropdown-item>Last 14 days</el-dropdown-item>
-      <el-dropdown-item>Last 30 days</el-dropdown-item>
-      <el-dropdown-item>Last month</el-dropdown-item>
-    </el-dropdown-menu>
-  </template>
-</el-dropdown>
-</div>
+    <el-dropdown>
+      <el-button style="width:200px;">
+        Department<i class="el-icon-arrow-down el-icon--right"></i>
+      </el-button>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>Last 7 days</el-dropdown-item>
+          <el-dropdown-item>Last 14 days</el-dropdown-item>
+          <el-dropdown-item>Last 30 days</el-dropdown-item>
+          <el-dropdown-item>Last month</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+  </div>
 
-<div class="heading2">
-  <h5>What are the average EEI score by question over time?</h5>
-</div>
-<div class="graph2">
-<img src="@/assets/eei.jpg" class="image2" width ="780" height = "500" align = "middle" top ="10">
-</div>
+  <div class="heading2">
+    <h5>What are the average EEI score by question over time?</h5>
+  </div>
 
-<div class="dropdown2">
-  <el-dropdown>
-  <el-button style="width:200px;">
-    Department<i class="el-icon-arrow-down el-icon--right"></i>
-  </el-button>
-  <template #dropdown>
-    <el-dropdown-menu>
-      <el-dropdown-item>Last 7 days</el-dropdown-item>
-      <el-dropdown-item>Last 14 days</el-dropdown-item>
-      <el-dropdown-item>Last 30 days</el-dropdown-item>
-      <el-dropdown-item>Last month</el-dropdown-item>
-    </el-dropdown-menu>
-  </template>
-</el-dropdown>
-</div>
+  <div class="graph2">
+    <img src="@/assets/eei.jpg" class="image2" width ="780" height = "500" align = "middle" top ="10">
+  </div>
 
-<div class="heading3">
-  <h5>What are the average wellbeing by question over time?</h5>
-</div>
-<div class="graph3">
-  <img src="@/assets/graph.jpg" class="image3" width ="340" height = "320" align = "middle" top ="10">
-</div>
+  <div class="dropdown2">
+    <el-dropdown>
+      <el-button style="width:200px;">
+        Department<i class="el-icon-arrow-down el-icon--right"></i>
+      </el-button>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>Last 7 days</el-dropdown-item>
+          <el-dropdown-item>Last 14 days</el-dropdown-item>
+          <el-dropdown-item>Last 30 days</el-dropdown-item>
+          <el-dropdown-item>Last month</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+  </el-dropdown>
+  </div>
 
-<div class="dropdown3">
-  <el-dropdown>
-  <el-button style="width:200px;">
-    Department<i class="el-icon-arrow-down el-icon--right"></i>
-  </el-button>
-  <template #dropdown>
-    <el-dropdown-menu>
-      <el-dropdown-item>Last 7 days</el-dropdown-item>
-      <el-dropdown-item>Last 14 days</el-dropdown-item>
-      <el-dropdown-item>Last 30 days</el-dropdown-item>
-      <el-dropdown-item>Last month</el-dropdown-item>
-    </el-dropdown-menu>
-  </template>
-</el-dropdown>
-</div>
+  <div class="heading3">
+    <h5>What are the average wellbeing by question over time?</h5>
+  </div>
 
-<div class="heading4">
-  <h5>What are the average core value score by question over time?</h5>
-</div>
-<div class="graph4">
-  <img src="@/assets/graph.jpg" class="image4" width ="340" height = "320" align = "middle" top ="10">
-</div>
+  <div class="graph3">
+    <img src="@/assets/graph.jpg" class="image3" width ="340" height = "320" align = "middle" top ="10">
+  </div>
 
-<div class="dropdown4">
-  <el-dropdown>
-  <el-button style="width:200px;">
-    Department<i class="el-icon-arrow-down el-icon--right"></i>
-  </el-button>
-  <template #dropdown>
-    <el-dropdown-menu>
-      <el-dropdown-item>Last 7 days</el-dropdown-item>
-      <el-dropdown-item>Last 14 days</el-dropdown-item>
-      <el-dropdown-item>Last 30 days</el-dropdown-item>
-      <el-dropdown-item>Last month</el-dropdown-item>
-    </el-dropdown-menu>
-  </template>
-</el-dropdown>
-</div>
+  <div class="dropdown3">
+    <el-dropdown>
+      <el-button style="width:200px;">
+        Department<i class="el-icon-arrow-down el-icon--right"></i>
+      </el-button>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>Last 7 days</el-dropdown-item>
+          <el-dropdown-item>Last 14 days</el-dropdown-item>
+          <el-dropdown-item>Last 30 days</el-dropdown-item>
+          <el-dropdown-item>Last month</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+  </div>
 
-<br>
-<br>
+  <div class="heading4">
+    <h5>What are the average core value score by question over time?</h5>
+  </div>
+  <div class="graph4">
+    <img src="@/assets/graph.jpg" class="image4" width ="340" height = "320" align = "middle" top ="10">
+  </div>
 
-<table id ="hometable">
-  <tr>
-    <th>Name</th>
-    <th>Employee ID</th>
-    <th>Department</th>
-    <th>Email</th>
-    <th>Risk Level</th>
-  </tr>
-  <tr v-for="employee1 in employeelist" :key="employee1">
+  <div class="dropdown4">
+    <el-dropdown>
+      <el-button style="width:200px;">
+        Department<i class="el-icon-arrow-down el-icon--right"></i>
+      </el-button>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>Last 7 days</el-dropdown-item>
+          <el-dropdown-item>Last 14 days</el-dropdown-item>
+          <el-dropdown-item>Last 30 days</el-dropdown-item>
+          <el-dropdown-item>Last month</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+  </div>
+
+  <br>
+  <br>
+
+  <table id ="hometable">
+    <tr>
+      <th>Name</th>
+      <th>Employee ID</th>
+      <th>Department</th>
+      <th>Email</th>
+      <th>Risk Level</th>
+    </tr>
+    <tr v-for="employee1 in employeelist" :key="employee1">
         <td>{{employee1.name}}</td>
         <td>{{employee1._id}}</td>
         <td>{{employee1.department}}</td>
         <td>{{employee1.email}}</td>
         <td>{{employee1.employee_risk_level}}</td>
-  </tr>
-</table>
+    </tr>
+  </table>
 
-<div class="dropdown5">
-  <el-dropdown>
-  <el-button style="width:130px;">
-    Department<i class="el-icon-arrow-down el-icon--right"></i>
-  </el-button>
-  <template #dropdown>
-    <el-dropdown-menu>
-      <el-dropdown-item>Last 7 days</el-dropdown-item>
-      <el-dropdown-item>Last 14 days</el-dropdown-item>
-      <el-dropdown-item>Last 30 days</el-dropdown-item>
-      <el-dropdown-item>Last month</el-dropdown-item>
-    </el-dropdown-menu>
-  </template>
-</el-dropdown>
-</div>
+  <div class="dropdown5">
+    <el-dropdown>
+      <el-button style="width:130px;">
+        Department<i class="el-icon-arrow-down el-icon--right"></i>
+      </el-button>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>Last 7 days</el-dropdown-item>
+          <el-dropdown-item>Last 14 days</el-dropdown-item>
+          <el-dropdown-item>Last 30 days</el-dropdown-item>
+          <el-dropdown-item>Last month</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+  </div>
 
- <el-divider class="divider"><i></i></el-divider>
+  <el-divider class="divider">
+    <i></i>
+  </el-divider>
 
 </html>
 </template>
@@ -170,50 +171,45 @@
 import Sidebar from '../components/Sidebar'
 import {ref} from 'vue'
 import TopNavigationBar from '../components/TopNavigationBar.vue'
-
 export default {
 
     name: 'Home',
     components: {Sidebar, TopNavigationBar},
+
     setup(){
       const userlist = ref ([])
       const error = ref (null)
       const load = async () =>{
           try{
               let data = await fetch ('http://127.0.0.1:8000/user')
-              console.log(data)
               if (!data.ok){
                   throw Error('no data available')
-              }
+                  }
               userlist.value = await data.json()
-          }
+              }
               catch (err){
                   error.value = err.message
-                  console.log (error.value)
-              }
+                  }
           }
       load()
       const employeelist = ref ([])
       const error2 = ref (null)
       const load2 = async () =>{
-          try{
-              let data = await fetch ('http://127.0.0.1:8000/employee')
-              console.log(data)
-              if (!data.ok){
-                  throw Error('no data available')
-              }
-              employeelist.value = await data.json()
-          }
-              catch (err){
-                  error2.value = err.message
-                  console.log (error2.value)
-              }
+            try{
+                let data = await fetch ('http://127.0.0.1:8000/employee')
+                if (!data.ok){
+                    throw Error('no data available')
+                    }
+                employeelist.value = await data.json()
+                }
+                catch (err){
+                    error2.value = err.message
+                    }
           }
       load2()
 
     return {userlist, employeelist, error,error2}
-    
-}}
+    }}
 </script>
 
 <style>

@@ -1,7 +1,7 @@
 <template>
 <html>
       <TopNavigationBar/>
-      <Sidebar :current_path="5" />
+      <Sidebar :current_path="5"/>
       <h1>Individual</h1>
 
 </html>
