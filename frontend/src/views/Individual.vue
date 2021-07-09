@@ -13,7 +13,7 @@ import TopNavigationBar from '../components/TopNavigationBar.vue'
 import {ref} from 'vue'
 export default {
     name: 'Individual',
-    components: {Sidebar, TopNavigationBar},
+    components: {Sidebar, TopNavigationBar}
   }
 
 </script>
