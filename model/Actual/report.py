@@ -13,6 +13,19 @@ metric_list = ['w_1_mean', 'w_2_mean', 'w_3_mean', 'w_4_mean', 'w_5_mean',
 
 age_cat = ["20-29", "30-39", "40-49", "50-59", "60 and above"]
 
+dept_lst = ["Fairs, Exhibitions, Events  展会、展览、活动", 
+            "Air Freight Division  航空货运部门", 
+            "Centre of Performance Excellence  卓越表现中心",
+            "Contract Logistics/SCM  合同物流/供应链管理",
+            "Finance  金融",
+            "Global Projects & Industry Soln  全球项目和行业解决方案",
+            "HSSE 健康安全与环境",
+            "Human Resource  人力资源部",
+            "IT  信息技术",
+            "Ocean Freight Division  海运部门",
+            "Sales and Sales Planning  销售及销售计划"
+            ]
+
 def gen_report(individual, segment_age, segment_job_level, segment_department):
     
     # Report Type 3 - Comparison Report between age, job level, department
@@ -25,12 +38,15 @@ def gen_report(individual, segment_age, segment_job_level, segment_department):
         temp_1 = pd.DataFrame(temp_1)
         temp_1 = temp_1.T
         temp_1.columns = age_cat
+        temp_1["Question"] = i
         temp_2 = segment_job_level[i]
         temp_2 = pd.DataFrame(temp_2)
         temp_2 = temp_2.T
+        temp_2["Question"] = i
         temp_3 = segment_department[i]
         temp_3 = pd.DataFrame(temp_3)
         temp_3 = temp_3.T
+        temp_3["Question"] = i
         
         report_type_3_age.update({i: temp_1})
         report_type_3_job_level.update({i: temp_2})
@@ -49,18 +65,23 @@ def gen_report(individual, segment_age, segment_job_level, segment_department):
         w_temp = temp.iloc[i,0:5]
         w_temp = pd.DataFrame(w_temp)
         w_temp = w_temp.T
+        w_temp["Department"] = dept_lst[i]
         o_temp = temp.iloc[i,5:10]
         o_temp = pd.DataFrame(o_temp)
         o_temp = o_temp.T
+        o_temp["Department"] = dept_lst[i]
         p_temp = temp.iloc[i,10:17]
         p_temp = pd.DataFrame(p_temp)
         p_temp = p_temp.T
+        p_temp["Department"] = dept_lst[i]
         c_temp = temp.iloc[i,17:23]
         c_temp = pd.DataFrame(c_temp)
-        c_temp = c_temp.T    
+        c_temp = c_temp.T
+        c_temp["Department"] = dept_lst[i]
         temp_1 = temp.iloc[i,23:]
         temp_1 = pd.DataFrame(temp_1)
         temp_1 = temp_1.T
+        temp_1["Department"] = dept_lst[i]
         key = temp.index[i]
         report_type_4_wellbeing.update({key: w_temp})
         report_type_4_opinions.update({key: o_temp})
