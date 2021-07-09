@@ -3,174 +3,40 @@
       <TopNavigationBar/>
       <Sidebar :current_path="3" />
      
-<div class = "top-left">
-    <div class = "heading">
-        <h3> Survey Completion Rate </h3>
-        <div class ="top-left4">
-            <pie-chart :data="[['Completed', 258], ['Uncompleted', 119]]" ></pie-chart>
-        </div>
-    </div>
-    <div id = "e1">
-      <el-dropdown>
-          <el-button style="width:200px;">
-              Department<i class="el-icon-arrow-down el-icon--right"></i>
-          </el-button>
-          <template #dropdown>
-              <el-dropdown-menu>
-                  <el-dropdown-item>Air Freight Division</el-dropdown-item>
-                  <el-dropdown-item>Ocean Freight Division</el-dropdown-item>
-                  <el-dropdown-item>Finance</el-dropdown-item>
-                  <el-dropdown-item>Sales and Sales Planning</el-dropdown-item>
-                  <el-dropdown-item>Contract Logistics/SCM</el-dropdown-item>
-                  <el-dropdown-item>Fairs, Exhibitions, Events</el-dropdown-item>
-                  <el-dropdown-item>CEO Office</el-dropdown-item>
-                  <el-dropdown-item>IT </el-dropdown-item>
-                  <el-dropdown-item>Global Projects / Industry Soln</el-dropdown-item>
-                  <el-dropdown-item>Human Resource</el-dropdown-item>
-                  <el-dropdown-item>HSSE</el-dropdown-item>
-                  <el-dropdown-item>Centre of Performance Excellence</el-dropdown-item>
-              </el-dropdown-menu>
-          </template>
-      </el-dropdown>
-    </div>
+<div class = "heading">
 
-<br>
-<br>
-<br> 
-<br>
-<br>
-<br> 
-<br> 
-<br> 
-<br> 
-
-
-    <div class="row1">
-        <div class="row1a">
-            <div class="column1">
-                <h3>Send Out Surveys</h3>
-                <div id = "e7">
-                  <el-dropdown>
-                      <el-button style="width:200px;">
-                          Department<i class="el-icon-arrow-down el-icon--right"></i>
-                      </el-button>
-                      <template #dropdown>
-                          <el-dropdown-menu>
-                              <el-dropdown-item>Air Freight Division</el-dropdown-item>
-                              <el-dropdown-item>Ocean Freight Division</el-dropdown-item>
-                              <el-dropdown-item>Finance</el-dropdown-item>
-                              <el-dropdown-item>Sales and Sales Planning</el-dropdown-item>
-                              <el-dropdown-item>Contract Logistics/SCM</el-dropdown-item>
-                              <el-dropdown-item>Fairs, Exhibitions, Events</el-dropdown-item>
-                              <el-dropdown-item>CEO Office</el-dropdown-item>
-                              <el-dropdown-item>IT </el-dropdown-item>
-                              <el-dropdown-item>Global Projects / Industry Soln</el-dropdown-item>
-                              <el-dropdown-item>Human Resource</el-dropdown-item>
-                              <el-dropdown-item>HSSE</el-dropdown-item>
-                              <el-dropdown-item>Centre of Performance Excellence</el-dropdown-item>
-                          </el-dropdown-menu>
-                      </template>
-                  </el-dropdown>
-                </div>
-                <br>
-                <div id = "e7">
-                    <el-dropdown >
-                          <el-button style="width:200px;">
-                            Job Level<i class="el-icon-arrow-down el-icon--right"></i>
-                          </el-button>
-                          <template #dropdown>
-                              <el-dropdown-menu>
-                                <el-dropdown-item>Director</el-dropdown-item>
-                                <el-dropdown-item>Senior Manager</el-dropdown-item>
-                                <el-dropdown-item>Manager</el-dropdown-item>
-                                <el-dropdown-item>Assistant Manager</el-dropdown-item>
-                                <el-dropdown-item>Supervisors</el-dropdown-item>
-                                <el-dropdown-item>Executives</el-dropdown-item>
-                                <el-dropdown-item>Non-Executives</el-dropdown-item>
-                                <el-dropdown-item>Other </el-dropdown-item>
-                              </el-dropdown-menu>
-                          </template>
-                    </el-dropdown>
-                </div>
-                <br>
-                <div id = "e7">
-                    <el-dropdown >
-                        <el-button style="width:200px;">
-                            Type of Collar Job<i class="el-icon-arrow-down el-icon--right"></i>
-                        </el-button>
-                        <template #dropdown>
-                            <el-dropdown-menu>
-                                <el-dropdown-item>White Collar</el-dropdown-item>
-                                <el-dropdown-item>Blue Collar</el-dropdown-item>
-                            </el-dropdown-menu>
-                        </template>
-                    </el-dropdown>
-                </div>
-             </div>
-          </div>
-        </div>
-      </div>
-      <div class="row1b">
-            <div class="column1">
+      <div id="sendsurvey">
+            <h3>Send Out New Surveys</h3>
                 <table id ="surveytable">
-                    <tr>
+                  <tr>
                       <th>Name</th>
                       <th>Employee ID</th>
                       <th>Company Email Address</th>
                       <th>Phone Number</th>
                       <th>Position</th>
-                    </tr>
-                    <tr v-for="employee in employees" :key="employee">
-                        <td>{{employee.name}}</td>
-                        <td>12345</td>
-                        <td>{{employee.email}}</td>
-                        <td>{{employee.employee_details}}</td>
-                        <td>{{employee.employee_risk_level}}</td>
-                    </tr>
+                  </tr>
+                  <tr v-for="employee in employees" :key="employee">
+                      <td>{{employee.name}}</td>
+                      <td>12345</td>
+                      <td>{{employee.email}}</td>
+                      <td>{{employee.employee_details}}</td>
+                      <td>{{employee.employee_risk_level}}</td>
+                  </tr>
                 </table>
-            </div>
-
-            <el-row id ="send">
+      </div>
+      <div id="sendsurveybutton">
+            <el-row>
                  <el-button style="width:200px; ">Send Out Survey</el-button>
             </el-row>
-            
-            <br>
-            <br>
-            <br> 
-            <br> 
-            <br> 
-            <br> 
-            <br> 
-
-            <div class="row1">
-                <div class="row1a">
-                    <div class="column1">
-                        <div class = "middle-left">
-                           <h3> Survey Completion Rate </h3>
-                            <p> Reminder will be send to individuals pending submission once every </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row1c">
-                      <div class="column1">
-                          <div id = "e4">
-                              <el-dropdown >
-                                  <el-button style="width:200px;">
-                                      Frequency<i class="el-icon-arrow-down el-icon--right"></i>
-                                  </el-button>
-                                  <template #dropdown>
-                                      <el-dropdown-menu>
-                                          <el-dropdown-item>1 day</el-dropdown-item>
-                                          <el-dropdown-item>3 days</el-dropdown-item>
-                                          <el-dropdown-item>1 week</el-dropdown-item>
-                                          <el-dropdown-item>2 weeks</el-dropdown-item>
-                                      </el-dropdown-menu>
-                                  </template>
-                              </el-dropdown>
-                          </div>
-                      </div>
-                </div>
       </div>
+      <div id = "surveycompletion">
+          <h3> Survey Completion Rate </h3>
+          <div id ="surveycompletionchart">
+              <pie-chart :data="[['Completed', 258], ['Uncompleted', 119]]" legend = "right"></pie-chart>
+          </div>
+      </div>
+
+
 
 </div>
 </html>
@@ -214,31 +80,25 @@ export default {
 
 <style>
 
-div.row1a { text-align : left ;
-padding-left: 350px;
+#sendsurvey {
+  position: absolute;
+  top: 100px;
+  left: 0px;
 }
 
-div.row1b { text-align : left ;
-padding-left: 620px;
-}
-
-div.row1c { text-align : left ;
-padding-left: 550px;
-}
-
-
-.column1 {
-  float: left;
-  padding: 0px;
+#sendsurveybutton {
+  position: absolute;
+  top: 350px;
+  right: 80px;
 }
 
 #surveytable {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-
   position: absolute;
-  top: 380px;
-  left: 620px;
+  top: 100px;
+  left: 350px;
+  width: 1000px;
 }
 
 #surveytable td, th {
@@ -254,15 +114,17 @@ padding-left: 550px;
   background-color: #ffffff;
 }
 
-#send {
+#surveycompletion {
   position: absolute;
-  top: 580px;
-  right: 70px;
+  top: 450px;
+  left: 0px;
+}
+#surveycompletionchart {
+  position: absolute;
+  top: 0px;
+  left: 1050px;
+  width : 300px;
 }
 
-.middle-left{
-  position: absolute;
-  top: 640px;
-  left: 370px;
-}
+
 </style>
