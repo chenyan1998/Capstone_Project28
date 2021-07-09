@@ -24,6 +24,6 @@ app.include_router(employee.app)
 app.include_router(user.app)
 app.include_router(report.app)
 app.include_router(surveyemployee.app)
-app.include_router(SendEmail2.app)
+# app.include_router(SendEmail2.app)
 
 

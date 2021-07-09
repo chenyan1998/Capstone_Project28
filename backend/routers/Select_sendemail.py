@@ -7,6 +7,7 @@ from typing import List
 # Send Functions 
 Email_Address = 'chenyan20210705@gmail.com'
 Email_Password = 'oqlpkmymmiqwjuuw'
+
 contacts = ['cyan72427@gmail.com', Email_Address]
 
 msg = EmailMessage()

@@ -36,7 +36,7 @@ db = client.email2
 async def simple_send(email: EmailSchema) -> JSONResponse:
     message = MessageSchema(
         subject="Project 28 Survey",
-        recipients= email.dict().get("email"),  # List of recipients, as many as you can pass 
+        recipients = email.dict().get("email"),  # List of recipients, as many as you can pass 
         body=html,
         )
     fm = FastMail(conf)
