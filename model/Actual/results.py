@@ -76,6 +76,13 @@ def get_results(model, df, features):
         # Individual Results
         results_individual = df
         
+        # Reassign Year to Aggregate Results
+        survey_year = results_individual.iloc[0,0]
+        results_department["Year"] = survey_year
+        results_job_level["Year"] = survey_year
+        results_age["Year"] = survey_year
+        results_organisation["Year"] = survey_year
+        
     except AttributeError:
         # Predict
         df["Flight Risk"] = model.predict(features)
@@ -95,5 +102,12 @@ def get_results(model, df, features):
         results_department.columns = name_list[0:115]
         results_job_level.columns = name_list[0:115]
         results_age.columns = name_list[0:115]
+        
+        # Reassign Year to Aggregate Results
+        survey_year = results_individual.iloc[0,0]
+        results_department["Year"] = survey_year
+        results_job_level["Year"] = survey_year
+        results_age["Year"] = survey_year
+        results_organisation["Year"] = survey_year
 
     return results_individual, results_department, results_job_level, results_age, results_organisation
