@@ -2,166 +2,85 @@
 <html>
   <TopNavigationBar/>
   <Sidebar :current_path="1" />
-  <div class="heading1">
-   <h5> What are employee's completion rate over time? </h5>
-  </div>
+  
+    <div class="container1">
+        <img  src= "@/assets/HomeIntroduction.png" alt="homeintro" class="homeintroduction" >
+        <el-button class ="btn1">Import Survey Results</el-button>
+        <el-button class ="btn2">Analyze Results</el-button>
+    </div>
 
-  <div class="graph1">
-    <img src="@/assets/wellbeing.png" class="image1" width ="500" height = "250" align = "middle" top ="10">
-  </div>
+    <div class = "homeheading">
+      <h3> Departments </h3>
+      <p> Best and Worst performing departments by Survey Question type </p>
+    
+      <div class="homerow">
+          <div class="homecolumnleft">
 
-  <div class="box">
-    <el-space direction="vertical">
-      <el-card class="box-card" style="width: 250px" v-for="i in 1" :key="i">
-        <template #header>
-          <div class="card-header">
-            <span>Pending completion</span>
+              <div class="bestdepartment">
+                <h3> Wellbeing </h3>
+                <p> Highest Department:</p>
+                <p> Lowest Department:</p>
+                <br>
+              </div>    
+              <br>
+              <div class="bestdepartment">
+                <h3> Personality </h3>
+                <p> Highest Department:</p>
+                <p> Lowest Department:</p>
+                <br>
+              </div>
           </div>
-        </template>
-        <div v-for="user1 in userlist" :key="user1" class="text item">
-          {{ user1.name }}
-        </div>
-        <br>
-        <div class="button">
-          <el-button style="width:130px;" type="primary">
-            Details
-          </el-button>
-          <br>
-          <br>
-          <el-button style="width:130px;" type="primary">
-            Send reminder
-          </el-button>
-        </div>
-      </el-card>
-    </el-space>
-  </div>
 
-  <div class="dropdown1">
-    <el-dropdown>
-      <el-button style="width:200px;">
-        Department<i class="el-icon-arrow-down el-icon--right"></i>
-      </el-button>
-      <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item>Last 7 days</el-dropdown-item>
-          <el-dropdown-item>Last 14 days</el-dropdown-item>
-          <el-dropdown-item>Last 30 days</el-dropdown-item>
-          <el-dropdown-item>Last month</el-dropdown-item>
-        </el-dropdown-menu>
-      </template>
-    </el-dropdown>
-  </div>
+          <div class="homecolumnmiddle">
+              <div class="bestdepartment">
+                <h3> Core Values </h3>
+                <p> Highest Department:</p>
+                <p> Lowest Department:</p>
+                <br>
+              </div>
 
-  <div class="heading2">
-    <h5>What are the average EEI score by question over time?</h5>
-  </div>
+              <br>
+              <div class="bestdepartment">
+                <h3> Opinion </h3>
+                <p> Highest Department:</p>
+                <p> Lowest Department:</p>
+                <br>
+              </div>
+          </div>
 
-  <div class="graph2">
-    <img src="@/assets/eei.jpg" class="image2" width ="780" height = "500" align = "middle" top ="10">
-  </div>
+          <div class="homecolumnright">
+              <div class="pendingcompletion">
+                <el-space direction="vertical">
+                  <el-card>
+                    <template #header>
+                      <div>
+                        <span>Pending completion</span>
+                      </div>
+                    </template>
+                    <div v-for="user1 in userlist" :key="user1" class="text item" >
+                      {{ user1.name }}
+                    </div>
+                    <br><br><br>
+                    <el-button style="width:100%;" class="homebtn">Details</el-button><br><br>
+                    <el-button style="width:100%;" class="homebtn">Send Reminders</el-button>
+                    
+            
+                  </el-card>
+                </el-space>
+              </div>
+          </div>
+      </div>
+    </div>
 
-  <div class="dropdown2">
-    <el-dropdown>
-      <el-button style="width:200px;">
-        Department<i class="el-icon-arrow-down el-icon--right"></i>
-      </el-button>
-      <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item>Last 7 days</el-dropdown-item>
-          <el-dropdown-item>Last 14 days</el-dropdown-item>
-          <el-dropdown-item>Last 30 days</el-dropdown-item>
-          <el-dropdown-item>Last month</el-dropdown-item>
-        </el-dropdown-menu>
-      </template>
-  </el-dropdown>
-  </div>
+    <div class = "risklevel">
+      <h3> Flight Risk Level </h3>
+      <p> List of employees identified to have high Flight Risk level </p>
 
-  <div class="heading3">
-    <h5>What are the average wellbeing by question over time?</h5>
-  </div>
+    </div>
+    
 
-  <div class="graph3">
-    <img src="@/assets/graph.jpg" class="image3" width ="340" height = "320" align = "middle" top ="10">
-  </div>
 
-  <div class="dropdown3">
-    <el-dropdown>
-      <el-button style="width:200px;">
-        Department<i class="el-icon-arrow-down el-icon--right"></i>
-      </el-button>
-      <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item>Last 7 days</el-dropdown-item>
-          <el-dropdown-item>Last 14 days</el-dropdown-item>
-          <el-dropdown-item>Last 30 days</el-dropdown-item>
-          <el-dropdown-item>Last month</el-dropdown-item>
-        </el-dropdown-menu>
-      </template>
-    </el-dropdown>
-  </div>
-
-  <div class="heading4">
-    <h5>What are the average core value score by question over time?</h5>
-  </div>
-  <div class="graph4">
-    <img src="@/assets/graph.jpg" class="image4" width ="340" height = "320" align = "middle" top ="10">
-  </div>
-
-  <div class="dropdown4">
-    <el-dropdown>
-      <el-button style="width:200px;">
-        Department<i class="el-icon-arrow-down el-icon--right"></i>
-      </el-button>
-      <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item>Last 7 days</el-dropdown-item>
-          <el-dropdown-item>Last 14 days</el-dropdown-item>
-          <el-dropdown-item>Last 30 days</el-dropdown-item>
-          <el-dropdown-item>Last month</el-dropdown-item>
-        </el-dropdown-menu>
-      </template>
-    </el-dropdown>
-  </div>
-
-  <br>
-  <br>
-
-  <table id ="hometable">
-    <tr>
-      <th>Name</th>
-      <th>Employee ID</th>
-      <th>Department</th>
-      <th>Email</th>
-      <th>Risk Level</th>
-    </tr>
-    <tr v-for="employee1 in employeelist" :key="employee1">
-        <td>{{employee1.name}}</td>
-        <td>{{employee1._id}}</td>
-        <td>{{employee1.department}}</td>
-        <td>{{employee1.email}}</td>
-        <td>{{employee1.employee_risk_level}}</td>
-    </tr>
-  </table>
-
-  <div class="dropdown5">
-    <el-dropdown>
-      <el-button style="width:130px;">
-        Department<i class="el-icon-arrow-down el-icon--right"></i>
-      </el-button>
-      <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item>Last 7 days</el-dropdown-item>
-          <el-dropdown-item>Last 14 days</el-dropdown-item>
-          <el-dropdown-item>Last 30 days</el-dropdown-item>
-          <el-dropdown-item>Last month</el-dropdown-item>
-        </el-dropdown-menu>
-      </template>
-    </el-dropdown>
-  </div>
-
-  <el-divider class="divider">
-    <i></i>
-  </el-divider>
+  
 
 </html>
 </template>
@@ -213,125 +132,90 @@ export default {
 </script>
 
 <style>
-.heading1{
+
+.container1 {
   position: absolute;
-  top: 100px;
-  left: 370px;
+  width: 78%;
+  left: 18%;
+  top: 13%;
+}
+.container1 img {
+  width: 100%;
+  height: auto;
 }
 
-.heading2{
+.container1 .btn1 {
   position: absolute;
-  top: 680px;
-  left: 370px;
-}
-
-.heading3{
-  position: absolute;
-  top: 1330px;
-  left: 370px;
-}
-
-.heading4{
-  position: absolute;
-  top: 1330px;
-  left: 750px;
-}
-
-.image1{
-  position: absolute;
-  top: 150px;
-  left: 370px;
-}
-
-.image2{
-  position: absolute;
-  top: 730px;
-  left: 370px;
-}
-
-.image3{
-  position: absolute;
-  top: 1380px;
-  left: 370px;
-}
-
-.image4{
-  position: absolute;
-  top: 1380px;
-  left: 750px;
-}
-
-.box-card{
-  position: absolute;
-  top: 150px;
-  left: 900px;
-}
-
-.dropdown1{
-  position: absolute;
-  top: 410px;
-  left: 370px;
-}
-
-.dropdown2{
-  position: absolute;
-  top: 1240px;
-  left: 370px;
-}
-
-.dropdown3{
-  position: absolute;
-  top: 1710px;
-  left: 370px;
-}
-
-.dropdown4{
-  position: absolute;
-  top: 1710px;
-  left: 750px;
-}
-
-.dropdown5{
-  position: absolute;
-  top: 640px;
-  left: 1100px;
-}
-
-.box-card{
-  background: aquamarine;
-}
-
-#table1{
-  position: absolute;
-  top: 540px;
-  left: 370px;
-}
-
-.divider{
-  position: absolute;
-  top: 1240px;
-  left: 0px;
-}
-
-#hometable {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-
-  position: absolute;
-  top: 500px;
-  left: 370px;
-}
-
-#hometable td, th {
-  border: 1px solid #b8bcc0;
-  text-align: left;
-  padding: 12px;
-}
-
-#hometable tr:nth-child(1) {
+  top: 72%;
+  left: 79%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
   background-color: #D7DCE1;
+  color: black;
+  cursor: pointer;
+  width: 20%;
 }
-#hometable tr {
-  background-color: #ffffff;
+.container1 .btn2 {
+  position: absolute;
+  top: 82%;
+  left: 78%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #D7DCE1;
+  color: black;
+  cursor: pointer;
+  width: 20%;
 }
+
+.homeheading{
+  position: absolute;
+  width: 78%;
+  left: 18%;
+  top: 100%;
+  text-align: left;
+}
+
+.homecolumnleft {
+  width: 38%;
+  float: left;
+}
+
+.homecolumnmiddle {
+  width: 38%;
+  float: left;
+}
+
+.homecolumnright {
+  width: 24%;
+  float: left;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.bestdepartment {
+  width:90%;
+  background-color: #CAE7EA;
+  border-radius: 25px;
+  padding: 10px;
+}
+
+.pendingcompletion{
+  text-align:center;
+  position: absolute;
+  top: 20%;
+  left: 80%;
+}
+
+.risklevel{
+  position: absolute;
+  top:170%;
+  left: 18%;
+  text-align: left;
+
+}
+
 </style>

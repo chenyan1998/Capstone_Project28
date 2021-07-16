@@ -1,6 +1,6 @@
 <template>
 <html>
-  <div class = "top-left">
+  <div class = "top-left2">
 
     <div class = "heading">
       <h3> Core Values Report</h3>
@@ -10,22 +10,63 @@
       <br>5.  Push limits   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6.  Take customers further </p>
     </div>
 
-    <div id = "e1">
-      <el-dropdown>
-        <el-button style="width:200px;">
-          Survey Year<i class="el-icon-arrow-down el-icon--right"></i>
-        </el-button>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item>2021</el-dropdown-item>
-            <el-dropdown-item>2020</el-dropdown-item>
-            <el-dropdown-item>2019</el-dropdown-item>
-            <el-dropdown-item>2018</el-dropdown-item>
-            <el-dropdown-item>2017</el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
-    </div>
+    <div id = "dropdown4">
+    <el-dropdown>
+      <el-button style="width:200px;">
+        Survey Year<i class="el-icon-arrow-down el-icon--right"></i>
+      </el-button>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>2021</el-dropdown-item>
+          <el-dropdown-item>2020</el-dropdown-item>
+          <el-dropdown-item>2019</el-dropdown-item>
+          <el-dropdown-item>2018</el-dropdown-item>
+          <el-dropdown-item>2017</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+  </div>
+
+  <div id = "dropdown5">
+    <el-dropdown>
+      <el-button style="width:200px;">
+        Question Number<i class="el-icon-arrow-down el-icon--right"></i>
+      </el-button>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>Question 1</el-dropdown-item>
+          <el-dropdown-item>Question 2</el-dropdown-item>
+          <el-dropdown-item>Question 3</el-dropdown-item>
+          <el-dropdown-item>Question 4</el-dropdown-item>
+          <el-dropdown-item>Question 5</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+  </div>
+
+  <div id = "dropdown6">
+    <el-dropdown>
+      <el-button style="width:200px;">
+        Department<i class="el-icon-arrow-down el-icon--right"></i>
+      </el-button>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>Air Freight Division</el-dropdown-item>
+          <el-dropdown-item>Ocean Freight Division</el-dropdown-item>
+          <el-dropdown-item>Finance</el-dropdown-item>
+          <el-dropdown-item>Sales and Sales Planning</el-dropdown-item>
+          <el-dropdown-item>Contract Logistics/SCM</el-dropdown-item>
+          <el-dropdown-item>Fairs, Exhibitions, Events</el-dropdown-item>
+          <el-dropdown-item>CEO Office</el-dropdown-item>
+          <el-dropdown-item>IT </el-dropdown-item>
+          <el-dropdown-item>Global Projects / Industry Soln</el-dropdown-item>
+          <el-dropdown-item>Human Resource</el-dropdown-item>
+          <el-dropdown-item>HSSE</el-dropdown-item>
+          <el-dropdown-item>Centre of Performance Excellence</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+  </div>
 
 
     <div class = "reportgraph">

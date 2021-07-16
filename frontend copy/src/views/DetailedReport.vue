@@ -93,11 +93,5 @@ body {
   width: 500px;
 }
 
-.top-left2 {
-  position: absolute;
-  top: 80px;
-  left: 20px;
-}
-
 
 </style>

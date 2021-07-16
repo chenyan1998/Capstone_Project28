@@ -1,13 +1,13 @@
 <template>
 <html>
-<div class = "top-left2">
+<div class = "top-left">
   
   <div class = "heading">
     <h3> Wellbeing Report</h3>
     <p class ="toppara"> Good health and wellbeing is a core enabler of employee engagement and organisational performance. </p>
   </div>
 
-  <div id = "dropdown1">
+  <div id = "e1">
     <el-dropdown>
       <el-button style="width:200px;">
         Survey Year<i class="el-icon-arrow-down el-icon--right"></i>
@@ -24,7 +24,7 @@
     </el-dropdown>
   </div>
 
-  <div id = "dropdown2">
+  <div id = "e2">
     <el-dropdown>
       <el-button style="width:200px;">
         Question Number<i class="el-icon-arrow-down el-icon--right"></i>
@@ -41,7 +41,7 @@
     </el-dropdown>
   </div>
 
-  <div id = "dropdown3">
+  <div id = "e3">
     <el-dropdown>
       <el-button style="width:200px;">
         Department<i class="el-icon-arrow-down el-icon--right"></i>
@@ -153,7 +153,12 @@ import {ref} from 'vue'
   margin-left: 350px;
 }
 
-
+.div container1{
+  width: 300px;
+  height: 100px;
+  padding: 50px;
+  border: 1px solid red;
+}
 
 .el-dropdown {
     vertical-align: top;
@@ -179,41 +184,10 @@ import {ref} from 'vue'
 }
 
 /* Report */
-#dropdown1 {
-  position: absolute;
-  left : 30%; 
-  }
-#dropdown2 {
-  position: absolute;
-  left : 55%; 
-  }
-#dropdown3 {
-  position: absolute;
-  left : 80%; 
-  }
-#dropdown4 {
-  position: absolute;
-  left : 40%; 
-  }
-#dropdown5 {
-  position: absolute;
-  left : 70%; 
-  }
-#dropdown6 {
-  position: absolute;
-  left : 100%; 
-  }
-#dropdown7 {
-  position: absolute;
-  left : 25%; 
-  }
-#dropdown8 {
-  position: absolute;
-  left : 50%; 
-  }
-#dropdown9 {
-  position: absolute;
-  left : 75%; 
-  }
+#e1 {padding-left : 350px; float:left;}
+#e2 {padding-left : 150px; float:left;}
+#e3 {padding-left : 150px; float:left;}
+/* Survey  */
+#e4 {float :right;padding-top: 100px;}
   
 </style>

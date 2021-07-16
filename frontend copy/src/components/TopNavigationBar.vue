@@ -12,7 +12,6 @@
     <div class="NavBarB">
       <div class="NavBarColumn">
         <img src= "@/assets/avatar.png" alt="Avatar" class="avatar" width ="40" height = "40">
-        <!-- <router-link to "/profile" > <img src= "@/assets/avatar.png" alt="Avatar" class="avatar" width ="40" height = "40"> </router-link> -->
       </div>
     </div>
 
@@ -20,7 +19,6 @@
   
 </html>
 </template>
-
 
 <style>
 div.NavBarA { text-align : left ;}

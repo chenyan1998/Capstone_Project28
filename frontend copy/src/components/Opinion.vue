@@ -1,13 +1,13 @@
 <template>
 <html>
-<div class = "top-left2">
+<div class = "top-left">
   
   <div class = "heading">
     <h3> Opinion Report</h3>
     <p class ="toppara"> Employees' opinions helps us in finding problems in workforce, whether it's a problem with other employees or ones the employee themselves has.   </p>
   </div>
 
-    <div id = "dropdown7">
+  <div id = "e1">
     <el-dropdown>
       <el-button style="width:200px;">
         Survey Year<i class="el-icon-arrow-down el-icon--right"></i>
@@ -24,24 +24,7 @@
     </el-dropdown>
   </div>
 
-  <div id = "dropdown8">
-    <el-dropdown>
-      <el-button style="width:200px;">
-        Question Number<i class="el-icon-arrow-down el-icon--right"></i>
-      </el-button>
-      <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item>Question 1</el-dropdown-item>
-          <el-dropdown-item>Question 2</el-dropdown-item>
-          <el-dropdown-item>Question 3</el-dropdown-item>
-          <el-dropdown-item>Question 4</el-dropdown-item>
-          <el-dropdown-item>Question 5</el-dropdown-item>
-        </el-dropdown-menu>
-      </template>
-    </el-dropdown>
-  </div>
-
-  <div id = "dropdown9">
+  <div id = "e3">
     <el-dropdown>
       <el-button style="width:200px;">
         Department<i class="el-icon-arrow-down el-icon--right"></i>
