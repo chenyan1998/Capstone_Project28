@@ -72,15 +72,27 @@
       </div>
     </div>
 
-    <div class = "risklevel">
-      <h3> Flight Risk Level </h3>
-      <p> List of employees identified to have high Flight Risk level </p>
-
-    </div>
+       <div id="risklevel">
+            <h3> Flight Risk Level </h3>
+            <p> List of employees identified to have high Flight Risk level </p>
+                <table id ="riskleveltable">
+                  <tr>
+                      <th>Name</th>
+                      <th>Employee ID</th>
+                      <th>Company Email Address</th>
+                      <th>Phone Number</th>
+                      <th>Position</th>
+                  </tr>
+                  <tr v-for="employee in employeelist" :key="employee">
+                      <td>{{employee.name}}</td>
+                      <td>12345</td>
+                      <td>{{employee.email}}</td>
+                      <td>{{employee.employee_details}}</td>
+                      <td>{{employee.employee_risk_level}}</td>
+                  </tr>
+                </table>
+      </div>
     
-
-
-  
 
 </html>
 </template>
@@ -210,12 +222,35 @@ export default {
   left: 80%;
 }
 
-.risklevel{
+#risklevel{
   position: absolute;
   top:170%;
   left: 18%;
   text-align: left;
+}
 
+#riskleveltable {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  position: relative;
+  top: 20%;
+  width: 180%;
+  border: 1px solid #b8bcc0;
+  text-align: left;
+}
+
+#riskleveltable td, th {
+  border: 1px solid #b8bcc0;
+  text-align: left;
+  padding: 1%;
+}
+
+
+#riskleveltable tr:nth-child(1) {
+  background-color: #D7DCE1;
+}
+#riskleveltable tr {
+  background-color: #ffffff;
 }
 
 </style>

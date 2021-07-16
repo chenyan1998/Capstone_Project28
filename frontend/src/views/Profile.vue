@@ -86,6 +86,6 @@ export default {
 }
 img.avatar1{
     position : absolute;
-    top: 100px;
+    top: 15%;
 }
 </style>
