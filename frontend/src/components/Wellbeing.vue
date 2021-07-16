@@ -42,24 +42,25 @@
   </div>
 
   <div id = "dropdown3">
-    <el-dropdown>
+    <el-dropdown @command="handleDepartment">
       <el-button style="width:200px;">
-        Department<i class="el-icon-arrow-down el-icon--right"></i>
+        {{current_department}}<i class="el-icon-arrow-down el-icon--right"></i>
       </el-button>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item>Air Freight Division</el-dropdown-item>
-          <el-dropdown-item>Ocean Freight Division</el-dropdown-item>
-          <el-dropdown-item>Finance</el-dropdown-item>
-          <el-dropdown-item>Sales and Sales Planning</el-dropdown-item>
-          <el-dropdown-item>Contract Logistics/SCM</el-dropdown-item>
-          <el-dropdown-item>Fairs, Exhibitions, Events</el-dropdown-item>
-          <el-dropdown-item>CEO Office</el-dropdown-item>
-          <el-dropdown-item>IT </el-dropdown-item>
-          <el-dropdown-item>Global Projects / Industry Soln</el-dropdown-item>
-          <el-dropdown-item>Human Resource</el-dropdown-item>
-          <el-dropdown-item>HSSE</el-dropdown-item>
-          <el-dropdown-item>Centre of Performance Excellence</el-dropdown-item>
+          <el-dropdown-item command = "all">All</el-dropdown-item>
+          <el-dropdown-item command = "Air Freight Division">Air Freight Division</el-dropdown-item>
+          <el-dropdown-item command = "Ocean Freight Division">Ocean Freight Division</el-dropdown-item>
+          <el-dropdown-item command = "Finance">Finance</el-dropdown-item>
+          <el-dropdown-item command = "Sales and Sales Planning">Sales and Sales Planning</el-dropdown-item>
+          <el-dropdown-item command = "Contract Logistics/SCM">Contract Logistics/SCM</el-dropdown-item>
+          <el-dropdown-item command = "Fairs, Exhibitions, Events">Fairs, Exhibitions, Events</el-dropdown-item>
+          <el-dropdown-item command = "CEO Office">CEO Office</el-dropdown-item>
+          <el-dropdown-item command = "IT">IT </el-dropdown-item>
+          <el-dropdown-item command = "Global Projects / Industry Soln">Global Projects / Industry Soln</el-dropdown-item>
+          <el-dropdown-item command = "Human Resource">Human Resource</el-dropdown-item>
+          <el-dropdown-item command = "HSSE">HSSE</el-dropdown-item>
+          <el-dropdown-item command = "Centre of Performance Excellence">Centre of Performance Excellence</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
@@ -67,7 +68,7 @@
 
   <div class = "reportgraph">
     <p> Average Score by Question </p>
-    <column-chart :data="report_data" xtitle="Question" ytitle="EEI Score"></column-chart>
+    <column-chart :data="report_data" xtitle="Question" ytitle="EEI Score" min = '0' max='5'></column-chart>
   </div>
 
 </div>
@@ -77,70 +78,68 @@
 <script>
 
 import {ref} from 'vue'
+import {onMounted, onUnmounted} from 'vue'
 
-  // export default {
-  //   methods: {
-  //     handleClick() {
-  //       alert('button click');
-  //     }, 
-  //   },
-
-  //   setup(){
-  //   const wellbeingmetrics = ref([])
-  //   const error = ref (null)
-  //   const data_x = ref([])
-  //   const data_y = ref([])
-  //   const report_data = ref([])
-  //   const load = async () =>{
-  //       try{
-  //           let data = await fetch ('http://127.0.0.1:8000/report/wellbeing')
-  //           if (!data.ok){
-  //               throw Error('no data available')
-  //           }
-  //           wellbeingmetrics.value = await data.json()
-  //           // console.log(wellbeingmetrics.value[0]['data_x'])
-  //           const data_x = wellbeingmetrics.value[0]['data_x']
-  //           const data_y = wellbeingmetrics.value[0]['data_y']
-  //           // console.log('datax',data_x)
-  //           data_x.forEach((element, index) => {report_data.value.push([element, parseInt(data_y[index])])})
-  //           // console.log(report_data.value)
-  //       }
-  //           catch (err){
-  //               error.value = err.message
-  //               console.log (error.value)
-  //           }
-  //       }
-  //   load()
-  //   // let currentreport = wellbeingmetrics.value
-  //   // const data_x = wellbeingmetrics.value[0]['data_x']
-  //   // const data_y = ref(wellbeingmetrics.value[0]['data_y'])
-  //   console.log('report is', report_data.value)
-  //   return {report_data, error}
-  // }
-
-      
-  // }
-
-  export default {
+export default {
     
   data() {
     return {
+      all:[],
+      data_filtered: [],
       report_data: [],
+      current_department: 'Department'
     };
+  },
+  methods:{
+    handleDepartment(command){
+          this.current_department = command
+          console.log(command)
+          console.log('oops', this.data_filtered)
+          let data_selected = []
+          if (command == 'all'){
+            console.log('all selected')
+            data_selected = this.all
+          } else{
+            console.log('all unselected')
+            data_selected = this.data_filtered.filter(data3 =>{
+            return data3.department.includes(command)})
+          }
+
+          console.log('********',data_selected)
+          const data_x = data_selected[0]["data_x"];
+          const data_y = data_selected[0]["data_y"];
+          let arr = [];
+          data_x.forEach((element, index) => {
+            arr.push([element, parseFloat(data_y[index])])
+          
+          });
+          this.report_data  = arr
+          this.data_filtered = data_selected
+        
+          }
   },
   async mounted() {
     let data1 = await fetch ('http://127.0.0.1:8000/report/wellbeing');
+    console.log(data1)
     const data = await data1.json()
-    const data_x = data[1]["data_x"];
-    const data_y = data[1]["data_y"];
+    console.log('data',data)
+    const data_selected = data.filter(data =>{
+        return data.department.includes("HSSE")})
+    console.log('data_selected',data_selected)
+    this.data_filtered = data
+    this.all = data
+    const data_x = data_selected[0]["data_x"];
+    const data_y = data_selected[0]["data_y"];
     let arr = [];
     data_x.forEach((element, index) => {
-      arr.push([element, parseInt(data_y[index])])
+      arr.push([element, parseFloat(data_y[index])])
     
     });
     this.report_data  = arr
-      },
-    };
+    }}
+    
+
+   
 
 </script>
 
