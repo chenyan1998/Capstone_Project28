@@ -71,7 +71,7 @@
 
     <div class = "reportgraph">
       <p> Average Score by Question </p>
-      <column-chart :data="report_data3"></column-chart>
+      <column-chart :data="report_data3" min = '0' max='5'></column-chart>
     </div>
 
 </div>
@@ -91,14 +91,14 @@ export default {
     const data = await data3.json()
     const data_x = data[0]["data_x"];
     const data_y = data[0]["data_y"];
-    console.log("datax", data_x);
-    console.log("datay", data_y);
+    // console.log("datax", data_x);
+    // console.log("datay", data_y);
     let arr = [];
     data_x.forEach((element, index) => {
-      arr.push([element, parseInt(data_y[index])])
+      arr.push([element, parseFloat(data_y[index])])
     });
     this.report_data3  = arr
-    console.log(report_data3)
+    // console.log(report_data3)
     },
 };
     
