@@ -38,15 +38,15 @@ def gen_report(individual, segment_age, segment_job_level, segment_department):
         temp_1 = pd.DataFrame(temp_1)
         temp_1 = temp_1.T
         temp_1.columns = age_cat
-        temp_1["Question"] = i
+        temp_1["Year"] = segment_age.iloc[0,140]
         temp_2 = segment_job_level[i]
         temp_2 = pd.DataFrame(temp_2)
         temp_2 = temp_2.T
-        temp_2["Question"] = i
+        temp_2["Year"] = segment_job_level.iloc[0,140]
         temp_3 = segment_department[i]
         temp_3 = pd.DataFrame(temp_3)
         temp_3 = temp_3.T
-        temp_3["Question"] = i
+        temp_3["Year"] = segment_department.iloc[0,140]
         
         report_type_3_age.update({i: temp_1})
         report_type_3_job_level.update({i: temp_2})
@@ -65,23 +65,23 @@ def gen_report(individual, segment_age, segment_job_level, segment_department):
         w_temp = temp.iloc[i,0:5]
         w_temp = pd.DataFrame(w_temp)
         w_temp = w_temp.T
-        w_temp["Department"] = dept_lst[i]
+        w_temp["Year"] = segment_department.iloc[0,140]
         o_temp = temp.iloc[i,5:10]
         o_temp = pd.DataFrame(o_temp)
         o_temp = o_temp.T
-        o_temp["Department"] = dept_lst[i]
+        o_temp["Year"] = segment_department.iloc[0,140]
         p_temp = temp.iloc[i,10:17]
         p_temp = pd.DataFrame(p_temp)
         p_temp = p_temp.T
-        p_temp["Department"] = dept_lst[i]
+        p_temp["Year"] = segment_department.iloc[0,140]
         c_temp = temp.iloc[i,17:23]
         c_temp = pd.DataFrame(c_temp)
         c_temp = c_temp.T
-        c_temp["Department"] = dept_lst[i]
+        c_temp["Year"] = segment_department.iloc[0,140]
         temp_1 = temp.iloc[i,23:]
         temp_1 = pd.DataFrame(temp_1)
         temp_1 = temp_1.T
-        temp_1["Department"] = dept_lst[i]
+        temp_1["Year"] = segment_department.iloc[0,140]
         key = temp.index[i]
         report_type_4_wellbeing.update({key: w_temp})
         report_type_4_opinions.update({key: o_temp})
