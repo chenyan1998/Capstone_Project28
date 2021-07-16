@@ -1,27 +1,18 @@
 <template>
   <html>
     <TopNavigationBar/>
-  <body>
-    <div id="container">
-    <div id="sidebar">
-      <Sidebar />
-      <Wellbeing v-if="report_type === 'Wellbeing'" />
-      <CoreValues v-if="report_type === 'CoreValues'" />
-      <Personality v-if="report_type === 'Personality'" />
-      <Opinion v-if="report_type === 'Opinion'" />
-    </div><!--
-    --><div id="content">
-
-		  <div id="main-content">
-        
-
-        
+    <body>
+      <div id="container">
+        <div id="sidebar">
+          <Sidebar />
+          <Wellbeing v-if="report_type === 'Wellbeing'" />
+          <CoreValues v-if="report_type === 'CoreValues'" />
+          <Personality v-if="report_type === 'Personality'" />
+          <Opinion v-if="report_type === 'Opinion'" />
+        </div>
       </div>
-       </div>
-    </div>
-  </body>
+    </body>
   </html>
-
 </template>
 
 <script>
@@ -32,7 +23,6 @@ import Opinion from '../components/Opinion.vue'
 import Sidebar from '../components/Sidebar'
 import TopNavigationBar from '../components/TopNavigationBar.vue'
 import { onMounted, onUnmounted } from 'vue'
-import getReportMetric from '../composables/getReportMetric'
 
 export default {
     // This page is a detailed report page.
@@ -52,15 +42,9 @@ export default {
             console.log('component unmounted')
         })
       
-    },
-    setup(){
-    const {metrics, error, load} = getReportMetric()
-   // const {metrics, error, load} = getReportSummaryTable()
-   // const {metrics, error, load} = getReportList()
-    return {metrics, error, load}
+    }
+}
 
-}
-}
 </script>
 
 <style>
@@ -85,13 +69,35 @@ body {
 }
 
 #content {
-
 	vertical-align: top;
 	height: 100%;
 	overflow: auto;
 }
 
+.heading h3 {
+  padding: 0 350px;
+  text-align: left;
+}
 
+.heading p {
+  padding-left :350px;
+  padding-right : 100px;
+  text-align: left;
+}
+
+.reportgraph {
+  position: relative;
+  top: 50px;
+  left: 350px;
+  text-align: left;
+  width: 500px;
+}
+
+.top-left2 {
+  position: absolute;
+  top: 80px;
+  left: 20px;
+}
 
 
 </style>
