@@ -6,11 +6,15 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import RepeatedKFold
 from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn import svm
 import numpy as np
 
 def cv(features, labels):
+    
+    # Split into Train-Test Set
+    train_features, test_features, train_labels, test_labels = train_test_split(features, labels, test_size=0.3, random_state=0)
     
     # Run Repeated KFolds
     kfolds = RepeatedKFold(n_splits = 10, n_repeats = 50, random_state = 0)
@@ -27,7 +31,7 @@ def cv(features, labels):
     
     for i in supervised_learning:
     
-        score = cross_val_score(i, features, labels, cv = kfolds)
+        score = cross_val_score(i, train_features, train_labels, cv = kfolds)
     
     # Return Range of Accuracy at 95% Confidence
         alpha = 0.95                         

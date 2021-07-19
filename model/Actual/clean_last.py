@@ -18,6 +18,9 @@ valid_response = ["Improved supervisory relations 监督关系之间的改善",
 def clean_last_qns(data):
     
     # Data Cleaning of Last Question with Multiple Answers
+    # Remove entries with invalid employee_id
+    data.iloc[0:, 6] = pd.to_numeric(data.iloc[0:,6], errors = 'coerce')
+    data = data.dropna()
     test = data
     
     # Split Response into Multiple Columns

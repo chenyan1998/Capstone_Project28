@@ -1,55 +1,65 @@
 <template>
 <html>
       <TopNavigationBar/>
-      <Sidebar :current_path="3" />
-<img  src= "@/assets/avatar.png" alt="Avatar" class="avatar1" width ="100" height = "100">
-<div class = "top-left3">
-  <div class = "heading">
-  <h3> Personal Information </h3>
-   <table id ="profiletable">
-  <tr>
-    <th>Name</th>
-    <td>Robert E. Lee</td>
-  </tr>
-  <tr>
-    <th>Position</th>
-    <td>Senior Manager</td>
-  </tr>
-  <tr>
-    <th>Email</th>
-    <td>robert.lee@mail.dbshcenker.com</td>
-  </tr>
-  <tr>
-    <th>Phone Number</th>
-    <td>+65 91234567</td>
-  </tr>
-   <tr>
-    <th>Address</th>
-    <td>Blk 321 Beta Road #06-679 Singapore 654321 </td>
-  </tr>
-  
-  </table>
-  </div>
-
-  </div>
-
+      <Sidebar :current_path="4" />
+      <img  src= "@/assets/avatar.png" alt="Avatar" class="avatar1" width ="100" height = "100">
+      <div class = "top-left3">
+          <div class = "heading">
+            <h3> Personal Information </h3>
+            <table id ="profiletable">
+              <tr>
+                <th>ID</th>
+                <td>{{singleuser._id}}</td>
+              </tr>
+              <tr>
+                <th>Name</th>
+                <td>{{singleuser.name}}</td>
+              </tr>
+              <tr>
+                <th>Department</th>
+                <td>{{singleuser.department}}</td>
+              </tr>
+              <tr>
+                <th>Email</th>
+                <td>{{singleuser.email}}</td>
+              </tr>
+            </table>
+          </div>
+      </div>
 </html>
 </template>
 
 <script>
 import Sidebar from '../components/Sidebar'
 import TopNavigationBar from '../components/TopNavigationBar.vue'
-import getEmployeeID from '../composables/getEmployeeID.js'
+import {ref} from 'vue'
 export default {
 
     name: 'Profile',
     components: {Sidebar, TopNavigationBar},
     setup(){
-    const {metrics, error, load} = getEmployeeID()
-    return { metrics, error, load}
+      const singleuser = ref ([])
+      const error = ref (null)
+      const load = async () =>{
+          try{
+              let data = await fetch ('http://127.0.0.1:8000/user/60bdb77c4b2ec88180c75d54')
+              console.log(data)
+              if (!data.ok){
+                  throw Error('no data available')
+              }
+              singleuser.value = await data.json()
+          }
+              catch (err){
+                  error.value = err.message
+                  console.log (error.value)
+              }
+          }
+      load()
+    return {singleuser, error}
   }
 }
 </script>
+
 
 <style>
 #profiletable {
@@ -76,6 +86,6 @@ export default {
 }
 img.avatar1{
     position : absolute;
-    top: 100px;
+    top: 15%;
 }
 </style>

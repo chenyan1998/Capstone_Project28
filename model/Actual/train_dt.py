@@ -47,14 +47,16 @@ def train(features, feature_list, labels, df):
     # Print out the feature and importances 
     # [print('Variable: {:20} Importance: {}'.format(*pair)) for pair in feature_importances];
     
-    # Determine Most Important Category
-    w = sum(importances[2:7])/sum(importances[2:])
-    o = sum(importances[7:11])/sum(importances[2:])
-    p = sum(importances[11:18])/sum(importances[2:])
-    c = sum(importances[18:])/sum(importances[2:])
-    print("Wellbeing Weightage:", w)
-    print("Opinion Weightage:", o)
-    print("Personality Weightage:", p)
-    print("Core Values Weightage:", c)
+# =============================================================================
+#     # Determine Most Important Category
+#     w = sum(importances[2:7])/sum(importances[2:])
+#     o = sum(importances[7:11])/sum(importances[2:])
+#     p = sum(importances[11:18])/sum(importances[2:])
+#     c = sum(importances[18:])/sum(importances[2:])
+#     print("Wellbeing Weightage:", w)
+#     print("Opinion Weightage:", o)
+#     print("Personality Weightage:", p)
+#     print("Core Values Weightage:", c)
+# =============================================================================
 
     return dt, report

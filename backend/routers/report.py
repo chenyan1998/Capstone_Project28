@@ -1,4 +1,4 @@
-from models import ReportModel
+from models import ReportModel,IndividualReportModel
 from pymongo import MongoClient
 from database import app,client
 from fastapi import APIRouter,Body, HTTPException, status
@@ -18,6 +18,13 @@ db = client.report
 #Report list , to check who already take this 
 @app.post("/report", response_description="Add new report", response_model=ReportModel,tags=['Report'])
 async def create_report(report: ReportModel = Body(...)):
+    report = jsonable_encoder(report)
+    new_report = await db["report"].insert_one(report)
+    created_report = await db["report"].find_one({"_id": new_report.inserted_id})
+    return JSONResponse(status_code=status.HTTP_201_CREATED, content=created_report)
+
+@app.post("/report/individual", response_description="Add new report", response_model=IndividualReportModel,tags=['Report'])
+async def create_report(report: IndividualReportModel = Body(...)):
     report = jsonable_encoder(report)
     new_report = await db["report"].insert_one(report)
     created_report = await db["report"].find_one({"_id": new_report.inserted_id})
