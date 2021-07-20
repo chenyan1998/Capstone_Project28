@@ -75,13 +75,16 @@ body {
 }
 
 .heading h3 {
-  padding: 0 350px;
+  position: relative;
+  top: 10%;
+  left: 42%;
   text-align: left;
 }
 
 .heading p {
-  padding-left :350px;
-  padding-right : 100px;
+  position: relative;
+  top: 10%;
+  left: 36%;
   text-align: left;
 }
 
@@ -90,13 +93,12 @@ body {
   top: 50px;
   left: 350px;
   text-align: left;
-  width: 500px;
+  width: 800px;
 }
 
 .top-left2 {
   position: absolute;
-  top: 80px;
-  left: 20px;
+  top: 10%;
 }
 
 
