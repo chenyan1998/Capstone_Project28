@@ -99,7 +99,7 @@ def upload(report_type_4_wellbeing, report_type_4_opinions, report_type_4_person
         collection.replace_one({"Employee_id": new_results_individual.iloc[i,1], 'year': str(new_results_individual.iloc[i,0])}, temp, upsert = True)
     
     # Update Wellbeing Best/Worst Performer - Report Type 5
-    collection = db["RF_Best_Worse_Report"]
+    collection = db["report"]
     compare_lst = ["w_total_mean", "o_total_mean", "p_total_mean", "c_total_mean"]
     for i in compare_lst:
         year = str(new_results_department.iloc[0,140])
@@ -111,13 +111,13 @@ def upload(report_type_4_wellbeing, report_type_4_opinions, report_type_4_person
                 "metric": i, 
                 "department": "NA", 
                 "year": year,
-                "report_format": "pie_chart",
+                "report_format": "donut_chart",
                 "question": "NA",
                 "label_x": best_department,
                 "label_y": worse_department,
-                "data_x": max_score, 
-                "data_y": min_score}
-        collection.replace_one({"metric":i, "report_format": "pie_chart", 'year': year}, temp, upsert = True)
+                "data_x": [max_score], 
+                "data_y": [min_score]}
+        collection.replace_one({"metric":i, "report_format": "donut_chart", 'year': year}, temp, upsert = True)
     
     # Update Raw Results Table - Report Type 1,3
     # collection
