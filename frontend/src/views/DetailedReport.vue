@@ -48,10 +48,6 @@ export default {
 </script>
 
 <style>
-html {
-	height: 100%;
-}
-
 body {
 	margin: 0;
 	height: 100%;
@@ -74,31 +70,45 @@ body {
 	overflow: auto;
 }
 
-.heading h3 {
+.top-left-report {
+  position: absolute;
+  top : 15%;
+  left: 20%;
+  /* background: green; */
+}
+
+.heading {
   position: relative;
   top: 10%;
-  left: 42%;
+  left: 10%;
   text-align: left;
 }
 
-.heading p {
-  position: relative;
-  top: 10%;
-  left: 36%;
-  text-align: left;
+.el-dropdown {
+    vertical-align: top;
 }
+  
+.el-icon-arrow-down {
+    font-size: 12px;
+ }
+
+.el-dropdown-menu {
+   max-height: 200px;
+   overflow: scroll; 
+}
+
+/* Report */
+#report-dropdown {
+  position: absolute;
+  left: 10% 
+  }
 
 .reportgraph {
   position: relative;
-  top: 50px;
-  left: 350px;
+  top: 80px;
+  left: 10%;
   text-align: left;
   width: 800px;
-}
-
-.top-left2 {
-  position: absolute;
-  top: 10%;
 }
 
 

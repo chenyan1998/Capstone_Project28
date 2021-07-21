@@ -1,44 +1,44 @@
 <template>
-<html>
-<div class = "top-left2">
-  
-  <div class = "heading">
-    <h3> Wellbeing Report</h3>
-    <p class ="toppara"> Good health and wellbeing is a core enabler of employee engagement and organisational performance. </p>
-  </div>
+    <html>
+        <div class = "top-left-report">
+          
+          <div class = "heading">
+              <h3> Wellbeing Report</h3>
+              <p> Good health and wellbeing is a core enabler of employee engagement and organisational performance. </p>
+          </div>
 
-  <div id = "dropdown1">
-    <el-dropdown @command="handleDepartment">
-      <el-button style="width:300px;">
-        {{current_departmentW}}<i class="el-icon-arrow-down el-icon--right"></i>
-      </el-button>
-      <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item command = "all">All</el-dropdown-item>
-          <el-dropdown-item command = "Air Freight Division">Air Freight Division</el-dropdown-item>
-          <el-dropdown-item command = "Ocean Freight Division">Ocean Freight Division</el-dropdown-item>
-          <el-dropdown-item command = "Finance">Finance</el-dropdown-item>
-          <el-dropdown-item command = "Sales and Sales Planning">Sales and Sales Planning</el-dropdown-item>
-          <el-dropdown-item command = "Contract Logistics/SCM">Contract Logistics/SCM</el-dropdown-item>
-          <el-dropdown-item command = "Fairs, Exhibitions, Events">Fairs, Exhibitions, Events</el-dropdown-item>
-          <el-dropdown-item command = "CEO Office" disabled>CEO Office</el-dropdown-item>
-          <el-dropdown-item command = "IT">IT </el-dropdown-item>
-          <el-dropdown-item command = "Global Projects">Global Projects / Industry Soln</el-dropdown-item>
-          <el-dropdown-item command = "Human Resource">Human Resource</el-dropdown-item>
-          <el-dropdown-item command = "HSSE">HSSE</el-dropdown-item>
-          <el-dropdown-item command = "Centre of Performance Excellence">Centre of Performance Excellence</el-dropdown-item>
-        </el-dropdown-menu>
-      </template>
-    </el-dropdown>
-  </div>
+          <div id = "report-dropdown">
+              <el-dropdown @command="handleDepartment">
+                <el-button style="width:300px;">
+                  {{current_departmentW}}<i class="el-icon-arrow-down el-icon--right"></i>
+                </el-button>
+                <template #dropdown>
+                  <el-dropdown-menu>
+                    <el-dropdown-item command = "all">All</el-dropdown-item>
+                    <el-dropdown-item command = "Air Freight Division">Air Freight Division</el-dropdown-item>
+                    <el-dropdown-item command = "Ocean Freight Division">Ocean Freight Division</el-dropdown-item>
+                    <el-dropdown-item command = "Finance">Finance</el-dropdown-item>
+                    <el-dropdown-item command = "Sales and Sales Planning">Sales and Sales Planning</el-dropdown-item>
+                    <el-dropdown-item command = "Contract Logistics/SCM">Contract Logistics/SCM</el-dropdown-item>
+                    <el-dropdown-item command = "Fairs, Exhibitions, Events">Fairs, Exhibitions, Events</el-dropdown-item>
+                    <el-dropdown-item command = "CEO Office" disabled>CEO Office</el-dropdown-item>
+                    <el-dropdown-item command = "IT">IT </el-dropdown-item>
+                    <el-dropdown-item command = "Global Projects">Global Projects / Industry Soln</el-dropdown-item>
+                    <el-dropdown-item command = "Human Resource">Human Resource</el-dropdown-item>
+                    <el-dropdown-item command = "HSSE">HSSE</el-dropdown-item>
+                    <el-dropdown-item command = "Centre of Performance Excellence">Centre of Performance Excellence</el-dropdown-item>
+                  </el-dropdown-menu>
+                </template>
+              </el-dropdown>
+          </div>
 
-  <div class = "reportgraph">
-    <p> Average Score by Question </p>
-    <column-chart :data="report_dataW" xtitle="Question" ytitle="Mean Score" min = '0' max='5'></column-chart>
-  </div>
+          <div class = "reportgraph">
+              <p> Average Score by Question </p>
+              <column-chart :data="report_dataW" xtitle="Question" ytitle="Mean Score" min = '0' max='5'></column-chart>
+          </div>
 
-</div>
-</html>
+        </div>
+    </html>
 </template>
 
 <script>
@@ -111,49 +111,6 @@ export default {
 
 
 <style>
-
-.graph1 {
-  padding: 0 350px;
-  text-align: left;
-  margin-left: 350px;
-}
-
-.el-dropdown {
-    vertical-align: top;
-}
-
-.el-dropdown + .el-dropdown {
-    margin-left: 15px;
-}
-  
-.el-icon-arrow-down {
-    font-size: 12px;
- }
-
-.el-dropdown-menu {
-   max-height:200px;
-   overflow:scroll; 
-}
-
-.toppara {
-  text-align: center;
-  padding-left: 50px;
-  padding-right: 50px;
-}
-
-/* Report */
-#dropdown1 {
-  position: relative;
-  left :10%; 
-  }
-#dropdown2 {
-  position: absolute;
-  left : 40%; 
-  }
-#dropdown3 {
-  position: absolute;
-  left : 25%; 
-  }
 
   
 </style>
