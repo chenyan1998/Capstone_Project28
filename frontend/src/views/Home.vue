@@ -16,36 +16,44 @@
       <div class="homerow">
           <div class="homecolumnleft">
 
-              <div class="bestdepartment">
+              <div class="bestdepartment" v-for="bw in bestworstW" :key="bw">
                 <h3> Wellbeing </h3>
-                <p> Highest Department:</p>
-                <p> Lowest Department:</p>
+                <p> Highest Department: {{bw.label_x}} </p>
+                <p> Highest Score: {{bw.data_x}} </p>
+                <p> Lowest Department: {{bw.label_y}}</p>
+                <p> Lowest Score: {{bw.data_y}} </p>
                 <br>
               </div>    
               <br>
-              <div class="bestdepartment">
+              <div class="bestdepartment" v-for="bw in bestworstW" :key="bw">
                 <h3> Personality </h3>
-                <p> Highest Department:</p>
-                <p> Lowest Department:</p>
+                <p> Highest Department: {{bw.label_x}} </p>
+                <p> Highest Score: {{bw.data_x}} </p>
+                <p> Lowest Department: {{bw.label_y}}</p>
+                <p> Lowest Score: {{bw.data_y}} </p>
                 <br>
-              </div>
+              </div> 
           </div>
 
           <div class="homecolumnmiddle">
-              <div class="bestdepartment">
+              <div class="bestdepartment" v-for="bw in bestworstW" :key="bw">
                 <h3> Core Values </h3>
-                <p> Highest Department:</p>
-                <p> Lowest Department:</p>
+                <p> Highest Department: {{bw.label_x}} </p>
+                <p> Highest Score: {{bw.data_x}} </p>
+                <p> Lowest Department: {{bw.label_y}}</p>
+                <p> Lowest Score: {{bw.data_y}} </p>
                 <br>
-              </div>
+              </div> 
 
               <br>
-              <div class="bestdepartment">
+              <div class="bestdepartment" v-for="bw in bestworstW" :key="bw">
                 <h3> Opinion </h3>
-                <p> Highest Department:</p>
-                <p> Lowest Department:</p>
+                <p> Highest Department: {{bw.label_x}} </p>
+                <p> Highest Score: {{bw.data_x}} </p>
+                <p> Lowest Department: {{bw.label_y}}</p>
+                <p> Lowest Score: {{bw.data_y}} </p>
                 <br>
-              </div>
+              </div> 
           </div>
 
           <div class="homecolumnright">
@@ -112,7 +120,7 @@ export default {
       const error = ref (null)
       const load = async () =>{
           try{
-              let data = await fetch ('http://127.0.0.1:8000/user')
+              let data = await fetch ('http://127.0.0.1:8000/email')
               if (!data.ok){
                   throw Error('no data available')
                   }
@@ -138,8 +146,25 @@ export default {
                     }
           }
       load2()
+      const bestworstW = ref ([])
+      const error3 = ref (null)
+      const load3 = async () =>{
+            try{
+                let data = await fetch ('http://127.0.0.1:8000/report/w_total_mean')
+                if (!data.ok){
+                    throw Error('no data available')
+                    }
+                bestworstW.value = await data.json()
+                }
+                catch (err){
+                    error3.value = err.message
+                    }
+                const data_xW = parseFloat(data[0]["data_x"]).toFixed(2);
+                const data_yW = parseFLoat(data[0]["data_y"]).toFixed(2);
+          }
+      load3()
 
-    return {userlist, employeelist, error,error2}
+    return {userlist, employeelist, bestworstW, error, error2, error3}
     }}
 </script>
 
@@ -224,7 +249,7 @@ export default {
 
 #risklevel{
   position: absolute;
-  top:170%;
+  top:190%;
   left: 18%;
   text-align: left;
 }
