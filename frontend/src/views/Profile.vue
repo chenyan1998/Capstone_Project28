@@ -2,9 +2,8 @@
 <html>
       <TopNavigationBar/>
       <Sidebar :current_path="4" />
-      <img  src= "@/assets/avatar.png" alt="Avatar" class="avatar1" width ="100" height = "100">
-      <div class = "top-left3">
-          <div class = "heading">
+      <div class = "top-left-profile">
+            <img  src= "@/assets/avatar.png" alt="Avatar" class="avatar1" width ="100" height = "100">
             <h3> Personal Information </h3>
             <table id ="profiletable">
               <tr>
@@ -24,7 +23,6 @@
                 <td>{{singleuser.email}}</td>
               </tr>
             </table>
-          </div>
       </div>
 </html>
 </template>
@@ -62,30 +60,28 @@ export default {
 
 
 <style>
+
+.top-left-profile {
+  position: absolute;
+  top : 15%;
+  left: 20%;
+  width: 75%;
+  /* background: green; */
+}
+
 #profiletable {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-
-  position: absolute;
-  top: 80px;
-  left: 350px;
+  position: relative;
+  left: 20%;
   text-align: left;
   border-spacing: 5px;
-  width :100%
+  width :70%;
+  border: 0px solid white;
 }
 
 #profiletable td, th {
-  border: 1px solid #F0F3F5;
   text-align: left;
-  padding: 8px;
-}
-.top-left3 {
-  position: absolute;
-  top: 230px;
-  left: 20px;
-}
-img.avatar1{
-    position : absolute;
-    top: 15%;
+  padding: 10px;
 }
 </style>

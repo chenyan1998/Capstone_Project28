@@ -2,8 +2,8 @@
 <html>
       <TopNavigationBar/>
       <Sidebar :current_path="3" />
-     
-<div class = "heading">
+    
+  <div class = "top-left-survey">
 
       <div id="sendsurvey">
             <h3>Send Out New Surveys</h3>
@@ -34,11 +34,9 @@
           <div id ="surveycompletionchart">
               <pie-chart :data="[['Completed', 258], ['Uncompleted', 119]]" legend = "right"></pie-chart>
           </div>
-      </div>
+      </div>    
 
-
-
-</div>
+  </div>
 </html>
 </template>
 
@@ -80,25 +78,33 @@ export default {
 
 <style>
 
-#sendsurvey {
+.top-left-survey {
   position: absolute;
-  top: 100px;
-  left: 0px;
+  top : 10%;
+  left: 20%;
+  width:75%;
+}
+
+#sendsurvey {
+  position: relative;
+  top: 10%;
+  left: 10%;
+  text-align: left;
 }
 
 #sendsurveybutton {
   position: absolute;
-  top: 350px;
-  right: 80px;
+  top: 120%;
+  left: 80%;
 }
 
 #surveytable {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  position: absolute;
-  top: 100px;
-  left: 350px;
-  width: 1000px;
+  position: relative;
+  top: 10%;
+  left: 0%;
+  width: 90%;
 }
 
 #surveytable td, th {
@@ -116,13 +122,14 @@ export default {
 
 #surveycompletion {
   position: absolute;
-  top: 450px;
-  left: 0px;
+  top: 150%;
+  left: 10%;
+  text-align: left;
 }
 #surveycompletionchart {
-  position: absolute;
-  top: 0px;
-  left: 1050px;
+  position: relative;
+  top: 0%;
+  left: 230%;
   width : 300px;
 }
 
