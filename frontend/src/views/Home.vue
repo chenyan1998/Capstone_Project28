@@ -1,174 +1,106 @@
 <template>
 <html>
   <TopNavigationBar/>
-  <div class="home">
+  <Sidebar :current_path="1" />
+  
+    <div class="container1">
+        <img  src= "@/assets/HomeIntroduction.png" alt="homeintro" class="homeintroduction" >
+        <el-button class ="btn1">Import Survey Results</el-button>
+        <el-button class ="btn2">Analyze Results</el-button>
+    </div>
+
+    <div class = "homeheading">
+      <h3> Departments </h3>
+      <p> Best and Worst performing departments by Survey Question type </p>
     
-    <Sidebar :current_path="1" />
-    <!-- <div v-for="nav in nav_list" :key="nav">
-      <router-link :to="{name: nav}">
-            <button>{{nav}}</button>
-      </router-link>
-    </div> -->
-  </div>
-  <div class="heading1">
-  <h5> What are employee's completion rate over time? </h5>
-  </div>
-  <div class="graph1">
-  <img src="@/assets/wellbeing.png" class="image1" width ="500" height = "250" align = "middle" top ="10">
-  </div>
+      <div class="homerow">
+          <div class="homecolumnleft">
 
-  <div class="box">
-    <el-space direction="vertical">
-    <el-card class="box-card" style="width: 250px" v-for="i in 1" :key="i">
-      <template #header>
-        <div class="card-header">
-          <span>Pending completion</span>
-        </div>
-      </template>
-      <div v-for="o in 6" :key="o" class="text item">
-        {{ 'List item ' + o }}
+              <div class="bestdepartment" v-for="bw in bestworstW" :key="bw">
+                <h3> Wellbeing </h3>
+                <p> Highest Department: {{bw.label_x}} </p>
+                <p> Highest Score: {{bw.data_x}} </p>
+                <p> Lowest Department: {{bw.label_y}}</p>
+                <p> Lowest Score: {{bw.data_y}} </p>
+                <br>
+              </div>    
+              <br>
+              <div class="bestdepartment" v-for="bw in bestworstW" :key="bw">
+                <h3> Personality </h3>
+                <p> Highest Department: {{bw.label_x}} </p>
+                <p> Highest Score: {{bw.data_x}} </p>
+                <p> Lowest Department: {{bw.label_y}}</p>
+                <p> Lowest Score: {{bw.data_y}} </p>
+                <br>
+              </div> 
+          </div>
+
+          <div class="homecolumnmiddle">
+              <div class="bestdepartment" v-for="bw in bestworstW" :key="bw">
+                <h3> Core Values </h3>
+                <p> Highest Department: {{bw.label_x}} </p>
+                <p> Highest Score: {{bw.data_x}} </p>
+                <p> Lowest Department: {{bw.label_y}}</p>
+                <p> Lowest Score: {{bw.data_y}} </p>
+                <br>
+              </div> 
+
+              <br>
+              <div class="bestdepartment" v-for="bw in bestworstW" :key="bw">
+                <h3> Opinion </h3>
+                <p> Highest Department: {{bw.label_x}} </p>
+                <p> Highest Score: {{bw.data_x}} </p>
+                <p> Lowest Department: {{bw.label_y}}</p>
+                <p> Lowest Score: {{bw.data_y}} </p>
+                <br>
+              </div> 
+          </div>
+
+          <div class="homecolumnright">
+              <div class="pendingcompletion">
+                <el-space direction="vertical">
+                  <el-card>
+                    <template #header>
+                      <div>
+                        <span>Pending completion</span>
+                      </div>
+                    </template>
+                    <div v-for="user1 in userlist" :key="user1" class="text item" >
+                      {{ user1.name }}
+                    </div>
+                    <br><br><br>
+                    <el-button style="width:100%;" class="homebtn">Details</el-button><br><br>
+                    <el-button style="width:100%;" class="homebtn">Send Reminders</el-button>
+                    
+            
+                  </el-card>
+                </el-space>
+              </div>
+          </div>
       </div>
-      <br>
-      <div class="button">
-      <el-button style="width:130px;" type="primary">Details</el-button>
-      <br>
-      <br>
-      <el-button style="width:130px;" type="primary">Send reminder</el-button>
+    </div>
+
+       <div id="risklevel">
+            <h3> Flight Risk Level </h3>
+            <p> List of employees identified to have high Flight Risk level </p>
+                <table id ="riskleveltable">
+                  <tr>
+                      <th>Name</th>
+                      <th>Employee ID</th>
+                      <th>Company Email Address</th>
+                      <th>Phone Number</th>
+                      <th>Position</th>
+                  </tr>
+                  <tr v-for="employee in employeelist" :key="employee">
+                      <td>{{employee.name}}</td>
+                      <td>12345</td>
+                      <td>{{employee.email}}</td>
+                      <td>{{employee.employee_details}}</td>
+                      <td>{{employee.employee_risk_level}}</td>
+                  </tr>
+                </table>
       </div>
-    </el-card>
-  </el-space>
-  </div>
-
-  <div class="dropdown1">
-  <el-dropdown>
-  <el-button style="width:200px;">
-    Department<i class="el-icon-arrow-down el-icon--right"></i>
-  </el-button>
-  <template #dropdown>
-    <el-dropdown-menu>
-      <el-dropdown-item>Last 7 days</el-dropdown-item>
-      <el-dropdown-item>Last 14 days</el-dropdown-item>
-      <el-dropdown-item>Last 30 days</el-dropdown-item>
-      <el-dropdown-item>Last month</el-dropdown-item>
-    </el-dropdown-menu>
-  </template>
-</el-dropdown>
-</div>
-
-<div class="heading2">
-  <h5>What are the average EEI score by question over time?</h5>
-</div>
-<div class="graph2">
-<img src="@/assets/eei.jpg" class="image2" width ="780" height = "500" align = "middle" top ="10">
-</div>
-
-<div class="dropdown2">
-  <el-dropdown>
-  <el-button style="width:200px;">
-    Department<i class="el-icon-arrow-down el-icon--right"></i>
-  </el-button>
-  <template #dropdown>
-    <el-dropdown-menu>
-      <el-dropdown-item>Last 7 days</el-dropdown-item>
-      <el-dropdown-item>Last 14 days</el-dropdown-item>
-      <el-dropdown-item>Last 30 days</el-dropdown-item>
-      <el-dropdown-item>Last month</el-dropdown-item>
-    </el-dropdown-menu>
-  </template>
-</el-dropdown>
-</div>
-
-<div class="heading3">
-  <h5>What are the average wellbeing by question over time?</h5>
-</div>
-<div class="graph3">
-  <img src="@/assets/graph.jpg" class="image3" width ="340" height = "320" align = "middle" top ="10">
-</div>
-
-<div class="dropdown3">
-  <el-dropdown>
-  <el-button style="width:200px;">
-    Department<i class="el-icon-arrow-down el-icon--right"></i>
-  </el-button>
-  <template #dropdown>
-    <el-dropdown-menu>
-      <el-dropdown-item>Last 7 days</el-dropdown-item>
-      <el-dropdown-item>Last 14 days</el-dropdown-item>
-      <el-dropdown-item>Last 30 days</el-dropdown-item>
-      <el-dropdown-item>Last month</el-dropdown-item>
-    </el-dropdown-menu>
-  </template>
-</el-dropdown>
-</div>
-
-<div class="heading4">
-  <h5>What are the average core value score by question over time?</h5>
-</div>
-<div class="graph4">
-  <img src="@/assets/graph.jpg" class="image4" width ="340" height = "320" align = "middle" top ="10">
-</div>
-
-<div class="dropdown4">
-  <el-dropdown>
-  <el-button style="width:200px;">
-    Department<i class="el-icon-arrow-down el-icon--right"></i>
-  </el-button>
-  <template #dropdown>
-    <el-dropdown-menu>
-      <el-dropdown-item>Last 7 days</el-dropdown-item>
-      <el-dropdown-item>Last 14 days</el-dropdown-item>
-      <el-dropdown-item>Last 30 days</el-dropdown-item>
-      <el-dropdown-item>Last month</el-dropdown-item>
-    </el-dropdown-menu>
-  </template>
-</el-dropdown>
-</div>
-
-<br>
-<br>
-
-
-  <el-table
-    :data="tableData" id="table1"
-    border
-    style="width: 50%">
-    <el-table-column
-      prop="name"
-      label="Name"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="id"
-      label="Employee ID"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="department"
-      label="Department">
-    </el-table-column>
-    <el-table-column
-      prop="position"
-      label="Position">
-    </el-table-column>
-  </el-table>
-
-<div class="dropdown5">
-  <el-dropdown>
-  <el-button style="width:130px;">
-    Department<i class="el-icon-arrow-down el-icon--right"></i>
-  </el-button>
-  <template #dropdown>
-    <el-dropdown-menu>
-      <el-dropdown-item>Last 7 days</el-dropdown-item>
-      <el-dropdown-item>Last 14 days</el-dropdown-item>
-      <el-dropdown-item>Last 30 days</el-dropdown-item>
-      <el-dropdown-item>Last month</el-dropdown-item>
-    </el-dropdown-menu>
-  </template>
-</el-dropdown>
-</div>
-
- <el-divider class="divider"><i></i></el-divider>
+    
 
 </html>
 </template>
@@ -178,135 +110,172 @@
 import Sidebar from '../components/Sidebar'
 import {ref} from 'vue'
 import TopNavigationBar from '../components/TopNavigationBar.vue'
-import getEmployeeList from '../composables/getEmployeeList'
-
 export default {
-  name: 'Home',
-  components: {Sidebar, TopNavigationBar},
-  setup(){
-    const nav_list = ref(['Profile','ReportHomepage','SurveyHomepage'])
-    const {metrics, error, load} = getEmployeeList
-    return {nav_list, metrics, error, load}
-  },
-data() {
-      return {
-        tableData: [{
-          name: 'Tom',
-          id: '123456',
-          department: 'HR',
-          position: 'Manager'
-        }, {
-          name: 'Alex',
-          id: '123545',
-          department: 'HR',
-          position: 'Executive'
-        }]
-      }
-    }
-    
-}
+
+    name: 'Home',
+    components: {Sidebar, TopNavigationBar},
+
+    setup(){
+      const userlist = ref ([])
+      const error = ref (null)
+      const load = async () =>{
+          try{
+              let data = await fetch ('http://127.0.0.1:8000/email')
+              if (!data.ok){
+                  throw Error('no data available')
+                  }
+              userlist.value = await data.json()
+              }
+              catch (err){
+                  error.value = err.message
+                  }
+          }
+      load()
+      const employeelist = ref ([])
+      const error2 = ref (null)
+      const load2 = async () =>{
+            try{
+                let data = await fetch ('http://127.0.0.1:8000/employee')
+                if (!data.ok){
+                    throw Error('no data available')
+                    }
+                employeelist.value = await data.json()
+                }
+                catch (err){
+                    error2.value = err.message
+                    }
+          }
+      load2()
+      const bestworstW = ref ([])
+      const error3 = ref (null)
+      const load3 = async () =>{
+            try{
+                let data = await fetch ('http://127.0.0.1:8000/report/w_total_mean')
+                if (!data.ok){
+                    throw Error('no data available')
+                    }
+                bestworstW.value = await data.json()
+                }
+                catch (err){
+                    error3.value = err.message
+                    }
+                const data_xW = parseFloat(data[0]["data_x"]).toFixed(2);
+                const data_yW = parseFLoat(data[0]["data_y"]).toFixed(2);
+          }
+      load3()
+
+    return {userlist, employeelist, bestworstW, error, error2, error3}
+    }}
 </script>
 
 <style>
-.heading1{
+
+.container1 {
   position: absolute;
-  top: 100px;
-  left: 370px;
+  width: 78%;
+  left: 18%;
+  top: 13%;
+}
+.container1 img {
+  width: 100%;
+  height: auto;
 }
 
-.heading2{
+.container1 .btn1 {
   position: absolute;
-  top: 680px;
-  left: 370px;
+  top: 72%;
+  left: 79%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #D7DCE1;
+  color: black;
+  cursor: pointer;
+  width: 20%;
+}
+.container1 .btn2 {
+  position: absolute;
+  top: 82%;
+  left: 78%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #D7DCE1;
+  color: black;
+  cursor: pointer;
+  width: 20%;
 }
 
-.heading3{
+.homeheading{
   position: absolute;
-  top: 1330px;
-  left: 370px;
+  width: 78%;
+  left: 18%;
+  top: 100%;
+  text-align: left;
 }
 
-.heading4{
-  position: absolute;
-  top: 1330px;
-  left: 750px;
+.homecolumnleft {
+  width: 38%;
+  float: left;
 }
 
-.image1{
-  position: absolute;
-  top: 150px;
-  left: 370px;
+.homecolumnmiddle {
+  width: 38%;
+  float: left;
 }
 
-.image2{
-  position: absolute;
-  top: 730px;
-  left: 370px;
+.homecolumnright {
+  width: 24%;
+  float: left;
 }
 
-.image3{
-  position: absolute;
-  top: 1380px;
-  left: 370px;
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
-.image4{
-  position: absolute;
-  top: 1380px;
-  left: 750px;
+.bestdepartment {
+  width:90%;
+  background-color: #CAE7EA;
+  border-radius: 25px;
+  padding: 10px;
 }
 
-.box-card{
+.pendingcompletion{
+  text-align:center;
   position: absolute;
-  top: 150px;
-  left: 900px;
+  top: 20%;
+  left: 80%;
 }
 
-.dropdown1{
+#risklevel{
   position: absolute;
-  top: 410px;
-  left: 370px;
+  top:190%;
+  left: 18%;
+  text-align: left;
 }
 
-.dropdown2{
-  position: absolute;
-  top: 1240px;
-  left: 370px;
+#riskleveltable {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  position: relative;
+  top: 20%;
+  width: 180%;
+  border: 1px solid #b8bcc0;
+  text-align: left;
 }
 
-.dropdown3{
-  position: absolute;
-  top: 1710px;
-  left: 370px;
+#riskleveltable td, th {
+  border: 1px solid #b8bcc0;
+  text-align: left;
+  padding: 1%;
 }
 
-.dropdown4{
-  position: absolute;
-  top: 1710px;
-  left: 750px;
+
+#riskleveltable tr:nth-child(1) {
+  background-color: #D7DCE1;
+}
+#riskleveltable tr {
+  background-color: #ffffff;
 }
 
-.dropdown5{
-  position: absolute;
-  top: 640px;
-  left: 1100px;
-}
-
-.box-card{
-  background: aquamarine;
-}
-
-#table1{
-  position: absolute;
-  top: 540px;
-  left: 370px;
-}
-
-.divider{
-  position: absolute;
-  top: 1240px;
-  left: 0px;
-}
 </style>
-
-

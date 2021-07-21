@@ -1,27 +1,18 @@
 <template>
   <html>
     <TopNavigationBar/>
-  <body>
-    <div id="container">
-    <div id="sidebar">
-      <Sidebar />
-      <Wellbeing v-if="report_type === 'Wellbeing'" />
-      <CoreValues v-if="report_type === 'CoreValues'" />
-      <Personality v-if="report_type === 'Personality'" />
-      <Opinion v-if="report_type === 'Opinion'" />
-    </div><!--
-    --><div id="content">
-
-		  <div id="main-content">
-        
-
-        
+    <body>
+      <div id="container">
+        <div id="sidebar">
+          <Sidebar />
+          <Wellbeing v-if="report_type === 'Wellbeing'" />
+          <CoreValues v-if="report_type === 'CoreValues'" />
+          <Personality v-if="report_type === 'Personality'" />
+          <Opinion v-if="report_type === 'Opinion'" />
+        </div>
       </div>
-       </div>
-    </div>
-  </body>
+    </body>
   </html>
-
 </template>
 
 <script>
@@ -32,7 +23,6 @@ import Opinion from '../components/Opinion.vue'
 import Sidebar from '../components/Sidebar'
 import TopNavigationBar from '../components/TopNavigationBar.vue'
 import { onMounted, onUnmounted } from 'vue'
-import getReportMetric from '../composables/getReportMetric'
 
 export default {
     // This page is a detailed report page.
@@ -52,22 +42,12 @@ export default {
             console.log('component unmounted')
         })
       
-    },
-    setup(){
-    const {metrics, error, load} = getReportMetric()
-   // const {metrics, error, load} = getReportSummaryTable()
-   // const {metrics, error, load} = getReportList()
-    return {metrics, error, load}
+    }
+}
 
-}
-}
 </script>
 
 <style>
-html {
-	height: 100%;
-}
-
 body {
 	margin: 0;
 	height: 100%;
@@ -85,13 +65,51 @@ body {
 }
 
 #content {
-
 	vertical-align: top;
 	height: 100%;
 	overflow: auto;
 }
 
+.top-left-report {
+  position: absolute;
+  top : 15%;
+  left: 20%;
+  /* background: green; */
+}
 
+.heading {
+  position: relative;
+  top: 10%;
+  left: 10%;
+  text-align: left;
+}
+
+.el-dropdown {
+    vertical-align: top;
+}
+  
+.el-icon-arrow-down {
+    font-size: 12px;
+ }
+
+.el-dropdown-menu {
+   max-height: 200px;
+   overflow: scroll; 
+}
+
+/* Report */
+#report-dropdown {
+  position: absolute;
+  left: 10% 
+  }
+
+.reportgraph {
+  position: relative;
+  top: 80px;
+  left: 10%;
+  text-align: left;
+  width: 800px;
+}
 
 
 </style>

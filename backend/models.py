@@ -146,7 +146,7 @@ class IndividualReportModel(BaseModel):
     Core_values: str = Field(...)
     Personality: str = Field(...)    
     Flight_risk_label: str = Field(...)
-
+    year: str = Field(...)
     class Config:
         allow_population_by_field_name = True
         arbitrary_types_allowed = True
@@ -159,7 +159,8 @@ class IndividualReportModel(BaseModel):
                 "Wellbeing": "89",
                 "Core_values": "85",
                 "Personality":"99",
-                "Flight_risk_label":"1:High"
+                "Flight_risk_label":"1:High",
+                "year":"2021"
             }
         }
 

@@ -18,7 +18,7 @@ if __name__=='__main__':
     sleep(3)
     browser.find_element_by_xpath('/html/body/div[2]/div/main/div[2]/div[4]/input').click()
     sleep(10)
-    browser.find_element_by_name('passwd').send_keys('aSutd0911')
+    browser.find_element_by_name('passwd').send_keys('Sutd0911')
     sleep(3)
     browser.find_element_by_xpath('/html/body/div/form[1]/div/div/div[1]/div[2]/div[2]/div/div[2]/div/div[3]/div[2]/div/div/div/div/input').click()
     sleep(3)
@@ -35,3 +35,4 @@ if __name__=='__main__':
     browser.find_element_by_xpath('/html/body/div[2]/div/div[2]/div[3]/div[9]/div/div/div/div[3]/div[2]/div/button').click()
     sleep(20)
     print('finished')
+    
