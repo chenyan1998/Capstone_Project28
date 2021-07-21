@@ -33,7 +33,7 @@ db = client.email2
 # Q1 Haven't put any data to database 
 
 @app.post("/emailtype2", response_description="Send email", tags=['Email2'])
-async def simple_send(email: EmailSchema) -> JSONResponse:
+async def send_email(email: EmailSchema) -> JSONResponse:
     message = MessageSchema(
         subject="Project 28 Survey",
         recipients = email.dict().get("email"),  # List of recipients, as many as you can pass 
@@ -41,4 +41,4 @@ async def simple_send(email: EmailSchema) -> JSONResponse:
         )
     fm = FastMail(conf)
     await fm.send_message(message)
-    return JSONResponse(status_code=200, content={"message": "email has been sent"})
+    return JSONResponse(status_code=200, content={"message": "Email has been sent"})

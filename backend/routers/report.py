@@ -23,12 +23,12 @@ async def create_report(report: ReportModel = Body(...)):
     created_report = await db["report"].find_one({"_id": new_report.inserted_id})
     return JSONResponse(status_code=status.HTTP_201_CREATED, content=created_report)
 
-@app.post("/report/individual", response_description="Add new report", response_model=IndividualReportModel,tags=['Report'])
-async def create_report(report: IndividualReportModel = Body(...)):
-    report = jsonable_encoder(report)
-    new_report = await db["report"].insert_one(report)
-    created_report = await db["report"].find_one({"_id": new_report.inserted_id})
-    return JSONResponse(status_code=status.HTTP_201_CREATED, content=created_report)
+# @app.post("/report/individual", response_description="Add new report", response_model=IndividualReportModel,tags=['Report'])
+# async def create_report(report: IndividualReportModel = Body(...)):
+#     report = jsonable_encoder(report)
+#     new_report = await db["report"].insert_one(report)
+#     created_report = await db["report"].find_one({"_id": new_report.inserted_id})
+#     return JSONResponse(status_code=status.HTTP_201_CREATED, content=created_report)
 
 @app.post("/report", response_description="Update report", response_model=ReportModel,tags=['Report'])
 async def update_report(id: str, data_x:str,data_y:str):

@@ -8,8 +8,6 @@ from typing import List
 
 #Create User Route 
 app = APIRouter(
-    # prefix="/employee",
-    # tags=['Employee']
 )
 
 db = client.employee
