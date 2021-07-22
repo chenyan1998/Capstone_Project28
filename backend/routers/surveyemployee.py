@@ -1,5 +1,4 @@
-from models import rate
-from typing import Counter, List
+from typing import List
 from database import app,client
 from models import SurveyEmployeeModel
 
@@ -15,26 +14,9 @@ app = APIRouter(
 )
 
 db = client.email 
-collection=["email"]
 
 #Create employee route 
 #Survey Employee list , to check who haven't fill the survey 
-@app.post("/email/post_rate", response_description="rate", response_model= rate,tags=['Email'])
-async def post_rate(b: rate = Body(...)):
-    b = jsonable_encoder(b)
-    await db["count"].insert_one(b)
-    return JSONResponse(status_code=status.HTTP_201_CREATED)
-
-@app.get(
-    "/email/completion_rate", response_description="Return the survey completion rate",tags=['Email']
-)
-async def get_survery_completion_rate():
-    all_employee = 300
-    surveyemployees = await client.Survey["Survey1"].find().to_list(1000)
-    completion_rate=len(surveyemployees)/all_employee
-    #student = {k: v for k, v in surveyemployees.dict().items() if v is not None}
-    return completion_rate
-
 
 @app.post("/email", response_description="Individual Employee does not finish survey", response_model= SurveyEmployeeModel,tags=['Email'])
 async def create_survey_employee(surveyemployee: SurveyEmployeeModel = Body(...)):

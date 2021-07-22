@@ -58,12 +58,12 @@ async def update_user(id: str, user: UpdateUserModel = Body(...)):
 
     raise HTTPException(status_code=404, detail=f"user {id} not found")
 
-# @app.put("/user/{id}", response_description="Send survey", response_model=UserModel,tags=['Users'])
-# async def send_survey(id: str, surveylink:str):
-#     if (user := await db["students"].find_one({"_id": id})) is not None:
-#         print("Survey sent successfully")
-#         return None
-#     raise HTTPException(status_code=404, detail=f"user {id} not found")
+@app.put("/user/{id}", response_description="Send survey", response_model=UserModel,tags=['Users'])
+async def send_survey(id: str, surveylink:str):
+    if (user := await db["students"].find_one({"_id": id})) is not None:
+        print("Survey sent successfully")
+        return None
+    raise HTTPException(status_code=404, detail=f"user {id} not found")
    
 
 @app.delete("/user/{id}", response_description="Delete a user",tags=['Users'])
