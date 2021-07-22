@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/chenyan1998/Capstone_Project28#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "chart.js": "^3.4.1",
     "echarts": "^5.1.2",
+    "mdbvue": "^6.7.2",
     "vue-chartkick": "^1.1.0",
     "vue-echarts": "^6.0.0-rc.6",
     "vue3-chart-v2": "^0.8.2",

@@ -4,7 +4,6 @@
       <Sidebar :current_path="3" />
     
   <div class = "top-left-survey">
-
       <div id="sendsurvey">
             <h3>Send Out New Surveys</h3>
                 <table id ="surveytable">
@@ -24,11 +23,13 @@
                   </tr>
                 </table>
       </div>
+
       <div id="sendsurveybutton">
             <el-row>
                  <el-button style="width:200px; ">Send Out Survey</el-button>
             </el-row>
       </div>
+      
       <div id = "surveycompletion">
           <h3> Survey Completion Rate </h3>
           <div id ="surveycompletionchart">

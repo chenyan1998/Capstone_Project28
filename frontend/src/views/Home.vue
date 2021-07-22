@@ -110,10 +110,11 @@
 import Sidebar from '../components/Sidebar'
 import {ref} from 'vue'
 import TopNavigationBar from '../components/TopNavigationBar.vue'
+import UploadFiles from "../components/UploadFiles_tem";
 export default {
 
     name: 'Home',
-    components: {Sidebar, TopNavigationBar},
+    components: {Sidebar, TopNavigationBar,UploadFiles},
 
     setup(){
       const userlist = ref ([])
@@ -212,6 +213,7 @@ export default {
   text-align: left;
 }
 
+
 .homecolumnleft {
   width: 38%;
   float: left;
@@ -277,5 +279,7 @@ export default {
 #riskleveltable tr {
   background-color: #ffffff;
 }
+
+
 
 </style>

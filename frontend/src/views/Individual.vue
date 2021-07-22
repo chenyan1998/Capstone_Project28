@@ -60,6 +60,8 @@ export default {
       load()
       return{employeeslist, error}
     }
+
+    
   }
 
 </script>

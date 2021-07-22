@@ -7,7 +7,7 @@ import ForgotPassword from '../views/ForgotPassword.vue'
 import Profile from '../views/Profile.vue'
 import DetailedReport from '../views/DetailedReport.vue'
 import Individual from '../views/Individual.vue'
-
+import Uploadfile from '../views/UploadFiles_tem.vue'
 const routes = [
   {
     path: '/',
@@ -20,6 +20,12 @@ const routes = [
     name: 'Login',
     component: Login
   },
+  {
+    path: '/uploadfile',
+    name: 'Uploadfile',
+    component: Uploadfile
+  },
+
   {
     path: '/home',
     name: 'Home',
