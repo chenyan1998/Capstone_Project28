@@ -34,14 +34,14 @@
             <span>Survey</span>
           </el-menu-item>
           <el-menu-item index="4" @click="()=>{
-                  this.$router.push({name: 'Profile'})}">
-            <i class="el-icon-setting"></i>
-            <span>Profile</span>
-          </el-menu-item>
-          <el-menu-item index="5" @click="()=>{
                   this.$router.push({name: 'Individual'})}">
                   <i class="el-icon-user"></i>
             <span>Individual</span>
+          </el-menu-item>
+          <el-menu-item index="5" @click="()=>{
+                  this.$router.push({name: 'Profile'})}">
+            <i class="el-icon-setting"></i>
+            <span>Profile</span>
           </el-menu-item>
           <el-menu-item index="6" @click="()=>{
                   this.$router.push({name: 'Login'})}">
