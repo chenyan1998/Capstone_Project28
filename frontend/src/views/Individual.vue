@@ -1,32 +1,40 @@
 <template>
-<html>
-      <TopNavigationBar/>
-      <Sidebar :current_path="5"/>
-      <div class = "top-left-individual">
-
-            <div id="individual">
-                    <h3>Employee List</h3>
-                    <table id ="individualtable">
-                        <tr>
-                            <th>Name</th>
-                            <th>Employee ID</th>
-                            <th>Company Email Address</th>
-                            <th>Employee Detail</th>
-                            <th>Risk Level</th>
-                        </tr>
-                        <tr v-for="employees in employeeslist" :key="employees">
-                            <td>{{employees.name}}</td>
-                            <td>12345</td>
-                            <td>{{employees.email}}</td>
-                            <td>{{employees.employee_details}}</td>
-                            <td>{{employees.employee_risk_level}}</td>
-                        </tr>
-                    </table>
-            </div>
-
+  <html>
+    <TopNavigationBar/>
+    <Sidebar :current_path="4"/>
+    <div class = "top-left-individual">
+      <div id="individual">
+        <h3>Employee List</h3>
+        <el-table
+          :data="employees"
+          border
+          style="width: 80%">
+          <el-table-column
+            prop="Employee_id"
+            label="Employee_id"
+            width="240">
+          </el-table-column>
+          <el-table-column
+            prop="EES_score"
+            label="EES_score"
+            width="240">
+          </el-table-column>
+          <el-table-column
+            prop="Flight_risk_label"
+            label="Flight_risk_label"
+            width="240">
+          </el-table-column>
+          <el-table-column
+            prop='Employee_id'
+            label="Details">
+            <router-link :to="{name: 'IndividualDetails', params: {Employee_id: 25443}}">
+              <el-button type="text" size="small">View Details</el-button>
+            </router-link>
+          </el-table-column>
+        </el-table>
       </div>
-
-</html>
+    </div>
+  </html>
 </template>
 
 <script>
@@ -38,27 +46,21 @@ export default {
     name: 'Individual',
     components: {Sidebar, TopNavigationBar},
     setup(){
-      const employeeslist = ref ([])
+      const employees = ref ([])
       const error = ref (null)
-
+      const highrisk_list = ref([])
       const load = async () =>{
-          try{
-              let data = await fetch ('http://127.0.0.1:8000/employee')
-              console.log(data)
-              if (!data.ok){
-                  throw Error('no data available')
-
-              }
-              employeeslist.value = await data.json()
-              console.log(employees.value[0])
+        try{
+            let data = await fetch ('http://localhost:8000/report/individuals')
+            if (!data.ok){
+                throw Error('no data available')
+            }
+            employees.value = await data.json()
           }
-              catch (err){
-                  error.value = err.message
-                  console.log (error.value)
-              }
+            catch (err){error.value = err.message}
           }
       load()
-      return{employeeslist, error}
+      return{employees, error}
     }
   }
 
