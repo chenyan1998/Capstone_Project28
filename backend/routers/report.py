@@ -26,9 +26,26 @@ async def create_report(report: ReportModel = Body(...)):
 @app.post("/report/individual", response_description="Add new report", response_model=IndividualReportModel,tags=['Report'])
 async def create_report(report: IndividualReportModel = Body(...)):
     report = jsonable_encoder(report)
-    new_report = await db["report"].insert_one(report)
-    created_report = await db["report"].find_one({"_id": new_report.inserted_id})
+    new_report = await db["RF_Summary_Report"].insert_one(report)
+    created_report = await db["RF_Summary_Report"].find_one({"_id": new_report.inserted_id})
     return JSONResponse(status_code=status.HTTP_201_CREATED, content=created_report)
+
+@app.get(
+    "/report/individuals", response_description="List all individual report", response_model=List[IndividualReportModel],tags=['Report']
+)
+async def list_individual_report():
+    report= await db["RF_Summary_Report"].find().to_list(1000)
+    return report
+
+@app.get("/report/individuals/{employee_id}", response_model=List[IndividualReportModel], tags=['Report'])
+async def get_individuals_report(employee_id: int):
+    report= await db["RF_Summary_Report"].find({'Employee_id': employee_id}).to_list(1000)
+    return report
+
+app.get("/report/individuals/{year}", response_model=List[IndividualReportModel], tags=['Report'])
+async def get_individuals_report_by_year(year: str):
+    report= await db["RF_Summary_Report"].find({'year': year}).to_list(1000)
+    return report
 
 @app.post("/report", response_description="Update report", response_model=ReportModel,tags=['Report'])
 async def update_report(id: str, data_x:str,data_y:str):
