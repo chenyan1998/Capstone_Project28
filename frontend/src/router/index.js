@@ -7,6 +7,7 @@ import ForgotPassword from '../views/ForgotPassword.vue'
 import Profile from '../views/Profile.vue'
 import DetailedReport from '../views/DetailedReport.vue'
 import Individual from '../views/Individual.vue'
+import IndividualDetails from '../views/IndividualDetails.vue'
 
 const routes = [
   {
@@ -54,6 +55,12 @@ const routes = [
     path: '/individual',
     name: 'Individual',
     component: Individual
+  },
+  {
+    path: '/individualdetails/:Employee_id',
+    name: 'IndividualDetails',
+    component: IndividualDetails,
+    props: true
   }
   
 ]
