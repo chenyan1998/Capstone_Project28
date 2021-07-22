@@ -25,33 +25,33 @@
                 <br>
               </div>    
               <br>
-              <div class="bestdepartment" v-for="bw in bestworstW" :key="bw">
+              <div class="bestdepartment" v-for="bp in bestworstP" :key="bp">
                 <h3> Personality </h3>
-                <p> Highest Department: {{bw.label_x}} </p>
-                <p> Highest Score: {{bw.data_x}} </p>
-                <p> Lowest Department: {{bw.label_y}}</p>
-                <p> Lowest Score: {{bw.data_y}} </p>
+                <p> Highest Department: {{bp.label_x}} </p>
+                <p> Highest Score: {{bp.data_x}} </p>
+                <p> Lowest Department: {{bp.label_y}}</p>
+                <p> Lowest Score: {{bp.data_y}} </p>
                 <br>
               </div> 
           </div>
 
           <div class="homecolumnmiddle">
-              <div class="bestdepartment" v-for="bw in bestworstW" :key="bw">
+              <div class="bestdepartment" v-for="bc in bestworstC" :key="bc">
                 <h3> Core Values </h3>
-                <p> Highest Department: {{bw.label_x}} </p>
-                <p> Highest Score: {{bw.data_x}} </p>
-                <p> Lowest Department: {{bw.label_y}}</p>
-                <p> Lowest Score: {{bw.data_y}} </p>
+                <p> Highest Department: {{bc.label_x}} </p>
+                <p> Highest Score: {{bc.data_x}} </p>
+                <p> Lowest Department: {{bc.label_y}}</p>
+                <p> Lowest Score: {{bc.data_y}} </p>
                 <br>
               </div> 
 
               <br>
-              <div class="bestdepartment" v-for="bw in bestworstW" :key="bw">
+              <div class="bestdepartment" v-for="bo in bestworstO" :key="bo">
                 <h3> Opinion </h3>
-                <p> Highest Department: {{bw.label_x}} </p>
-                <p> Highest Score: {{bw.data_x}} </p>
-                <p> Lowest Department: {{bw.label_y}}</p>
-                <p> Lowest Score: {{bw.data_y}} </p>
+                <p> Highest Department: {{bo.label_x}} </p>
+                <p> Highest Score: {{bo.data_x}} </p>
+                <p> Lowest Department: {{bo.label_y}}</p>
+                <p> Lowest Score: {{bo.data_y}} </p>
                 <br>
               </div> 
           </div>
@@ -110,6 +110,9 @@
 import Sidebar from '../components/Sidebar'
 import {ref} from 'vue'
 import TopNavigationBar from '../components/TopNavigationBar.vue'
+
+ 
+
 export default {
 
     name: 'Home',
@@ -148,6 +151,8 @@ export default {
       load2()
       const bestworstW = ref ([])
       const error3 = ref (null)
+      let data_xW = ref()
+      let data_yW = ref()
       const load3 = async () =>{
             try{
                 let data = await fetch ('http://127.0.0.1:8000/report/w_total_mean')
@@ -159,12 +164,59 @@ export default {
                 catch (err){
                     error3.value = err.message
                     }
-                const data_xW = parseFloat(data[0]["data_x"]).toFixed(2);
-                const data_yW = parseFLoat(data[0]["data_y"]).toFixed(2);
+                data_xW = Math.round((bestworstW.value[0]["data_x"]*10)/10).toFixed(1);
+                data_yW = Math.round((bestworstW.value[0]["data_y"]*10)/10).toFixed(1);
+                console.log("...",data_xW)
+                console.log("...",data_yW)
           }
       load3()
+      const bestworstC = ref ([])
+      const error4 = ref (null)
+      const load4 = async () =>{
+            try{
+                let data = await fetch ('http://127.0.0.1:8000/report/c_total_mean')
+                if (!data.ok){
+                    throw Error('no data available')
+                    }
+                bestworstC.value = await data.json()
+                }
+                catch (err){
+                    error4.value = err.message
+                    }
+          }
+      load4()
+      const bestworstP = ref ([])
+      const error5 = ref (null)
+      const load5 = async () =>{
+            try{
+                let data = await fetch ('http://127.0.0.1:8000/report/w_total_mean')
+                if (!data.ok){
+                    throw Error('no data available')
+                    }
+                bestworstP.value = await data.json()
+                }
+                catch (err){
+                    error5.value = err.message
+                    }
+          }
+      load5()
+      const bestworstO = ref ([])
+      const error6 = ref (null)
+      const load6 = async () =>{
+            try{
+                let data = await fetch ('http://127.0.0.1:8000/report/o_total_mean')
+                if (!data.ok){
+                    throw Error('no data available')
+                    }
+                bestworstO.value = await data.json()
+                }
+                catch (err){
+                    error6.value = err.message
+                    }
+          }
+      load6()
 
-    return {userlist, employeelist, bestworstW, error, error2, error3}
+    return {userlist, employeelist, bestworstW, bestworstC, bestworstP, bestworstO, error, error2, error3, error4, error5, error6} 
     }}
 </script>
 
@@ -238,6 +290,7 @@ export default {
   background-color: #CAE7EA;
   border-radius: 25px;
   padding: 10px;
+  height: 270px;
 }
 
 .pendingcompletion{
