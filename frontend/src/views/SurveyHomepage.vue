@@ -5,28 +5,26 @@
     
   <div class = "top-left-survey">
       <div id="sendsurvey">
-            <h3>Send Out New Surveys</h3>
+            <h3>Pending Completion of Surveys</h3>
                 <table id ="surveytable">
                   <tr>
                       <th>Name</th>
                       <th>Employee ID</th>
                       <th>Company Email Address</th>
-                      <th>Phone Number</th>
-                      <th>Position</th>
+                      <th>Department</th>
                   </tr>
                   <tr v-for="employee in employees" :key="employee">
                       <td>{{employee.name}}</td>
-                      <td>12345</td>
+                      <td>{{employee._id}}</td>
                       <td>{{employee.email}}</td>
-                      <td>{{employee.employee_details}}</td>
-                      <td>{{employee.employee_risk_level}}</td>
+                      <td>{{employee.department}}</td>
                   </tr>
                 </table>
       </div>
 
       <div id="sendsurveybutton">
             <el-row>
-                 <el-button style="width:200px; ">Send Out Survey</el-button>
+                 <el-button style="width:200px; ">Send Out Reminder</el-button>
             </el-row>
       </div>
       
@@ -54,7 +52,7 @@ export default {
 
       const load = async () =>{
           try{
-              let data = await fetch ('http://127.0.0.1:8000/employee')
+              let data = await fetch ('http://127.0.0.1:8000/email')
               console.log(data)
               if (!data.ok){
                   throw Error('no data available')

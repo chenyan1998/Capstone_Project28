@@ -8,6 +8,8 @@ import Profile from '../views/Profile.vue'
 import DetailedReport from '../views/DetailedReport.vue'
 import Individual from '../views/Individual.vue'
 import Uploadfile from '../views/UploadFiles_tem.vue'
+import IndividualDetails from '../views/IndividualDetails.vue'
+
 const routes = [
   {
     path: '/',
@@ -60,6 +62,12 @@ const routes = [
     path: '/individual',
     name: 'Individual',
     component: Individual
+  },
+  {
+    path: '/individualdetails/:Employee_id',
+    name: 'IndividualDetails',
+    component: IndividualDetails,
+    props: true
   }
   
 ]

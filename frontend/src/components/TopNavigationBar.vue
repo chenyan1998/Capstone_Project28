@@ -33,7 +33,7 @@ div.NavBarB img { margin-right : 0px;}
   left: 0;
   float: left;
   background:white ;
-  width: 47.5%;
+  width: 48%;
   padding: 8px;
   margin:0px ;
 }
