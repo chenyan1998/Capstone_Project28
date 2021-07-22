@@ -84,7 +84,18 @@ class EmployeeModel(BaseModel):
                 "employee_risk_level":"3.0",
             }
         }
-
+class rate(BaseModel):
+    rate:Optional[float]
+    status:Optional[str]
+    class config:
+        arbitrary_types_allowed = True
+        json_encoders = {ObjectId: str}
+        schema_extra = {
+            "example": {
+               "rate": 0.53,
+               "states":"yes"
+            }
+        }
 
 class UpdateEmployeeModel(BaseModel):
     name: Optional[str]
