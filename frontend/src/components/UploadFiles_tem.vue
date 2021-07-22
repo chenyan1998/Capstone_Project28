@@ -27,7 +27,7 @@
     <br />
     
     <div class="card">
-      <div size="small" type="primary" class="card-header">List of Files</div>
+      <div size="small" type="primary"  class="card-header">List of Files</div>
       <ul class="list-group list-group-flush">
         <li
           class="list-group-item"
@@ -93,8 +93,8 @@ export default {
 
 <style>
 .card-header {
-    background-color: rgb(94, 54, 54);
-    border-radius: 90px;
+    background-color: rgb(163, 224, 221);
+    border-radius: 50px;
 }
 
 

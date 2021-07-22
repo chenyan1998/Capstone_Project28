@@ -3,8 +3,13 @@
   <TopNavigationBar/>
   <Sidebar :current_path="1" />
   
-    <div class="container1" style="width:900px">
+    <div class="container1" style="width:950px">
         <img  src= "@/assets/HomeIntroduction.png" alt="homeintro" class="homeintroduction" >
+       
+         <router-link :to="{name: 'SurveyHomepage'}">
+            <el-button class ="btn1">Check Survey Results</el-button>
+         </router-link>  
+       
     </div>
 
     <div class = "homeheading">
@@ -17,8 +22,9 @@
             <el-card class="box-card" >
               <div  class="clearfix">
                 <span> Wellbeing </span>
+                <router-link :to="{name: 'Department'}">
                 <el-button style="float: right; padding: 3px 0" type="text">Check Details</el-button>
-              </div>
+                </router-link>              </div>
               <div v-for="bw in bestworstW" :key="bw" class="text item">
                 <br>
                 <br>
@@ -33,7 +39,9 @@
             <el-card class="box-card">
               <div  class="clearfix">
                 <span>Personality</span>
+                <router-link :to="{name: 'Department'}">
                 <el-button style="float: right; padding: 3px 0" type="text">Check Details</el-button>
+                </router-link>
               </div>
               <div v-for="bw in bestworstW" :key="bw" class="text item">
                 <br>
@@ -51,8 +59,9 @@
             <el-card class="box-card">
               <div  class="clearfix">
                 <span>Core Values</span>
+                <router-link :to="{name: 'Department'}">
                 <el-button style="float: right; padding: 3px 0" type="text">Check Details</el-button>
-              </div>
+                </router-link>              </div>
               <div v-for="bw in bestworstW" :key="bw" class="text item">
                 <br>
                 <br>
@@ -67,8 +76,9 @@
             <el-card class="box-card">
               <div  class="clearfix">
                 <span>Opinion</span>
+                <router-link :to="{name: 'Department'}">
                 <el-button style="float: right; padding: 3px 0" type="text">Check Details</el-button>
-              </div>
+                </router-link>              </div>
               <div v-for="bw in bestworstW" :key="bw">
                 <br>
                 <br>
@@ -82,33 +92,14 @@
 
           </div>
 
-          <div class="homecolumnright">
-              <div class="pendingcompletion">
-                <el-space direction="vertical">
-                  <el-card>
-                    <template #header>
-                      <div>
-                        <span>Pending completion</span>
-                      </div>
-                    </template>
-                    <div v-for="user1 in userlist" :key="user1" class="text item" >
-                      {{ user1.name }}
-                    </div>
-                    <br><br><br>
-                    <el-button style="width:100%;" class="homebtn">Details</el-button><br><br>
-                    <el-button style="width:100%;" class="homebtn">Send Reminders</el-button>
-                  </el-card>
-                </el-space>
-              </div>
-          </div>
       </div>
     </div>
 
-       <div id="risklevel" style="width:750px">
+       <div id="risklevel" style="width:970px">
             <h3> Flight Risk Level </h3>
             <p>The solution that will be developed is a Flight Risk Indicator Software that will assess an employee’s inputs to an engagement survey and determine if the employee is at risk of leaving the organisation. The output will come in the form of several indicative metrics to highlight the potential reasons for the employee’s engagement, or the lack thereof, with the organisation. Viewing such metrics in conjunction with existing HR tools will better enable the HR team to identify and address the unhappiness with the organisation that an employee is facing, which can help to reduce the turnover rate and result in a better working culture and environment for the organisation.</p>
             <p> List of employees identified to have high Flight Risk level </p>
-                <table id ="riskleveltable" style="width:750px">
+                <table id ="riskleveltable" style="width:970px">
                   <tr>
                       <th>Name</th>
                       <th>Employee ID</th>
@@ -217,7 +208,28 @@ export default {
   width: 100%;
   height: auto;
 }
-
+.container1 .btn1 {
+  position: absolute;
+  top: 58%;
+  left: 79%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #D7DCE1;
+  color: black;
+  cursor: pointer;
+  width: 20%;
+}
+.container1 .btn2 {
+  position: absolute;
+  top: 65%;
+  left: 78%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #D7DCE1;
+  color: black;
+  cursor: pointer;
+  width: 20%;
+}
 .homeheading{
   position: absolute;
   width: 78%;
@@ -237,15 +249,6 @@ export default {
   width: 38%;
   float: left;
   left: 48%;
-}
-
-.homecolumnright {
-  position: absolute;
-  width: 20%;
-  float: left;
-  height: 100px;
-  left: 65%;
-  top : 5%;
 }
 
 .row:after {
