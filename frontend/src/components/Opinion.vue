@@ -14,7 +14,6 @@
               </el-button>
               <template #dropdown>
                 <el-dropdown-menu>
-                  <el-dropdown-item command = "all">All</el-dropdown-item>
                   <el-dropdown-item command = "Air Freight Division">Air Freight Division</el-dropdown-item>
                   <el-dropdown-item command = "Ocean Freight Division">Ocean Freight Division</el-dropdown-item>
                   <el-dropdown-item command = "Finance">Finance</el-dropdown-item>
@@ -33,7 +32,9 @@
           </div>
 
           <div class = "reportgraph">
-              <p> Average Score by Question </p>
+              <h3> Average Score by Question </h3>
+              <p> Y axis : Mean Score of each question (Max score 5)
+              <br>X axis : w_1_mean = Mean score of Wellbeing Qn 1 </p> <br>
               <column-chart :data="report_dataO" xtitle="Question" ytitle="Mean Score" min = '0' max='5'></column-chart>
           </div>
 
@@ -81,7 +82,7 @@ export default {
           
           });
           this.report_dataO  = arr
-          this.data_filteredO = data_selectedO
+          this.data_filteredO = data
         
           }
   },

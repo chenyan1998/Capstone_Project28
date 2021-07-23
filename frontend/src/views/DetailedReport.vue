@@ -72,8 +72,11 @@ body {
 
 .top-left-report {
   position: absolute;
-  top : 15%;
-  left: 20%;
+  top : 10%;
+  left: 15%;
+  text-align:left;
+  width: 90%
+
   /* background: green; */
 }
 
@@ -84,12 +87,16 @@ body {
   text-align: left;
 }
 
+.heading p {
+  width: 80%
+}
+
 .el-dropdown {
-    vertical-align: top;
+   vertical-align: top;
 }
   
 .el-icon-arrow-down {
-    font-size: 12px;
+   font-size: 12px;
  }
 
 .el-dropdown-menu {
@@ -108,7 +115,7 @@ body {
   top: 80px;
   left: 10%;
   text-align: left;
-  width: 800px;
+  width: 70%;
 }
 
 
