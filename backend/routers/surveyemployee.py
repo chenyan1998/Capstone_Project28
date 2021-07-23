@@ -33,7 +33,7 @@ async def get_survery_completion_rate():
     surveyemployees = await client.Survey["Survey1"].find().to_list(1000)
     completion_rate=len(surveyemployees)/all_employee
     #student = {k: v for k, v in surveyemployees.dict().items() if v is not None}
-    return completion_rate
+    return {"Completion rate":completion_rate}
 
 @app.get(
     "/email/completion_number", response_description="Return the number of survey completed ",tags=['Email']
@@ -43,7 +43,7 @@ async def get_survery_completion_number():
     surveyemployees = await client.Survey["Survey1"].find().to_list(1000)
     completion_number=len(surveyemployees)
     #student = {k: v for k, v in surveyemployees.dict().items() if v is not None}
-    return completion_number
+    return {"Completion number": completion_number}
 
 
 @app.post("/email", response_description="Individual Employee does not finish survey", response_model= SurveyEmployeeModel,tags=['Email'])
