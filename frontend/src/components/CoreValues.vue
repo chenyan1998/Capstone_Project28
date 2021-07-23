@@ -4,11 +4,23 @@
 
       <div class = "heading">
           <h3> Core Values Report</h3>
-          <p> DB Schenker's Core Values : 
-          <br>1.  Play fair, be honest &nbsp;&nbsp;&nbsp; 2.  Be one team with one goal 
-          <br>3.  Walk the talk &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.  Win together  
-          <br>5.  Push limits   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6.  Take customers further </p>
+          <p> DB Schenker's Core Values : </p>
+
+          <table id="corevaluetable">
+            <tr>
+              <td>1.  Play fair, be honest</td>
+              <td>2.  Be one team with one goal</td>
+              <td>3.  Walk the talk</td>
+            </tr>
+            <tr>
+              <td>4.  Win together</td>
+              <td>5.  Push limits </td>
+              <td>6.  Take customers further</td>
+            </tr>
+          
+          </table>
       </div>
+      <br>
 
       <div id = "report-dropdown">
           <el-dropdown @command="handleDepartment">
@@ -17,7 +29,6 @@
             </el-button>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item command = "all">All</el-dropdown-item>
                 <el-dropdown-item command = "Air Freight Division">Air Freight Division</el-dropdown-item>
                 <el-dropdown-item command = "Ocean Freight Division">Ocean Freight Division</el-dropdown-item>
                 <el-dropdown-item command = "Finance">Finance</el-dropdown-item>
@@ -36,7 +47,8 @@
       </div>
 
       <div class = "reportgraph">
-          <p> Average Score by Question </p>
+          <h3> Average Score by Question </h3>
+          <p> Y axis : Mean Score of each question (Max score 5)<br>X axis : w_1_mean = Mean score of Wellbeing Qn 1 </p> <br>
           <column-chart :data="report_dataC" xtitle="Question" ytitle="Mean Score" min = '0' max='5'></column-chart>
       </div>
 
@@ -84,7 +96,7 @@ export default {
           
           });
           this.report_dataC  = arr
-          this.data_filteredC = data_selectedC
+          this.data_filteredC = data
         
           }
   },
@@ -114,4 +126,8 @@ export default {
 </script>
 <style>
 
+#corevaluetable td{
+  padding: 0px 50px 0px 0px;
+  border-collapse: collapse
+}
 </style>

@@ -1,41 +1,44 @@
 <template>
 <html>
   <Sidebar :current_path="6" />
-
-    <img src= "@/assets/login.jpeg" class="loginbackground" width ="1050" height = "730" align = "left">
+  <div id="loginpage">
+    <img id = "loginimage" src= "@/assets/login.jpeg" align="left" >
     <br>
     <br>
     <br>
     <br>
-    <img src= "@/assets/dbschenkerlogo2.png" class="logo" width ="300" height = "180" align = "middle" top ="10">
-    <div class="login">
+    <div id = "login1" align = "right">
+        <img src= "@/assets/dbschenkerlogo2.png" id="logo">
         <div class="login">
-            <h1>Login to Web App</h1>
-            <form method="post" action="">
-                <p><input type="text" name="login" value="" placeholder="Username or Email"></p>
-                <p><input type="password" name="password" value="" placeholder="Password"></p>
-                
-                <p class="remember_me">
-                    <label>
-                        <input type="checkbox" name="remember_me" id="remember_me">
-                        Remember me on this computer
-                    </label>
-                </p>
-                <div id = "nav">
-                    <router-link to ="/home"> Login </router-link>
-                </div>
-                <router-view/>
-            </form>
-            <br> 
-        </div>
+              <h1>Login to Web App</h1>
+              <div id = "login2" align = "middle">
+                  <form method="post" action="">
+                      <p><input type="text" name="login" value="" placeholder="Username or Email"></p>
+                      <p><input type="password" name="password" value="" placeholder="Password"></p>
+                        
+                      <p class="remember_me">
+                            <label>
+                                <input type="checkbox" name="remember_me" id="remember_me">
+                                Remember me on this computer
+                            </label>
+                      </p>
+                      <div class = "nav" align ="right">
+                            <router-link to ="/home"> Login </router-link>
+                      </div>
+                      <router-view/>
+                    </form>
+                    <br> 
 
-        <p class="a"> Forgot your password?   <a href="#">
-            <div id = "nav2"> 
-               <router-link to ="/forgotpassword"> Click here to reset it. </router-link> 
-            </div>
-            </a>
-        </p>
-     </div>
+                <p class="a" align="right"> Forgot your password?   <a href="#">
+                    <div id = "nav2"> 
+                      <router-link to ="/forgotpassword"> Click here to reset it. </router-link> 
+                    </div>
+                    </a>
+                </p>
+              </div>
+        </div>
+    </div>
+  </div>
 </html>
 </template>
 
@@ -52,50 +55,41 @@ export default {
 
 <style>
 
-#nav {
-  padding: 0 30px;
-  margin-right : 30px;
-  margin-left : 1305px;
-  height: 29px;
-  font-size: 15px;
-  font-weight: bold;
-  text-align: center;
-  color: #685555;
-  text-shadow: 0 1px #f1e3e3;
-  background: #efcdcd;
-  border: 1px solid;
-  border-color: #ceb4b4 #c8b3b3 #c29e9e;
-  border-radius: 16px;
-  -webkit-box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
-  box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
+#loginpage {
+  height: 100%;
+  width:100%
 }
-#nav:active {
-  background: #cde5ef;
-  border-color: #9eb9c2 #b3c0c8 #b4ccce;
-  -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+#loginimage {
+  position : absolute;
+  width : 70% ;
+  height : 100%;
+  left : 0%;
 }
 
-#nav2 {
-  color: #c73d3d;
-  text-decoration: none;
-  font-size :25;
+#login1{
+  position: absolute;
+  width : 30%;
+  height: 100%;
+  right : 0%;
 }
-#nav2:hover {
-  text-decoration: underline;
-  font-size :15;
+#logo{
+  position :relative;
+  width : 70%;
+  height :20%;
+  right: 15%;
 }
+
 .login {
+  position: relative;
+  height: 35%;
+  width: 100%;
   background: white;
-  border-radius: 5px;
   -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.login:before {
-  content: '';
-  background: rgba(0, 0, 0, 0.08);
-  border-radius: 4px;
+#login2{
+  background: white;
 }
 
 .login h1 {
@@ -106,29 +100,25 @@ export default {
   text-shadow: 0 1px white;
   background: #f3f3f3;
   border-bottom: 1px solid #cfcfcf;
-  border-radius: 3px 3px 0 0;
   -webkit-box-shadow: 0 1px whitesmoke;
   box-shadow: 0 1px whitesmoke;
 }
 
-.login p:first-child {
-  margin-top: 0;
-}
-
-
 .login input[type=text], .login input[type=password] {
-  width: 278px;
+  position: relative;
+  width: 70%;
+  left: 0%
 }
 
 .login p.remember_me {
-  margin-bottom: 10px;
-  margin-left: 20px;
+  margin-bottom: 5%;
+  margin-left: 10%;
   float: left;
-  line-height: 40px;
+  line-height: 20%;
 }
 
 .login p.remember_me label {
-  font-size: 12px;
+  font-size: 70%;
   color: #777;
   cursor: pointer;
 }
@@ -139,24 +129,52 @@ export default {
   vertical-align: middle;
 }
 
-
 .login p.submit {
   text-align: right;
 }
 
+.nav {
+  padding : 1% 8%;
+  width : 10%;
+  margin-left:50%; 
+  font-size: 90%;
+  font-weight: bold;
+  text-align: center;
+  color: #685555;
+  text-shadow: 0 1px #f1e3e3;
+  background: #efcdcd;
+  border: 1px solid;
+  border-color: #ceb4b4 #c8b3b3 #c29e9e;
+  -webkit-box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.nav:active {
+  background: #cde5ef;
+  border-color: #9eb9c2 #b3c0c8 #b4ccce;
+  -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
 .a {
-  margin-right : 30px;
+  margin-right:10%;
   font-size: 11px;
   color: black;
   text-align: right;
   text-shadow: 0 1px darkgrey;
 }
 
-
 .a a:hover {
   text-decoration: underline;
   font-size :15;
 }
+
+#nav2 {
+  color: #c73d3d;
+  text-decoration: underline;
+  font-size :15;
+}
+
 
 :-moz-placeholder {
   color: #c9c9c9 !important;
@@ -174,9 +192,9 @@ input {
 }
 
 input[type=text], input[type=password] {
-  margin: 5px;
-  padding: 0 10px;
-  width: 200px;
+  margin: 1%;
+  padding: 0 5%;
+  width: 80%;
   height: 34px;
   color: #404040;
   background: white;

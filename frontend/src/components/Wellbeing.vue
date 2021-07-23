@@ -14,7 +14,6 @@
                 </el-button>
                 <template #dropdown>
                   <el-dropdown-menu>
-                    <el-dropdown-item command = "all">All</el-dropdown-item>
                     <el-dropdown-item command = "Air Freight Division">Air Freight Division</el-dropdown-item>
                     <el-dropdown-item command = "Ocean Freight Division">Ocean Freight Division</el-dropdown-item>
                     <el-dropdown-item command = "Finance">Finance</el-dropdown-item>
@@ -33,7 +32,9 @@
           </div>
 
           <div class = "reportgraph">
-              <p> Average Score by Question </p>
+              <h3> Average Score by Question </h3>
+              <p> Y axis : Mean Score of each question (Max score 5)
+              <br>X axis : w_1_mean = Mean score of Wellbeing Qn 1 </p> <br>
               <column-chart :data="report_dataW" xtitle="Question" ytitle="Mean Score" min = '0' max='5'></column-chart>
           </div>
 
@@ -50,7 +51,6 @@ export default {
     
   data() {
     return {
-      all:[],
       data_filteredW: [],
       report_dataW: [],
       current_departmentW: 'Department'
@@ -59,19 +59,9 @@ export default {
   methods:{
     handleDepartment(command){
           this.current_departmentW = command
-          console.log(command)
-          console.log('oops', this.data_filteredW)
           let data_selectedW = []
-          if (command == 'all'){
-            console.log('all selected')
-            data_selectedW = this.all
-          } else{
-            console.log('all unselected')
-            data_selectedW = this.data_filteredW.filter(data3 =>{
-            return data3.department.includes(command)})
-          }
-
-          console.log('********',data_selectedW)
+          data_selectedW = this.data_filteredW.filter(data3 =>{
+          return data3.department.includes(command)})
           const data_x = data_selectedW[0]["data_x"];
           const data_y = data_selectedW[0]["data_y"];
           let arr = [];
@@ -80,26 +70,21 @@ export default {
           
           });
           this.report_dataW  = arr
-          this.data_filteredW = data_selectedW
+          this.data_filteredW = data
         
           }
   },
   async mounted() {
     let data_W = await fetch ('http://127.0.0.1:8000/report/wellbeing');
-    console.log(data_W)
     const data = await data_W.json()
-    console.log('data',data)
     const data_selectedW = data.filter(data =>{
         return data.department.includes("HSSE")})
-    console.log('data_selected',data_selectedW)
     this.data_filteredW = data
-    this.all = data
     const data_x = data_selectedW[0]["data_x"];
     const data_y = data_selectedW[0]["data_y"];
     let arr = [];
     data_x.forEach((element, index) => {
       arr.push([element, parseFloat(data_y[index])])
-    
     });
     this.report_dataW  = arr
     }}
@@ -112,5 +97,5 @@ export default {
 
 <style>
 
-  
+
 </style>

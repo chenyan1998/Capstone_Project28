@@ -14,7 +14,7 @@
                       <th>Company Email Address</th>
                       <th>Department</th>
                   </tr>
-                  <tr v-for="employee in employees" :key="employee">
+                  <tr v-for="employee in uncompletedsurvey" :key="employee">
                       <td>{{employee.name}}</td>
                       <td>{{employee._id}}</td>
                       <td>{{employee.email}}</td>
@@ -30,7 +30,7 @@
       <div id = "surveycompletion">
           <h3> Survey Completion Rate </h3>
           <div id ="surveycompletionchart">
-              <pie-chart :data="[['Completed', 258], ['Uncompleted', 119]]" legend = "right"></pie-chart>
+              <pie-chart :data="uncompleted"></pie-chart>
           </div>
       </div>    
 
@@ -46,32 +46,40 @@ export default {
     name: 'ReportHomepage',
     components: {Sidebar, TopNavigationBar},
     setup(){
-      const employees = ref ([])
-      const error = ref (null)
-
+      const uncompletedsurvey = ref ([])
+      const error = ref(null)
       const load = async () =>{
           try{
               let data = await fetch ('http://127.0.0.1:8000/email')
-              console.log(data)
               if (!data.ok){
                   throw Error('no data available')
-
               }
-              employees.value = await data.json()
-              console.log(employees.value[0])
+              uncompletedsurvey.value = await data.json()
           }
               catch (err){
                   error.value = err.message
-                  console.log (error.value)
               }
           }
       load()
-      // const {employees, error, load} = getEmployeeList()
-      // load()
-      console.log('value is', employees)
-      return{employees, error}
+      return {uncompletedsurvey,error}
+      }
+    ,data(){return{
+      uncompleted:[]
+      };
+    },
+    async mounted(){
+    let data2 = await fetch ('http://127.0.0.1:8000/email/completion_rate');
+    const surveycompletionrate = await data2.json() 
+    let x = surveycompletionrate*100
+    let y = parseInt(Math.round(((1-surveycompletionrate)*100)))
+    let uncompleted = [['Completed', x],['Uncompleted', y]]
+    
+    console.log("....", uncompleted)
+    },
+
+    
     }
-}
+
 </script>
 
 <style>
@@ -127,7 +135,6 @@ export default {
 #surveycompletionchart {
   position: relative;
   top: 0%;
-  left: 230%;
   width : 300px;
 }
 

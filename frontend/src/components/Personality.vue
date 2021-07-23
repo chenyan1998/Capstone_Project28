@@ -3,7 +3,7 @@
       <div class = "top-left-report">
 
         <div class = "heading">
-            <h3> Personality Report</h3>
+            <h3> Personality Report </h3>
             <p> Understanding personality help to build our leadership style, to resolve conflicts more effectively, to communicate more effectively, to understand how others make decisions and to retain key staff. </p>
         </div>
 
@@ -14,7 +14,6 @@
             </el-button>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item command = "all">All</el-dropdown-item>
                 <el-dropdown-item command = "Air Freight Division">Air Freight Division</el-dropdown-item>
                 <el-dropdown-item command = "Ocean Freight Division">Ocean Freight Division</el-dropdown-item>
                 <el-dropdown-item command = "Finance">Finance</el-dropdown-item>
@@ -33,7 +32,9 @@
         </div>
 
         <div class = "reportgraph">
-            <p> Average Score by Question </p>
+            <h3> Average Score by Question </h3>
+              <p> Y axis : Mean Score of each question (Max score 5)
+              <br>X axis : w_1_mean = Mean score of Wellbeing Qn 1 </p> <br>
             <column-chart :data="report_dataP" xtitle="Question" ytitle="Mean Score" min = '0' max='5'></column-chart>
         </div>
 
@@ -76,7 +77,7 @@ export default {
           
           });
           this.report_dataP  = arr
-          this.data_filteredP = data_selectedP
+          this.data_filteredP = data
         
           }
   },
