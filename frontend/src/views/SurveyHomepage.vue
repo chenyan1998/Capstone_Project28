@@ -1,85 +1,78 @@
 <template>
+<html>
     <TopNavigationBar/>
     <Sidebar :current_path="1" />
-    <div id="home">
-        <div class="container_file" style="width:600px">
-        <div class = "title" style="margin: 20px">
-            <h3> DB Schenker Survey Results </h3>
-            <h4> Upload Survey Results </h4>
-        </div>
-        <br />
-        <upload-files></upload-files>
+    <div id="surveyhomepage">
+        <div class="surveycontainer1">
+            <div class = "surveytitle">
+                <h3> DB Schenker Survey Results </h3>
+                <div class="reportline"></div>
+                <br/>
+                <h4> Upload Survey Results </h4>
+            <br/>
+            <upload-files></upload-files>
+            </div>
         </div>
           
-        <div class="container0_file" style="width:300px">
-        <div class = "title" style="margin: 30px" >
-            <font size="5" color = "white"> Survey Completion Rate</font><br />
-             <br />           
-            <font size="3" color = "white"> Completed Survey Numbers : 87</font><br />
-            <font size="3" color = "white"> Survey Completed Rate : 85 % </font><br />
-            <br />
-            <br />
-             <br />
-            <el-button class = "send_survey_button" style="width:200px; ">Send Out Survey</el-button>
-        </div>
+        <div class="surveycontainer2">
+            <div class = "surveytitle">
+                <h3> Survey Completion Rate </h3>
+                <div class="reportline"></div>
+                
+                <br/>           
+                <h4> Completed Survey Numbers : {{completionnumber.detail}}</h4><br/>
+                <h4> Survey Completed Rate : {{completionrate*100}}% </h4><br/>
+                <br/>
+                <br/>
+                <br/>
+                <el-button id = "sendsurveybutton">
+                    Send Out Survey
+                </el-button>
+            </div>
         </div>
 
-        <div class="container1_file" style="width:300px">
-        <div class = "title" style="margin: 40px">
-            <h3> Survey Introduction </h3>
-            <p>Employee engagement surveys are a fundamental tool for 
-                organisations to measure the employees’ level of commitment to 
-                the organisation and have withstood the test of time due to its 
-                comprehensiveness in assessing employees’ attitude towards the 
-                organisation (Lepold et al., 2018). The primary purpose of such 
-                surveys is to identify the factors that drive employees to perform
-                 their best for the company as well as factors that reduce their 
-                 commitment to the organisation. Once these factors are identified
-                 , the management is then able to provide targeted intervention to 
-                 help reduce the flight-risk within the organisation to improve their employee relations and the 
-                 performance of the organisation.</p>
+        <div class="surveycontainer3">
+            <div class = "surveytitle">
+                <h3> Survey Introduction </h3>
+                <div class="reportline"></div>
+                <br/>
+                <p style ="text-align:left; padding:10px">Our Survey questions consist of 4 main components. 
+                    There are a total of 25 questions, aiming to measure employee's engagement level, as well as employee's flight risk.  </p>
+
+                    <h4> 1. Wellbeing</h4>
+                    <br/><p> There are 5 questions , including areas such as workplace wellbeing and emotional wellbeing.</p>
+                    <h4> 2. Core Values</h4>
+                    <br/><p>  There are 6 questions, where all 6 DB Schenker's core values are put into consideration to structure these questions.</p>
+                    <h4> 3. Personality</h4>
+                    <br/><p>  There are 7 questions, neurotism and agreeabless are the main factors included for consideration.</p>
+                    <h4> 4. Opinions</h4>
+                    <br/><p>  There are 5 questions, structured to understand the opinions and emotion of employees.
+                </p>
+            </div>
         </div>
-        </div>
-        <div class="container2_file" style="width:910px">
-        <div class = "title" style="margin: 20px">
-            <h3> Survey Questions Explanation </h3>
-            <h4> Here is the questions' categories of our survey </h4>
-            <p>The survey consists of four categories and questions are chosen from each of the four categories, and narrowed down to only 25 questions in total that are found to be most crucial. The full list of questions can be found in Appendix 6.</p>
-            <b>Personality Traits</b>
-            <p>Personality traits are a predictor of employee satisfaction, which may influence employee satisfaction with the emotional commitment of the organization. The results of empirical research in public utility enterprises show that Neuroticism is negatively correlated with employee satisfaction, Conscientiousness has no impact, and Agreeableness positively affects employee satisfaction. Employee satisfaction has a strong impact on affective commitment, and there is an important correlation between individual persistence characteristics and individual satisfaction in the workplace. Hence, questions measuring Agreeableness and Neuroticism are chosen amongst the Big 5 Personality Traits.</p>
-            <b>Individual Wellbeing</b>
-            <p>Workplace well-being plays an important role in the sustainability of organizations and individuals. Organizations that implement wellness programs at work report positive business results, such as improved employee retention, productivity, and a variety of other benefits such as mental health. For individuals, workplace benefits means a healthy and balanced life. The existence of workplace benefits will promote the "health" and high productivity of the individuals in the organization, which in turn will benefit the organization. Hence, questions selected measure the level of wellbeing in various aspects including mental, emotional, workplace wellbeing etc. </p>
-            <b>Opinions and Emotions</b>
-            <p>Opinions and Emotions refer to the employee’s perception of their role in the organisation. This refers to the interactions which they have with their team, effective communication with their supervisors or the management which ultimately determines whether the employee feels that they are part of the organisation and that their voices are heard. The stronger the sense of belonging, the greater the level of engagement (Johnson, Al & Daimler, 2019).</p>
-            <b>Personal Information</b>
-            <p>Employee age is an important paradigm for individual differences. Mathieu and Zajac believe that as workers get older, they will have fewer employment options, which may make them feel more favorable about their current jobs. Robinson et al. studied the relationship between age and employee engagement. They noted significant differences in employee engagement scores across age groups. They found that employee engagement declined slightly as workers got older, and was highest when workers entered the oldest group (60 and older). Ahuja et al. observed a modest but significant effect of age on intention to leave in India's IT sector. They found that there are different perceptions of job satisfaction and motivation across the age spectrum. Hence, personal information such as age would affect the satisfaction level and motivation of employees as well.</p>
+
+        <div class = "surveycontainer4">
+        <div id="sendsurvey" >
+                <h3>Send Out New Surveys</h3>
+                    <table id ="surveytable" style="font-family: Georgia; font-size: 14px;">
+                    <tr>
+                        <th>Name</th>
+                        <th>Employee ID</th>
+                        <th>Company Email Address</th>
+                        <th>Employee Details</th>
+                    </tr>
+                    <tr v-for="employee in employees" :key="employee">
+                        <td>{{employee.name}}</td>
+                        <td>{{employee._id}}</td>
+                        <td>{{employee.email}}</td>
+                        <td>{{employee.employee_details}}</td>
+                    </tr>
+                    </table>
         </div>
         </div>
     </div>
 
-    <div class = "top-left-survey1_file" style="width:908px" >
-      <div id="sendsurvey" style="margin: 10px">
-            <h3>Send Out New Surveys</h3>
-                <table id ="surveytable">
-                  <tr>
-                      <th>Name</th>
-                      <th>Employee ID</th>
-                      <th>Company Email Address</th>
-                      <th>Phone Number</th>
-                      <th>Position</th>
-                  </tr>
-                  <tr v-for="employee in employees" :key="employee">
-                      <td>{{employee.name}}</td>
-                      <td>12345</td>
-                      <td>{{employee.email}}</td>
-                      <td>{{employee.employee_details}}</td>
-                      <td>{{employee.employee_risk_level}}</td>
-                  </tr>
-                </table>
-      </div>
-    </div>
-
-
+</html>
 </template>
 
 <script>
@@ -98,86 +91,144 @@ export default {
       const load = async () =>{
           try{
               let data = await fetch ('http://127.0.0.1:8000/employee')
-              console.log(data)
               if (!data.ok){
                   throw Error('no data available')
-
               }
               employees.value = await data.json()
-              console.log(employees.value[0])
           }
               catch (err){
                   error.value = err.message
-                  console.log (error.value)
               }
           }
       load()
+      const completionrate = ref ([])
+      const error2 = ref (null)
+
+      const load2 = async () =>{
+          try{
+              let data = await fetch ('http://127.0.0.1:8000/email/completion_rate')
+              if (!data.ok){
+                  throw Error('no data available')
+              }
+              completionrate.value = await data.json()
+          }
+              catch (err){
+                  error2.value = err.message
+              }
+          }
+      load2()
+      const completionnumber = ref ([])
+      const error3 = ref (null)
+
+      const load3 = async () =>{
+          try{
+              let data = await fetch ('http://127.0.0.1:8000/email/completion_number')
+              if (!data.ok){
+                  throw Error('no data available')
+              }
+              completionnumber.value = await data.json()
+            //   completionnumber.value = completionnumber.value[0]
+          }
+              catch (err){
+                  error3.value = err.message
+              }
+          }
+      load3()
       // const {employees, error, load} = getEmployeeList()
       // load()
-      console.log('value is', employees)
-      return{employees, error}
+      return{employees,completionrate,completionnumber}
     }
 }
 </script>
 
 <style>
 
-.container_file  {
-  background-color: rgba(82, 184, 175, 0.75);
-	border-radius: 45px;
-	width: 400px;
-	height: 300px;
-	margin: auto;
-	position: absolute;
-	width: 98%;
-    left: 19%;
-    top: 10%;}
-
-.container0_file  {
-  background-color: rgba(31, 146, 161, 0.75);
-	border-radius: 45px;
-	width: 400px;
-	height: 300px;
-	margin: auto;
-	position: absolute;
-	width: 98%;
-    left: 57%;
-    top: 10%;}
-
-.container1_file  {
-  background-color: rgba(184, 230, 233, 0.75);
-	border-radius: 45px;
-	width: 400px;
-	height: 1800px;
-	margin: auto;
-	position: absolute;
-	width: 98%;
-    height: 100%;
-    left: 77%;
-    top: 10%;}
-
-.top-left-survey1_file {
-    background-color: rgba(164, 216, 216, 0.75);
-    border-radius: 45px;
-    width: 400px;
-    height: 1000px;
-    margin: auto;
-    position: absolute;
-    width: 78%;
-    left: 19%;
-    top: 48%;
+#surveyhomepage{
+    position: absolute; 
+    padding: 5%;
+    height: 100%;  
+    width: 80%;
+    top: 0%; 
+    left: 18%;
 }
 
-.container2_file {
-    white-space: pre-wrap;
-    background-color: rgba(164, 216, 216, 0.75);
-    border-radius: 45px;
-    width: 400px;
-    height: 900px;
-    margin: auto;
+.surveycontainer1 {
     position: absolute;
-    width: 78%;
-    left: 19%;
-    top: 88%;
+    float: left;
+    width: 33%;
+    left: 2%;
+    height: 35%;
+    border-color: #646973;
+    border-style:solid;
+    border-width: 2px;
+    }
+
+.surveytitle{
+    text-align: middle;
+    width: 100%;
+    font-family: Georgia; 
+    font-size : 16px;
+    padding: 5px
 }
+
+.surveycontainer2 {
+    position: absolute;
+    float: left;
+    width: 33%;
+    left: 37%;
+    height: 35%;
+    border-color: #646973;
+    border-style:solid;
+    border-width: 2px;
+    }
+
+#sendsurveybutton{
+    position:absolute;
+    width: 40%;
+    left: 30%;
+    top: 62%
+}
+
+.surveycontainer3 {
+    position: absolute;
+    float: left;
+    width: 28%;
+    left: 72%;
+    border-style: groove;
+    background-color: #D7DCE1;
+    }
+
+.surveycontainer4{
+    position: absolute;
+    width: 68%;
+    height: 50%;
+    left: 2%;
+    top: 47%;
+    text-align: left;
+    overflow: scroll;
+}
+
+#surveytable {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  position: relative;
+  top: 10%;
+  left: 0%;
+  width: 100%;
+}
+
+#surveytable td, th {
+  border: 1px solid #b8bcc0;
+  text-align: left;
+  padding: 8px;
+}
+
+#surveytable tr:nth-child(1) {
+  background-color: #D7DCE1;
+}
+#surveytable tr {
+  background-color: #ffffff;
+}
+
+
 </style>

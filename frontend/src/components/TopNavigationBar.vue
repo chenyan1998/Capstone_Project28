@@ -5,14 +5,16 @@
 
     <div class="NavBarA">
       <div class="NavBarColumn">
-        <img src = "@/assets/dbschenkerlogo.png" width ="170" height = "40">  
+        <img src = "@/assets/dbschenkerlogo.png" id ="NavBarimg1">  
       </div>
     </div>
 
     <div class="NavBarB">
       <div class="NavBarColumn">
-        <img src= "@/assets/avatar.png" alt="Avatar" class="avatar" width ="40" height = "40">
-        <!-- <router-link to "/profile" > <img src= "@/assets/avatar.png" alt="Avatar" class="avatar" width ="40" height = "40"> </router-link> -->
+        <router-link :to="{name: 'Profile'}">
+                <img src= "@/assets/avatar.png" id ="NavBarimg2">
+            </router-link>  
+       
       </div>
     </div>
 
@@ -26,24 +28,33 @@
 div.NavBarA { text-align : left ;}
 div.NavBarA img { margin-left : 15px;}
 div.NavBarB { text-align : right ;}
-div.NavBarB img { margin-right : 0px;}
+div.NavBarB img { margin-right : 10px;}
 
+#NavBarimg1{
+  width : 25%;
+}
+
+#NavBarimg2{
+  width: 5%;
+}
 .NavBarColumn {
   top: 0;
   left: 0;
   float: left;
   background:white ;
-  width: 48%;
-  padding: 8px;
+  width: 50%;
+  padding: 5px;
   margin:0px ;
 }
-.NavBarRow::after {
+.NavBarRow {
   top: 0;
   right: 0;
   background:white ;
   content: "";
   clear: both;
   display: table;
-  margin:0px ;
+  margin: 0px ;
+  height: 10%;
+  width: 100%;
 }
 </style>

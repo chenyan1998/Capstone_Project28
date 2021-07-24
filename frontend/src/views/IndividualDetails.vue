@@ -3,7 +3,7 @@
       <TopNavigationBar/>
       <Sidebar :current_path="4"/>
       <div class = "top-left-individualdetails">
-        <el-descriptions title="Employee Analysis">
+        <el-descriptions title="Employee Analysis" >
           <el-descriptions-item label="Employee ID">{{Employee_id}}</el-descriptions-item>
           <el-descriptions-item label="EES Score">{{employee.EES_score}}</el-descriptions-item>
           <el-descriptions-item label="Flight Risk Level">
@@ -61,25 +61,11 @@ export default {
 <style>
 .top-left-individualdetails {
   position: absolute;
-  top : 15%;
-  left: 20%;
-  width: 75%;
-  /* background: green; */
+  top : 10%;
+  left: 18%;
+  width: 78%;
+  text-align: left;
 }
 
-#profiletable {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  position: relative;
-  left: 20%;
-  text-align: left;
-  border-spacing: 5px;
-  width :70%;
-  border: 0px solid white;
-}
-
-#profiletable td, th {
-  text-align: left;
-  padding: 10px;
-}
+.el-descriptions {font-family: Georgia; font-size : 24px}
 </style>

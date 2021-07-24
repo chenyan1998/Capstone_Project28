@@ -3,103 +3,139 @@
   <TopNavigationBar/>
   <Sidebar :current_path="1" />
   
-    <div class="container1">
-        <img  src= "@/assets/HomeIntroduction.png" alt="homeintro" class="homeintroduction" >
-        <el-button class ="btn1">Import Survey Results</el-button>
-        <el-button class ="btn2">Analyze Results</el-button>
-    </div>
+        <div class="homeintroduction" >
+          <h2> Welcome</h2>
+          <p> This app is aming to </p>
+          <div class="homecolumnlefta">
+           <img  src= "@/assets/homepic1.png" style="width:50%">
+            <p> 1. Design an accessible and quantifiable employee engagement indicator </p>
 
-    <div class = "homeheading">
-      <h3> Departments </h3>
-      <p> Best and Worst performing departments by Survey Question type </p>
-    
-      <div class="homerow">
-          <div class="homecolumnleft">
-
-              <div class="bestdepartment" v-for="bw in bestworstW" :key="bw">
-                <h3> Wellbeing </h3>
-                <p> Highest Department: {{bw.label_x}} </p>
-                <p> Highest Score: {{bw.data_x}} </p>
-                <p> Lowest Department: {{bw.label_y}}</p>
-                <p> Lowest Score: {{bw.data_y}} </p>
-                <br>
-              </div>    
-              <br>
-              <div class="bestdepartment" v-for="bp in bestworstP" :key="bp">
-                <h3> Personality </h3>
-                <p> Highest Department: {{bp.label_x}} </p>
-                <p> Highest Score: {{bp.data_x}} </p>
-                <p> Lowest Department: {{bp.label_y}}</p>
-                <p> Lowest Score: {{bp.data_y}} </p>
-                <br>
-              </div> 
           </div>
-
-          <div class="homecolumnmiddle">
-              <div class="bestdepartment" v-for="bc in bestworstC" :key="bc">
-                <h3> Core Values </h3>
-                <p> Highest Department: {{bc.label_x}} </p>
-                <p> Highest Score: {{bc.data_x}} </p>
-                <p> Lowest Department: {{bc.label_y}}</p>
-                <p> Lowest Score: {{bc.data_y}} </p>
-                <br>
-              </div> 
-
-              <br>
-              <div class="bestdepartment" v-for="bo in bestworstO" :key="bo">
-                <h3> Opinion </h3>
-                <p> Highest Department: {{bo.label_x}} </p>
-                <p> Highest Score: {{bo.data_x}} </p>
-                <p> Lowest Department: {{bo.label_y}}</p>
-                <p> Lowest Score: {{bo.data_y}} </p>
-                <br>
-              </div> 
+          <div class="homecolumnmiddlea">
+            <img  src= "@/assets/homepic2.png" style="width:50%">
+            <p> 2. Predicting employee flight risk using holistic measures </p>
+          
           </div>
+          <div class="homecolumnrighta">
+            <img  src= "@/assets/homepic3.png" style="width:50%">
+            <p> 3. Without adding an additional layer of processing nor intruding on the employees' privacy </p>
+          </div>
+          <div id ="homeintroductionbelow">
+            <p> Please press the value on the right to import the survey results, and produce analysed reports </p>
+            <router-link :to="{name: 'SurveyHomepage'}">
+                <el-button class ="btn1" style="font-family: Georgia; font-size: 14px;" >Check Survey Results</el-button>
+            </router-link>  
+          </div>
+        </div>
 
-          <div class="homecolumnright">
-              <div class="pendingcompletion">
-                <el-space direction="vertical">
-                  <el-card>
-                    <template #header>
-                      <div>
-                        <span>Pending completion</span>
-                      </div>
-                    </template>
-                    <div v-for="user1 in userlist" :key="user1" class="text item" >
-                      {{ user1.name }}
-                    </div>
-                    <br><br><br>
-                    <el-button style="width:100%;" class="homebtn">Details</el-button><br><br>
-                    <el-button style="width:100%;" class="homebtn">Send Reminders</el-button>
-                    
-            
-                  </el-card>
-                </el-space>
+        <div class = "homedepartment">
+          <h3> Departments </h3>
+          <p> Best and Worst performing departments by Survey Question type </p>
+
+          <div class="homerow">
+              <div class="homecolumnleft">
+
+                <el-card class="homebox-card" >
+                  <div  class="homeclearfix">
+                    <span> Wellbeing </span>
+                    <el-tooltip class="homecheckdetails" effect="light" content="Workplace well-being plays an important role in the sustainability of organizations and individuals, Promote health and high productivity of the individuals in the organization.">
+                      <el-button>Check Details</el-button>
+                    </el-tooltip>          
+                  </div>
+                  <div v-for="bw in bestworstW" :key="bw" class="text item">
+                    <br>
+                    <br>
+                    <p> Highest Department: {{bw.label_x}} </p>
+                    <p> Highest Score: {{bw.data_x}} </p>
+                    <p> Lowest Department: {{bw.label_y}}</p>
+                    <p> Lowest Score: {{bw.data_y}} </p>
+                    <br>
+                  </div>
+                </el-card>
+                <br>
+                <el-card class="homebox-card">
+                  <div  class="homeclearfix">
+                    <span>Personality</span>
+                    <el-tooltip class="homecheckdetails" effect="light" content="Personality traits are predictors of employee satisfaction, which may influence employee satisfaction level with the emotional commitment of the organization. ">
+                      <el-button>Check Details</el-button>
+                    </el-tooltip>   
+                  </div>
+                  <div v-for="bw in bestworstP" :key="bw" class="text item">
+                    <br>
+                    <br>
+                    <p> Highest Department: {{bw.label_x}} </p>
+                    <p> Highest Score: {{bw.data_x}} </p>
+                    <p> Lowest Department: {{bw.label_y}}</p>
+                    <p> Lowest Score: {{bw.data_y}} </p>
+                    <br>
+                  </div>
+                </el-card>
               </div>
-          </div>
-      </div>
-    </div>
+              
+              <div class="homecolumnright">
+                <el-card class="homebox-card">
+                  <div  class="homeclearfix">
+                    <span>Core Values</span>
+                    <el-tooltip class="homecheckdetails1" effect="light" content="Core values are what support the vision, shape the culture and reflect what a company values. They are the essence of the company's identity – the principles, beliefs or philosophy of values.">
+                      <el-button>Check Details</el-button>
+                    </el-tooltip>                
+                  </div>
+                  <div v-for="bw in bestworstC" :key="bw" class="text item">
+                    <br>
+                    <br>
+                    <p> Highest Department: {{bw.label_x}} </p>
+                    <p> Highest Score: {{bw.data_x}} </p>
+                    <p> Lowest Department: {{bw.label_y}}</p>
+                    <p> Lowest Score: {{bw.data_y}} </p>
+                    <br>
+                  </div>
+                </el-card>
+                <br>
+                <el-card class="homebox-card">
+                  <div  class="homeclearfix">
+                    <span>Opinion</span>
+                    <el-tooltip class="homecheckdetails2" effect="light" content="Opinions refer to the employee’s perception of their role in the organisation. The stronger the sense of belonging, the greater the level of engagement. ">
+                      <el-button>Check Details</el-button>
+                    </el-tooltip>   
+                  </div>
+                  <div v-for="bw in bestworstO" :key="bw" class="text item">
+                    <br>
+                    <br>
+                    <p> Highest Department: {{bw.label_x}} </p>
+                    <p> Highest Score: {{bw.data_x}} </p>
+                    <p> Lowest Department: {{bw.label_y}}</p>
+                    <p> Lowest Score: {{bw.data_y}} </p>
+                    <br>
+                  </div>
+                </el-card>
 
-       <div id="risklevel">
-            <h3> Flight Risk Level </h3>
-            <p> List of employees identified to have high Flight Risk level </p>
-                <table id ="riskleveltable">
-                  <tr>
-                      <th>Name</th>
-                      <th>Employee ID</th>
-                      <th>Company Email Address</th>
-                      <th>Phone Number</th>
-                      <th>Position</th>
-                  </tr>
-                  <tr v-for="employee in employeelist" :key="employee">
-                      <td>{{employee.name}}</td>
-                      <td>12345</td>
-                      <td>{{employee.email}}</td>
-                      <td>{{employee.employee_details}}</td>
-                      <td>{{employee.employee_risk_level}}</td>
-                  </tr>
-                </table>
-      </div>
+              </div>
+
+          </div>
+        </div>
+
+        <div class="homeflightrisklevel">
+              <h3> Flight Risk Level </h3>
+              <!-- <p>The solution that will be developed is a Flight Risk Indicator Software that will assess an employee’s inputs to an engagement survey and determine if the employee is at risk of leaving the organisation. The output will come in the form of several indicative metrics to highlight the potential reasons for the employee’s engagement, or the lack thereof, with the organisation. Viewing such metrics in conjunction with existing HR tools will better enable the HR team to identify and address the unhappiness with the organisation that an employee is facing, which can help to reduce the turnover rate and result in a better working culture and environment for the organisation.</p> -->
+              <p> List of employees identified to have high Flight Risk level </p>
+                  <table id ="homeriskleveltable">
+                    <tr>
+                        <th>Name</th>
+                        <th>Employee ID</th>
+                        <th>Company Email Address</th>
+                        <th>Employee Details</th>
+                        <th>Risk Level</th>
+                    </tr>
+                    <tr v-for="employee in employeelist" :key="employee">
+                        <td>{{employee.name}}</td>
+                        <td>{{employee._id}}</td>
+                        <td>{{employee.email}}</td>
+                        <td>{{employee.employee_details}}</td>
+                        <td>{{employee.employee_risk_level}}</td>
+                    </tr>
+                  </table>
+                  
+        </div>
     
 
 </html>
@@ -150,8 +186,9 @@ export default {
       load2()
       const bestworstW = ref ([])
       const error3 = ref (null)
-      let data_xW = ref()
-      let data_yW = ref()
+      // let data_xW = ref()
+      // let data_yW = ref()
+
       const load3 = async () =>{
             try{
                 let data = await fetch ('http://127.0.0.1:8000/report/w_total_mean')
@@ -162,11 +199,11 @@ export default {
                 }
                 catch (err){
                     error3.value = err.message
-                    }
-                data_xW = Math.round((bestworstW.value[0]["data_x"]*10)/10).toFixed(1);
-                data_yW = Math.round((bestworstW.value[0]["data_y"]*10)/10).toFixed(1);
-                console.log("...",data_xW)
-                console.log("...",data_yW)
+                }
+                // data_xW = Math.round((bestworstW.value[0]["data_x"]*10)/10).toFixed(1);
+                // data_yW = Math.round((bestworstW.value[0]["data_y"]*10)/10).toFixed(1);
+                // console.log("...",data_xW)
+                // console.log("...",data_yW)
           }
       load3()
       const bestworstC = ref ([])
@@ -188,7 +225,7 @@ export default {
       const error5 = ref (null)
       const load5 = async () =>{
             try{
-                let data = await fetch ('http://127.0.0.1:8000/report/w_total_mean')
+                let data = await fetch ('http://127.0.0.1:8000/report/p_total_mean')
                 if (!data.ok){
                     throw Error('no data available')
                     }
@@ -215,121 +252,174 @@ export default {
           }
       load6()
 
-    return {userlist, employeelist, bestworstW, bestworstC, bestworstP, bestworstO, error, error2, error3, error4, error5, error6} 
+    return {userlist, employeelist, bestworstW, bestworstC, bestworstP, bestworstO} 
     }}
 </script>
 
 <style>
 
-.container1 {
-  position: absolute;
-  width: 78%;
-  left: 18%;
-  top: 13%;
+p{font-family: Georgia; font-size: 14px;}
+
+h3{font-family: Georgia; font-size : 22px}
+
+h4{font-family: Georgia; font-size : 16px}
+
+.homeintroduction{
+  position: absolute; padding: 5%;
+  background-color: #167D86; color: white;
+  height: 60%;  width: 78%;
+  top: 10%; left: 18%;
 }
-.container1 img {
+
+.homeintroduction h2{
+  text-decoration: underline;
+  text-decoration-color: #EC0016;
+  font-family: Papyrus;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.homeintroduction p{
+  font-size: 14px;  
+  font-family: Monaco;
+}
+
+.homerow{
+  position: absolute;
+  height: 90%;
   width: 100%;
-  height: auto;
+  top:10%;
+  overflow: scroll
 }
 
-.container1 .btn1 {
-  position: absolute;
-  top: 72%;
-  left: 79%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  background-color: #D7DCE1;
-  color: black;
-  cursor: pointer;
-  width: 20%;
-}
-.container1 .btn2 {
-  position: absolute;
-  top: 82%;
-  left: 78%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  background-color: #D7DCE1;
-  color: black;
-  cursor: pointer;
-  width: 20%;
+.homecolumnlefta,.homecolumnrighta {
+  width: 33%; float: left; padding : 0.5% 3% 0% 3%;
 }
 
-.homeheading{
+.homecolumnmiddlea {
+  width: 33%; float: left; padding : 0% 3% 0% 3%;
+}
+
+#homeintroductionbelow{
+  position:absolute;  padding: 1%;
+  top:75%; left:5%; width:90%; height:15%;
+  text-align: left;
+  background-color: #F0F3F5; color: #646973;
+  opacity: 90%;
+}
+
+#homeintroductionbelow p{
+  position: absolute; width: 65%;
+  left: 5%; top: 30%;
+}
+
+#homeintroductionbelow .btn1 {
+  position: absolute;
+  left:85%; top:50%; width: 20%;
+  transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%);
+  background-color: #D7DCE1; color: black;
+  cursor: pointer;
+}
+
+.homedepartment{
   position: absolute;
   width: 78%;
   left: 18%;
-  top: 100%;
+  top: 75%;
   text-align: left;
+  height: 80%
 }
 
+.homebox-card{
+  background-color:white;
+}
+
+.homecheckdetails{
+  position: relative;
+  top: 5%;
+  left: 55%;
+  width: 30%;
+  font-family: Georgia; 
+  font-size: 14px;
+  overflow: auto;
+}
+
+.homecheckdetails1{
+  position: relative;
+  top: 5%;
+  left: 53.5%;
+  width: 30%;
+  font-family: Georgia; 
+  font-size: 14px;
+  overflow: auto;
+  
+}
+.homecheckdetails2{
+  position: relative;
+  top: 5%;
+  left: 60%;
+  width: 30%;
+  font-family: Georgia; 
+  font-size: 14px;
+  overflow: auto;
+}
 
 .homecolumnleft {
-  width: 38%;
+  width: 49%;
   float: left;
-}
-
-.homecolumnmiddle {
-  width: 38%;
-  float: left;
+  overflow: scroll;
 }
 
 .homecolumnright {
-  width: 24%;
+  position: absolute;
+  width: 49%;
   float: left;
+  left: 51%;
+  overflow: scroll;
 }
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.bestdepartment {
-  width:90%;
-  background-color: #CAE7EA;
-  border-radius: 25px;
-  padding: 10px;
-  height: 270px;
-}
-
-.pendingcompletion{
-  text-align:center;
-  position: absolute;
-  top: 20%;
-  left: 80%;
-}
-
-#risklevel{
-  position: absolute;
-  top:190%;
-  left: 18%;
+.homeflightrisklevel{
+  position : absolute;
+  top: 160%;
+  left : 18%;
   text-align: left;
+  width: 78%;
+  height:70%;
+  float: left
 }
 
-#riskleveltable {
-  font-family: arial, sans-serif;
+#homeriskleveltable {
+  font-family: Georgia;
+  font-size: 14px;
   border-collapse: collapse;
-  position: relative;
   top: 20%;
-  width: 180%;
+  width: 100%;
   border: 1px solid #b8bcc0;
   text-align: left;
 }
 
-#riskleveltable td, th {
+#homeriskleveltable td, th {
   border: 1px solid #b8bcc0;
   text-align: left;
   padding: 1%;
 }
 
-
-#riskleveltable tr:nth-child(1) {
+#homeriskleveltable tr:nth-child(1) {
   background-color: #D7DCE1;
 }
-#riskleveltable tr {
+
+#homeriskleveltable tr {
   background-color: #ffffff;
 }
+
+.homeclearfix:before, .homeclearfix:after {
+    display: table;
+    content: "";
+  }
+.homeclearfix:after {
+    clear: both
+  }
+
 
 
 

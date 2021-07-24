@@ -1,4 +1,5 @@
 <template>
+<html>
     <TopNavigationBar/>
     <Sidebar :current_path="1" />
     <div id="home">
@@ -79,7 +80,7 @@
       </div>
     </div>
 
-
+</html>
 </template>
 
 <script>

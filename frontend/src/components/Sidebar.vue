@@ -70,4 +70,12 @@ export default {
 
 <style>
 
+#sidebar{
+  font-family: Georgia; 
+  font-size: 14px;
+  text-align: center;
+  vertical-align: top;
+	height: 100%;
+	overflow: auto;
+}
 </style>

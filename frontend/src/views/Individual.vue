@@ -3,36 +3,33 @@
     <TopNavigationBar/>
     <Sidebar :current_path="4"/>
     <div class = "top-left-individual">
-      <div id="individual">
         <h3>Employee List</h3>
-        <el-table
-          :data="employees"
-          border
-          style="width: 80%">
-          <el-table-column
-            prop="Employee_id"
-            label="Employee_id"
-            width="240">
-          </el-table-column>
-          <el-table-column
-            prop="EES_score"
-            label="EES_score"
-            width="240">
-          </el-table-column>
-          <el-table-column
-            prop="Flight_risk_label"
-            label="Flight_risk_label"
-            width="240">
-          </el-table-column>
-          <el-table-column
-            prop='Employee_id'
-            label="Details">
-            <router-link :to="{name: 'IndividualDetails', params: {Employee_id: 25443}}">
-              <el-button type="text" size="small">View Details</el-button>
-            </router-link>
-          </el-table-column>
-        </el-table>
-      </div>
+        <p> Full list of DB Schenker Employees with flight risk identified </p>
+            <el-table :data="employees" id ="individualtable">
+              <el-table-column 
+                prop="Employee_id" 
+                label="Employee_id">
+              </el-table-column>
+              <el-table-column
+                prop="EES_score"
+                label="EES_score"
+                >
+              </el-table-column>
+              <el-table-column
+                prop="Flight_risk_label"
+                label="Flight_risk_label"
+                >
+              </el-table-column>
+              <el-table-column
+                prop='Employee_id'
+                label="Details">
+                <router-link :to="{name: 'IndividualDetails', params: {Employee_id: 25443}}">
+                  <el-button type="text" size="small">View Details</el-button>
+                </router-link>
+              </el-table-column>
+            </el-table>
+        
+      
     </div>
   </html>
 </template>
@@ -74,23 +71,20 @@ export default {
 .top-left-individual {
   position: absolute;
   top : 10%;
-  left: 20%;
-  width: 75%;
-  /* background-color: green; */
-}
-
-#individual {
-  position: relative;
-  left: 10%;
+  left: 18%;
+  width: 78%;
   text-align: left;
+  max-height: 80%;
+  overflow: scroll;
 }
-
 
 #individualtable {
-  font-family: arial, sans-serif;
+  font-family: Georgia; 
+  font-size: 14px;;
   border-collapse: collapse;
   position: relative;
-  width: 90%;
+  width: 100%;
+  border: 1px solid #b8bcc0;
 }
 
 #individualtable td, th {
@@ -99,10 +93,8 @@ export default {
   padding: 8px;
 }
 
-#individualtable tr:nth-child(1) {
+#individualtable tr:nth-child(odd) {
   background-color: #D7DCE1;
 }
-#individualtable tr {
-  background-color: #ffffff;
-}
+
 </style>

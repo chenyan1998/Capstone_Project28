@@ -8,8 +8,8 @@
     <br>
     <br>
     <div id = "login1" align = "right">
-        <img src= "@/assets/dbschenkerlogo2.png" id="logo">
-        <div class="login">
+        <img id="logo" src= "@/assets/dbschenkerlogo2.png">
+        <div class="loginpageright">
               <h1>Login to Web App</h1>
               <div id = "login2" align = "middle">
                   <form method="post" action="">
@@ -22,19 +22,18 @@
                                 Remember me on this computer
                             </label>
                       </p>
-                      <div class = "nav" align ="right">
-                            <router-link to ="/home"> Login </router-link>
+                      <div class = "loginnav" align ="right">
+                            <router-link to ="/home" style="color: #5a4949"> Login </router-link>
                       </div>
                       <router-view/>
                     </form>
                     <br> 
 
-                <p class="a" align="right"> Forgot your password?   <a href="#">
-                    <div id = "nav2"> 
-                      <router-link to ="/forgotpassword"> Click here to reset it. </router-link> 
+                <font class="forgotpasswordbutton" align="right"> Forgot your password?
+                    <div id = "loginnav2"> 
+                      <router-link to ="/forgotpassword" style="color: #c73d3d"> Click here to reset it. </router-link> 
                     </div>
-                    </a>
-                </p>
+                </font>
               </div>
         </div>
     </div>
@@ -56,31 +55,36 @@ export default {
 <style>
 
 #loginpage {
-  height: 100%;
-  width:100%
+  max-height: 100%;
+  width : 100%;
+  overflow: hidden
 }
 #loginimage {
   position : absolute;
-  width : 70% ;
+  width : 70%;
   height : 100%;
   left : 0%;
 }
 
 #login1{
   position: absolute;
+  top: 0%;
   width : 30%;
   height: 100%;
   right : 0%;
+  background-color: #F0F3F5;
 }
 #logo{
-  position :relative;
+  position :absolute;
+  top:15%;
   width : 70%;
   height :20%;
   right: 15%;
 }
 
-.login {
-  position: relative;
+.loginpageright {
+  position: absolute;
+  top:38%;
   height: 35%;
   width: 100%;
   background: white;
@@ -92,87 +96,88 @@ export default {
   background: white;
 }
 
-.login h1 {
+.loginpageright h1 {
   font-size: 15px;
   font-weight: bold;
   color: #555;
   text-align: center;
   text-shadow: 0 1px white;
-  background: #f3f3f3;
+  background: #D7DCE1;
   border-bottom: 1px solid #cfcfcf;
   -webkit-box-shadow: 0 1px whitesmoke;
   box-shadow: 0 1px whitesmoke;
 }
 
-.login input[type=text], .login input[type=password] {
+.loginpageright input[type=text], .loginpageright input[type=password] {
   position: relative;
   width: 70%;
   left: 0%
 }
 
-.login p.remember_me {
+.loginpageright p.remember_me {
   margin-bottom: 5%;
   margin-left: 10%;
   float: left;
   line-height: 20%;
 }
 
-.login p.remember_me label {
-  font-size: 70%;
+.loginpageright p.remember_me label {
+  font-size: 11px;
   color: #777;
   cursor: pointer;
 }
-.login p.remember_me input {
+.loginpageright p.remember_me input {
   position: relative;
   bottom: 1px;
   margin-right: 4px;
   vertical-align: middle;
 }
 
-.login p.submit {
+.loginpageright p.submit {
   text-align: right;
 }
 
-.nav {
-  padding : 1% 8%;
-  width : 10%;
+.loginnav {
+  padding : 1% 5%;
+  width :20%;
   margin-left:50%; 
-  font-size: 90%;
+  font-size: 14px;
+  font-family: Georgia;
   font-weight: bold;
   text-align: center;
-  color: #685555;
   text-shadow: 0 1px #f1e3e3;
   background: #efcdcd;
   border: 1px solid;
   border-color: #ceb4b4 #c8b3b3 #c29e9e;
   -webkit-box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
   box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
+  display: inline;
 }
 
-.nav:active {
+.loginnav:active {
   background: #cde5ef;
   border-color: #9eb9c2 #b3c0c8 #b4ccce;
   -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
 }
 
-.a {
-  margin-right:10%;
+.forgotpasswordbutton {
   font-size: 11px;
   color: black;
   text-align: right;
-  text-shadow: 0 1px darkgrey;
+  font-family: Georgia;
+
 }
 
-.a a:hover {
+.forgotpasswordbutton :hover {
   text-decoration: underline;
   font-size :15;
 }
 
-#nav2 {
-  color: #c73d3d;
+#loginnav2 {
   text-decoration: underline;
   font-size :15;
+  display: inline;
 }
 
 
@@ -212,7 +217,6 @@ input[type=text]:focus, input[type=password]:focus {
   outline-color: #dceefc;
   outline-offset: 0;
 }
-
 
 .lt-ie9 input[type=text], .lt-ie9 input[type=password] {
   line-height: 34px;

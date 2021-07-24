@@ -2,7 +2,7 @@
   <html>
     <TopNavigationBar/>
     <body>
-      <div id="container">
+      <div id="detailedreportcontainer">
         <div id="sidebar">
           <Sidebar />
           <Wellbeing v-if="report_type === 'Wellbeing'" />
@@ -53,69 +53,78 @@ body {
 	height: 100%;
   background: rgb(240, 243, 245);
 }
-
-#container {
+#detailedreportcontainer {
 	height: 100%;
 }
-
-#sidebar {
-	vertical-align: top;
-	height: 100%;
-	overflow: auto;
+.reportheading {
+  position: relative;
+  top: 10%;
+  left: 5%;
+  text-align: left;
 }
-
-#content {
-	vertical-align: top;
-	height: 100%;
-	overflow: auto;
+.reportheading p {
+  width: 90%
 }
-
-.top-left-report {
+.report-top-left {
   position: absolute;
   top : 10%;
-  left: 15%;
+  left: 18%;
   text-align:left;
-  width: 90%
+  width: 82%;
 
   /* background: green; */
 }
-
-.heading {
+.report-dropdown {
   position: relative;
-  top: 10%;
-  left: 10%;
+  left: 5%
+}
+.reportgraph {
+  position: relative;
+  top: 30px;
+  left: 5%;
   text-align: left;
+  width: 90%;
 }
-
-.heading p {
-  width: 80%
+.reportleft {
+  width: 70%;
+  float: left;
+  height: 100%
 }
-
+.reportright {
+  position: absolute;
+  width: 26%;
+  float: left;
+  left: 70%;
+  top: 5%;
+  background-color:#F0F3F5;
+  border-color: #646973;
+  border-style:solid;
+  border-width: 2px;
+  padding: 5px
+}
+.reportrighth3{
+  font-size: 18px;
+  text-align: center;
+}
+.reportline{
+  background:#646973;
+	width:90%;
+	height:2px;
+	position:relative;
+	float:left;
+  left: 5%
+}
 .el-dropdown {
    vertical-align: top;
+   font-family: Georgia; 
+   font-size: 14px;
 }
-  
 .el-icon-arrow-down {
-   font-size: 12px;
- }
-
+   font-size: 14px;
+}
 .el-dropdown-menu {
    max-height: 200px;
    overflow: scroll; 
-}
-
-/* Report */
-#report-dropdown {
-  position: absolute;
-  left: 10% 
-  }
-
-.reportgraph {
-  position: relative;
-  top: 80px;
-  left: 10%;
-  text-align: left;
-  width: 70%;
 }
 
 
