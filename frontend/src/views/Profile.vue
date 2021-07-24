@@ -3,7 +3,7 @@
       <TopNavigationBar/>
       <Sidebar :current_path="5" />
       <div class = "top-left-profile">
-            <img  src= "@/assets/avatar.png" alt="Avatar" class="avatar1" width ="100" height = "100">
+            <img  src= "@/assets/avatar.png" alt="Avatar" class="avatar1">
         <el-descriptions title="User Information" :column="4" width="100" border>
         <el-descriptions-item v-if="edit_status === true" label="ID" span="4">
           <el-input v-model="singleuser._id" :disabled="true"></el-input>
@@ -99,6 +99,10 @@ export default {
 
 
 <style>
+
+.avatar1{
+  width: 10%
+}
 
 .top-left-profile {
   position: absolute;

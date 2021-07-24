@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home1.vue'
+import Home from '../views/Home.vue'
 import ReportHomepage from '../views/ReportHomepage.vue'
 import SurveyHomepage from '../views/SurveyHomepage.vue'
 import Login from '../views/Login.vue'
@@ -10,7 +10,6 @@ import Individual from '../views/Individual.vue'
 import Uploadfile from '../views/UploadFiles_tem.vue'
 import Uploadfile_window from '../views/UploadFiles_tem1.vue'
 import IndividualDetails from '../views/IndividualDetails.vue'
-import Department from '../views/Department.vue'
 
 const routes = [
   {
@@ -45,11 +44,7 @@ const routes = [
     name: 'ReportHomepage',
     component: ReportHomepage
   },
-  {
-    path: '/department',
-    name: 'Department',
-    component: Department
-  },
+ 
   {
     path: '/survey',
     name: 'SurveyHomepage',

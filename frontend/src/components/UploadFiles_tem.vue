@@ -12,22 +12,22 @@
         {{ progress }}%
       </div>
     </div>
+    <div class = "UF-1">
+        <label  type="primary" class="btnbtn-default">
+          <input size="small" width="5" class="file-prew" type="file" ref="file" @change="selectFile" />
+        </label>
 
-    <label  type="primary" class="btnbtn-default">
-      <input size="small" width="5" background-color= "lightblue" class="file-prew" type="file" ref="file" @change="selectFile" />
-    </label>
-
-    <button style="margin-left: 160px;" size = "small" type="success" round class="btn btn-success" :disabled="!selectedFiles" @click="upload">
-      Upload<i class="el-icon-upload el-icon--right"></i>
-    </button>
-
+        <button style="position: absolute ;top: 39% ;right:5%; " size = "small" type="success" round class="btn btn-success" :disabled="!selectedFiles" @click="upload">
+          Upload<i class="el-icon-upload el-icon--right"></i>
+        </button>
+    </div>
     <br />
     <div class="alertalert-light" role="alert">{{ message }}</div>
-    <br />
-    <br />
     
-    <div class="card">
-      <div size="small" type="primary"  class="card-header">List of Files</div>
+    
+    
+    <div class="UF-card">
+      <div size="small" type="primary" class="UFcard-header">List of Files</div>
       <ul class="list-group list-group-flush">
         <li
           class="list-group-item"
@@ -92,9 +92,26 @@ export default {
 </script>
 
 <style>
-.card-header {
-    background-color: rgb(163, 224, 221);
-    border-radius: 50px;
+.UF-1{
+  padding: 10px;
+  width: 100%;
+}
+
+.UFcard-header {
+  position: relative;
+  width: 100%;
+  left: 0%;
+  border-radius: 5px;
+  padding: 10px;
+  border-style: solid;
+  border-width: 0.05px;
+  border-color:lightgray;
+  overflow:visible;
+  background-color: #D7DCE1;
+}
+
+.UF-card{
+
 }
 
 
