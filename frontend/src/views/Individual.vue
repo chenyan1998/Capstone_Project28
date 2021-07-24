@@ -1,4 +1,5 @@
 <template>
+<<<<<<< Updated upstream
   <html>
     <TopNavigationBar/>
     <Sidebar :current_path="4"/>
@@ -32,6 +33,40 @@
       
     </div>
   </html>
+=======
+<html>
+      <TopNavigationBar/>
+      <Sidebar :current_path="5"/>
+      <div class = "top-left-individual">
+
+            <div id="individual">
+                    <h3>Employee List</h3>
+                    <table id ="individualtable">
+                        <tr>
+                            <th>Employee ID</th>
+                            <th>EES Score</th>
+                            <th>Wellbeing Score</th>
+                            <th>Core Values Score</th>
+                            <th>Personality</th>
+                            <th>Opinion</th>
+                            <th>Flight Risk Label</th>
+                        </tr>
+                        <tr v-for="individual in individuallist" :key="individual">
+                            <td>{{individual.Employee_id}}</td>
+                            <td>{{individual.EES_score}}</td>
+                            <td>{{individual.Wellbeing}}</td>
+                            <td>{{individual.Core_values}}</td>
+                            <td>{{individual.Personality}}</td>
+                            <td>{{individual.Opinion}}</td>
+                            <td>{{individual.Flight_risk_label}}</td>
+                        </tr>
+                    </table>
+            </div>
+
+      </div>
+
+</html>
+>>>>>>> Stashed changes
 </template>
 
 <script>
@@ -43,10 +78,15 @@ export default {
     name: 'Individual',
     components: {Sidebar, TopNavigationBar},
     setup(){
+<<<<<<< Updated upstream
       const employees = ref ([])
+=======
+      const individuallist = ref ([])
+>>>>>>> Stashed changes
       const error = ref (null)
       const highrisk_list = ref([])
       const load = async () =>{
+<<<<<<< Updated upstream
         try{
             let data = await fetch ('http://localhost:8000/report/individuals')
             if (!data.ok){
@@ -58,6 +98,25 @@ export default {
           }
       load()
       return{employees, error}
+=======
+          try{
+              let data = await fetch ('http://127.0.0.1:8000/report/individuals')
+              console.log(data)
+              if (!data.ok){
+                  throw Error('no data available')
+
+              }
+              individuallist.value = await data.json()
+          }
+              catch (err){
+                  error.value = err.message
+              }
+
+              
+          }
+      load()
+      return{individuallist, error}
+>>>>>>> Stashed changes
     }
 
     
