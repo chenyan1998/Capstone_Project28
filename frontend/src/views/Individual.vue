@@ -1,122 +1,102 @@
 <template>
-<<<<<<< Updated upstream
-  <html>
-    <TopNavigationBar/>
-    <Sidebar :current_path="4"/>
-    <div class = "top-left-individual">
-        <h3>Employee List</h3>
-        <p> Full list of DB Schenker Employees with flight risk identified </p>
-            <el-table :data="employees" id ="individualtable">
-              <el-table-column 
-                prop="Employee_id" 
-                label="Employee_id">
-              </el-table-column>
-              <el-table-column
-                prop="EES_score"
-                label="EES_score"
-                >
-              </el-table-column>
-              <el-table-column
-                prop="Flight_risk_label"
-                label="Flight_risk_label"
-                >
-              </el-table-column>
-              <el-table-column
-                prop='Employee_id'
-                label="Details">
-                <router-link :to="{name: 'IndividualDetails', params: {Employee_id: 25443}}">
-                  <el-button type="text" size="small">View Details</el-button>
-                </router-link>
-              </el-table-column>
-            </el-table>
-        
-      
-    </div>
-  </html>
-=======
 <html>
       <TopNavigationBar/>
       <Sidebar :current_path="5"/>
       <div class = "top-left-individual">
-
-            <div id="individual">
-                    <h3>Employee List</h3>
-                    <table id ="individualtable">
-                        <tr>
-                            <th>Employee ID</th>
-                            <th>EES Score</th>
-                            <th>Wellbeing Score</th>
-                            <th>Core Values Score</th>
-                            <th>Personality</th>
-                            <th>Opinion</th>
-                            <th>Flight Risk Label</th>
-                        </tr>
-                        <tr v-for="individual in individuallist" :key="individual">
-                            <td>{{individual.Employee_id}}</td>
-                            <td>{{individual.EES_score}}</td>
-                            <td>{{individual.Wellbeing}}</td>
-                            <td>{{individual.Core_values}}</td>
-                            <td>{{individual.Personality}}</td>
-                            <td>{{individual.Opinion}}</td>
-                            <td>{{individual.Flight_risk_label}}</td>
-                        </tr>
-                    </table>
-            </div>
+        <div id="individual">
+          <h3>Employee List</h3>
+          <el-dropdown @command="handleLevel">
+            <el-button style="width:300px;">
+              {{level}}<i class="el-icon-arrow-down el-icon--right"></i>
+            </el-button>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item command = "High">High</el-dropdown-item>
+                <el-dropdown-item command = "Low">Low</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+          <table id ="individualtable">
+              <tr>
+                  <th>Employee ID</th>
+                  <th>EES Score</th>
+                  <th>Flight Risk Label</th>
+                  <th>View Details</th>
+              </tr>
+              <tr v-for="individual in individuallist" :key="individual">
+                  <td>{{round(individual.Employee_id)}}</td>
+                  <td>{{round(individual.EES_score)}}</td>
+                  <td>
+                    <el-tag v-if="individual.Flight_risk_label === 'Low Flight Risk'" size='small' type="success">
+                      Low
+                    </el-tag>
+                    <el-tag v-if="individual.Flight_risk_label === 'High Flight Risk'" size='small' type="danger">
+                      High
+                    </el-tag>
+                  </td>
+                  <td>
+                    <router-link :to="{name: 'IndividualDetails', params: {Employee_id: individual.Employee_id}}">
+                      <el-button type="text" size="small">View</el-button>
+                    </router-link>
+                  </td>
+              </tr>
+          </table>
+        </div>
 
       </div>
 
 </html>
->>>>>>> Stashed changes
 </template>
 
 <script>
 import Sidebar from '../components/Sidebar'
 import TopNavigationBar from '../components/TopNavigationBar.vue'
 import {ref} from 'vue'
-
 export default {
     name: 'Individual',
     components: {Sidebar, TopNavigationBar},
     setup(){
-<<<<<<< Updated upstream
-      const employees = ref ([])
-=======
-      const individuallist = ref ([])
->>>>>>> Stashed changes
+      let level = ref('Sort by Risk Level')
+      let individuallist = ref ([])
       const error = ref (null)
       const highrisk_list = ref([])
       const load = async () =>{
-<<<<<<< Updated upstream
-        try{
-            let data = await fetch ('http://localhost:8000/report/individuals')
-            if (!data.ok){
-                throw Error('no data available')
-            }
-            employees.value = await data.json()
-          }
-            catch (err){error.value = err.message}
-          }
-      load()
-      return{employees, error}
-=======
           try{
               let data = await fetch ('http://127.0.0.1:8000/report/individuals')
               console.log(data)
               if (!data.ok){
                   throw Error('no data available')
-
               }
               individuallist.value = await data.json()
           }
               catch (err){
                   error.value = err.message
-              }
-
-              
+              }   
           }
       load()
-      return{individuallist, error}
->>>>>>> Stashed changes
+      const round = (num) => {
+        let truncated = num
+        if (num.length > 5) {
+            truncated = truncated.substr(0,5);
+        }
+        return truncated
+      }
+      const handleLevel = (command) => {
+        if (command == 'High')
+          individuallist.value.sort(function(a, b) {
+            var textA = a.Flight_risk_label.toUpperCase();
+            var textB = b.Flight_risk_label.toUpperCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+          })
+        else 
+          individuallist.value.sort(function(a, b) {
+            var textA = a.Flight_risk_label.toUpperCase();
+            var textB = b.Flight_risk_label.toUpperCase();
+            return (textA > textB) ? -1 : (textA < textB) ? 1 : 0;
+          })
+
+      }
+      return{level, individuallist, error, round, handleLevel}
     }
 
     

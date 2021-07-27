@@ -20,7 +20,7 @@
                 <div class="reportline"></div>
                 
                 <br/>           
-                <h4> Completed Survey Numbers : {{completionnumber.detail}}</h4><br/>
+                <h4> Completed Survey Numbers : {{completionnumber}}</h4><br/>
                 <h4> Survey Completed Rate : {{completionrate*100}}% </h4><br/>
                 <br/>
                 <br/>
@@ -101,7 +101,7 @@ export default {
               }
           }
       load()
-      const completionrate = ref ([])
+      const completionrate = ref ()
       const error2 = ref (null)
 
       const load2 = async () =>{
@@ -111,13 +111,14 @@ export default {
                   throw Error('no data available')
               }
               completionrate.value = await data.json()
+              completionrate.value = completionrate.value[0]
           }
               catch (err){
                   error2.value = err.message
               }
           }
       load2()
-      const completionnumber = ref ([])
+      const completionnumber = ref ()
       const error3 = ref (null)
 
       const load3 = async () =>{
@@ -127,7 +128,7 @@ export default {
                   throw Error('no data available')
               }
               completionnumber.value = await data.json()
-            //   completionnumber.value = completionnumber.value[0]
+              completionnumber.value = completionnumber.value[0]
           }
               catch (err){
                   error3.value = err.message

@@ -31,9 +31,8 @@ async def post_rate(b: rate = Body(...)):
 async def get_survery_completion_rate():
     all_employee = 300
     surveyemployees = await client.Survey["Survey1"].find().to_list(1000)
-    completion_rate=len(surveyemployees)/all_employee
-    #student = {k: v for k, v in surveyemployees.dict().items() if v is not None}
-    return {"Completion rate":completion_rate}
+    completion_rate = len(surveyemployees)/all_employee
+    return {completion_rate}
 
 @app.get(
     "/email/completion_number", response_description="Return the number of survey completed ",tags=['Email']
@@ -41,9 +40,8 @@ async def get_survery_completion_rate():
 async def get_survery_completion_number():
     all_employee = 300
     surveyemployees = await client.Survey["Survey1"].find().to_list(1000)
-    completion_number=len(surveyemployees)
-    #student = {k: v for k, v in surveyemployees.dict().items() if v is not None}
-    return {"Completion number": completion_number}
+    completion_number = len(surveyemployees)
+    return {completion_number}
 
 
 @app.post("/email", response_description="Individual Employee does not finish survey", response_model= SurveyEmployeeModel,tags=['Email'])
