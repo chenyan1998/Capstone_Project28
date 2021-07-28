@@ -36,7 +36,7 @@ new_results_individual, new_results_department, new_results_job_level, new_resul
 
 # Generate Report for Frontend & Storing to Database
 import report
-report_type_3_age, report_type_3_job_level, report_type_3_department, report_type_4_wellbeing, report_type_4_opinions, report_type_4_personality, report_type_4_core_values, report_type_5 = report.gen_report(new_results_individual, new_results_age, new_results_job_level, new_results_department)
+report_type_3_age, report_type_3_job_level, report_type_3_department, report_type_4_wellbeing, report_type_4_opinions, report_type_4_personality, report_type_4_core_values, report_type_5 = report.gen_report(new_results_individual, new_results_age, new_results_job_level, new_results_department, new_results_organisation)
 
 # Convert Index to Column for Storage in MongoDB as unique identifier
 new_results_age['Age Category'] = new_results_age.index

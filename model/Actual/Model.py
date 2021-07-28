@@ -28,7 +28,7 @@ import clean_others
 df, features = clean_others.clean(model_data)
 
 """ Run Following Section to determine Optimal Number of Clusters """
-# =============================================================================
+#=============================================================================
 model = KMeans(random_state=0)
  
 ### 1. Elbow Method
@@ -42,13 +42,13 @@ visualizer.show()        # Plot
 visualizer = KElbowVisualizer(model, k=(2,30),metric='silhouette', timings= True)
 visualizer.fit(features) # Fit the data to the visualizer
 visualizer.show()        # Plot
- 
+  
 ### 3. Calinski Harabasz Index
 # k is range of number of clusters.
 visualizer = KElbowVisualizer(model, k=(2,30),metric='calinski_harabasz', timings= True)
 visualizer.fit(features) # Fit the data to the visualizer
 visualizer.show()        # Plot
-# =============================================================================
+#=============================================================================
 
 """ Unsupervised Learning - Clustering """
 # Cluster data points and assign labels for supervised learning
@@ -66,7 +66,7 @@ acc_range = kfolds.cv(features, labels)
 import train_rf
 rf, report_rf = train_rf.train(features, feature_list, labels, df)
 
-""" Run Following to Train other Algorithms """
+""" Run Following to Train other Algorithm Models """
 # =============================================================================
 # Train Decision Tree Model
 import train_dt
@@ -87,7 +87,11 @@ nbc, report_nbc = train_nbc.train(features, feature_list, labels, df)
 
 # Save Trained Model for Future Execution
 pickle.dump(rf, open("rf.sav", "wb"))
+
+""" Run Following to Save other Models """
+# =============================================================================
 pickle.dump(dt, open("dt.sav", "wb"))
 pickle.dump(knn, open("knn.sav", "wb"))
 pickle.dump(sv, open("sv.sav", "wb"))
 pickle.dump(nbc, open("nbc.sav", "wb"))
+#=============================================================================
