@@ -46,6 +46,10 @@ export default {
           },
           xaxis: {
             categories: ['EES_Score', 'Wellbeing', 'Core Values', 'Personality', 'Opinion']
+          },
+          yaxis: {
+            min: 0,
+            max: 100
           }
         }
       }
