@@ -46,9 +46,9 @@
                     <br>
                     <br>
                     <p> Highest Department: {{bw.label_x}} </p>
-                    <p> Highest Score: {{bw.data_x}} </p>
+                    <p> Highest Score: {{round(bw.data_x[0])}} </p>
                     <p> Lowest Department: {{bw.label_y}}</p>
-                    <p> Lowest Score: {{bw.data_y}} </p>
+                    <p> Lowest Score: {{round(bw.data_y[0])}} </p>
                     <br>
                   </div>
                 </el-card>
@@ -64,9 +64,9 @@
                     <br>
                     <br>
                     <p> Highest Department: {{bw.label_x}} </p>
-                    <p> Highest Score: {{bw.data_x}} </p>
+                    <p> Highest Score: {{round(bw.data_x[0])}} </p>
                     <p> Lowest Department: {{bw.label_y}}</p>
-                    <p> Lowest Score: {{bw.data_y}} </p>
+                    <p> Lowest Score: {{round(bw.data_y[0])}} </p>
                     <br>
                   </div>
                 </el-card>
@@ -84,9 +84,9 @@
                     <br>
                     <br>
                     <p> Highest Department: {{bw.label_x}} </p>
-                    <p> Highest Score: {{bw.data_x}} </p>
+                    <p> Highest Score: {{round(bw.data_x[0])}} </p>
                     <p> Lowest Department: {{bw.label_y}}</p>
-                    <p> Lowest Score: {{bw.data_y}} </p>
+                    <p> Lowest Score: {{round(bw.data_y[0])}} </p>
                     <br>
                   </div>
                 </el-card>
@@ -102,9 +102,9 @@
                     <br>
                     <br>
                     <p> Highest Department: {{bw.label_x}} </p>
-                    <p> Highest Score: {{bw.data_x}} </p>
+                    <p> Highest Score: {{round(bw.data_x[0])}} </p>
                     <p> Lowest Department: {{bw.label_y}}</p>
-                    <p> Lowest Score: {{bw.data_y}} </p>
+                    <p> Lowest Score: {{round(bw.data_y[0])}} </p>
                     <br>
                   </div>
                 </el-card>
@@ -251,8 +251,15 @@ export default {
                     }
           }
       load6()
+      const round = (num) => {
+        let truncated = num
+        if (num.length > 5) {
+            truncated = truncated.substr(0,5);
+        }
+        return truncated
+      }
 
-    return {userlist, employeelist, bestworstW, bestworstC, bestworstP, bestworstO} 
+    return {userlist, employeelist, bestworstW, bestworstC, bestworstP, bestworstO, round} 
     }}
 </script>
 
