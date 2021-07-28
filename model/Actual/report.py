@@ -26,7 +26,7 @@ dept_lst = ["Fairs, Exhibitions, Events  展会、展览、活动",
             "Sales and Sales Planning  销售及销售计划"
             ]
 
-def gen_report(individual, segment_age, segment_job_level, segment_department):
+def gen_report(individual, segment_age, segment_job_level, segment_department, segment_organisation):
     
     # Report Type 3 - Comparison Report between age, job level, department
     report_type_3_age = {}
@@ -89,4 +89,29 @@ def gen_report(individual, segment_age, segment_job_level, segment_department):
         report_type_4_core_values.update({key: c_temp})
         report_type_5.update({key: temp_1})
     
-    return report_type_3_age, report_type_3_job_level, report_type_3_department, report_type_4_wellbeing, report_type_4_opinions, report_type_4_personality, report_type_4_core_values, report_type_5 
+    # Retrieve Organisational Level Results
+    w_org = segment_organisation.iloc[1,0:5]
+    w_org = pd.DataFrame(w_org)
+    w_org = w_org.T
+    w_org["Year"] = segment_organisation.iloc[0,28]
+    report_type_4_wellbeing.update({"All": w_org})
+    
+    o_org = segment_organisation.iloc[1,5:10]
+    o_org = pd.DataFrame(o_org)
+    o_org = o_org.T
+    o_org["Year"] = segment_organisation.iloc[0,28]
+    report_type_4_opinions.update({"All": o_org})
+    
+    p_org = segment_organisation.iloc[1,10:17]
+    p_org = pd.DataFrame(p_org)
+    p_org = p_org.T
+    p_org["Year"] = segment_organisation.iloc[0,28]
+    report_type_4_personality.update({"All": p_org})
+    
+    c_org = segment_organisation.iloc[1,17:23]
+    c_org = pd.DataFrame(c_org)
+    c_org = c_org.T
+    c_org["Year"] = segment_organisation.iloc[0,28]
+    report_type_4_core_values.update({"All": c_org})    
+    
+    return report_type_3_age, report_type_3_job_level, report_type_3_department, report_type_4_wellbeing, report_type_4_opinions, report_type_4_personality, report_type_4_core_values, report_type_5

@@ -53,7 +53,6 @@ def get_results(model, df, features):
         
         # Predict
         df["Flight Risk"] = model.predict(features)
-        df['Flight Risk'] = np.where(df['Flight Risk'] == 1, "High Flight Risk", "Low Flight Risk")
         
         # Aggregate Results
         # i_1, i_2, i_3 and Flight Risk are dropped from summary statistics as they are categorical data
@@ -86,7 +85,6 @@ def get_results(model, df, features):
     except AttributeError:
         # Predict
         df["Flight Risk"] = model.predict(features)
-        df['Flight Risk'] = np.where(df['Flight Risk'] == 1, "High Flight Risk", "Low Flight Risk")
         
         # Individual Results
         results_individual = df
