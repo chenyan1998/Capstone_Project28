@@ -15,7 +15,7 @@
         </div>
           
         <div class="surveycontainer2">
-            <div class = "surveytitle">
+            <div class = "surveytitle1">
                 <h3> Survey Completion Rate </h3>
                 <div class="reportline"></div>
                 
@@ -158,6 +158,7 @@ export default {
     border-color: #646973;
     border-style:solid;
     border-width: 2px;
+    overflow:scroll
     }
 
 .surveytitle{
@@ -165,7 +166,16 @@ export default {
     width: 100%;
     font-family: Georgia; 
     font-size : 16px;
-    padding: 5px
+    padding: 5px;
+}
+.surveytitle1{
+    text-align: middle;
+    width: 100%;
+    font-family: Georgia; 
+    font-size : 16px;
+    padding: 5px;
+    max-height:70%;
+    overflow:scroll
 }
 
 .surveycontainer2 {
@@ -177,22 +187,26 @@ export default {
     border-color: #646973;
     border-style:solid;
     border-width: 2px;
+    overflow:scroll
     }
 
 #sendsurveybutton{
     position:absolute;
     width: 40%;
     left: 30%;
-    top: 62%
+    top: 62%;
+    overflow:scroll
 }
 
 .surveycontainer3 {
     position: absolute;
     float: left;
     width: 28%;
+    max-height: 90%;
     left: 72%;
     border-style: groove;
     background-color: #D7DCE1;
+    overflow:scroll
     }
 
 .surveycontainer4{

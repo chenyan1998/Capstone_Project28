@@ -3,19 +3,20 @@
       <TopNavigationBar/>
       <Sidebar :current_path="5"/>
       <div class = "top-left-individual">
-        <div id="individual">
-          <h3>Employee List</h3>
-          <el-dropdown @command="handleLevel">
-            <el-button style="width:300px;">
-              {{level}}<i class="el-icon-arrow-down el-icon--right"></i>
-            </el-button>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item command = "High">High</el-dropdown-item>
-                <el-dropdown-item command = "Low">Low</el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
+         <div id="individual">
+              <h3>Employee List</h3>
+              <el-dropdown @command="handleLevel">
+                <el-button style="width:300px;">
+                  {{level}}<i class="el-icon-arrow-down el-icon--right"></i>
+                </el-button>
+                <template #dropdown>
+                  <el-dropdown-menu>
+                    <el-dropdown-item command = "High">High</el-dropdown-item>
+                    <el-dropdown-item command = "Low">Low</el-dropdown-item>
+                  </el-dropdown-menu>
+                </template>
+              </el-dropdown>
+          </div>
           <table id ="individualtable">
               <tr>
                   <th>Employee ID</th>
@@ -41,7 +42,6 @@
                   </td>
               </tr>
           </table>
-        </div>
 
       </div>
 
@@ -117,9 +117,13 @@ export default {
   overflow: scroll;
 }
 
+#individual{
+  height: 100px;
+
+}
 #individualtable {
   font-family: Georgia; 
-  font-size: 14px;;
+  font-size: 14px;
   border-collapse: collapse;
   position: relative;
   width: 100%;

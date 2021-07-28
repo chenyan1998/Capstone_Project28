@@ -76,6 +76,6 @@ export default {
   text-align: center;
   vertical-align: top;
 	height: 100%;
-	overflow: auto;
+	overflow: scroll;
 }
 </style>
