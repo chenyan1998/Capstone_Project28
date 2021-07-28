@@ -15,8 +15,8 @@
             </el-tag>
           </el-descriptions-item>
         </el-descriptions>
-        <div>
-          <apexchart type="radar" height="450" :options="chartOptions" :series="series"></apexchart>
+        <div class="individualdetailschart">
+          <apexchart type="radar" :options="chartOptions" :series="series"></apexchart>
         </div>
     
       </div>
@@ -88,8 +88,17 @@ export default {
   top : 10%;
   left: 18%;
   width: 78%;
+  height: 80%;
+  overflow: scroll;
   text-align: left;
 }
+
+.individualdetailschart{
+  position: relative;
+  max-width: 90%;
+  left: 5%;
+}
+
 
 .el-descriptions {font-family: Georgia; font-size : 24px}
 </style>

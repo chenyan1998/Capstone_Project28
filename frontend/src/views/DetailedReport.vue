@@ -88,7 +88,6 @@ body {
 .reportleft {
   width: 70%;
   float: left;
-  height: 100%
 }
 .reportright {
   position: absolute;
@@ -100,7 +99,9 @@ body {
   border-color: #646973;
   border-style:solid;
   border-width: 2px;
-  padding: 5px
+  padding: 5px;
+  max-height: 90%;
+  overflow: scroll
 }
 .reportrighth3{
   font-size: 18px;

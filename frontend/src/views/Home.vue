@@ -4,22 +4,25 @@
   <Sidebar :current_path="1" />
   
         <div class="homeintroduction" >
-          <h2> Welcome</h2>
-          <p> This app is aming to </p>
-          <div class="homecolumnlefta">
-           <img  src= "@/assets/homepic1.png" style="width:50%">
-            <p> 1. Design an accessible and quantifiable employee engagement indicator </p>
+          <div id ="homeintroductiontop">
+              <h2> Welcome</h2>
+              <p> This app is aming to </p>
+              <div class="homecolumnlefta">
+              <img  src= "@/assets/homepic1.png" style="width:50%">
+                <p> 1. Design an accessible and quantifiable employee engagement indicator </p>
 
+              </div>
+              <div class="homecolumnmiddlea">
+                <img  src= "@/assets/homepic2.png" style="width:50%">
+                <p> 2. Predicting employee flight risk using holistic measures </p>
+              
+              </div>
+              <div class="homecolumnrighta">
+                <img  src= "@/assets/homepic3.png" style="width:50%">
+                <p> 3. Without adding an additional layer of processing nor intruding on the employees' privacy </p>
+              </div>
           </div>
-          <div class="homecolumnmiddlea">
-            <img  src= "@/assets/homepic2.png" style="width:50%">
-            <p> 2. Predicting employee flight risk using holistic measures </p>
-          
-          </div>
-          <div class="homecolumnrighta">
-            <img  src= "@/assets/homepic3.png" style="width:50%">
-            <p> 3. Without adding an additional layer of processing nor intruding on the employees' privacy </p>
-          </div>
+
           <div id ="homeintroductionbelow">
             <p> Please press the value on the right to import the survey results, and produce analysed reports </p>
             <router-link :to="{name: 'SurveyHomepage'}">
@@ -29,9 +32,10 @@
         </div>
 
         <div class = "homedepartment">
-          <h3> Departments </h3>
-          <p> Best and Worst performing departments by Survey Question type </p>
-
+          <div class = "homedepartmenttitle">
+            <h3> Departments </h3>
+            <p> Best and Worst performing departments by Survey Question type </p>
+          </div>
           <div class="homerow">
               <div class="homecolumnleft">
 
@@ -45,10 +49,10 @@
                   <div v-for="bw in bestworstW" :key="bw" class="text item">
                     <br>
                     <br>
-                    <p> Highest Department: {{bw.label_x}} </p>
-                    <p> Highest Score: {{round(bw.data_x[0])}} </p>
-                    <p> Lowest Department: {{bw.label_y}}</p>
-                    <p> Lowest Score: {{round(bw.data_y[0])}} </p>
+                    <p> Highest Department: <font id="homedepartfonth">{{bw.label_x}}</font> </p>
+                    <p> Highest Score: <font id="homescoreh"> {{round(bw.data_x[0])}}</font></p>
+                    <p> Lowest Department:<font id="homedepartfontl"> {{bw.label_y}}</font></p>
+                    <p> Lowest Score: <font id="homescorel">{{round(bw.data_y[0])}}</font> </p>
                     <br>
                   </div>
                 </el-card>
@@ -63,10 +67,10 @@
                   <div v-for="bw in bestworstP" :key="bw" class="text item">
                     <br>
                     <br>
-                    <p> Highest Department: {{bw.label_x}} </p>
-                    <p> Highest Score: {{round(bw.data_x[0])}} </p>
-                    <p> Lowest Department: {{bw.label_y}}</p>
-                    <p> Lowest Score: {{round(bw.data_y[0])}} </p>
+                    <p> Highest Department: <font id="homedepartfonth">{{bw.label_x}}</font> </p>
+                    <p> Highest Score:<font id="homescoreh"> {{round(bw.data_x[0])}} </font></p>
+                    <p> Lowest Department: <font id="homedepartfontl">{{bw.label_y}}</font></p>
+                    <p> Lowest Score: <font id="homescorel">{{round(bw.data_y[0])}} </font></p>
                     <br>
                   </div>
                 </el-card>
@@ -83,10 +87,10 @@
                   <div v-for="bw in bestworstC" :key="bw" class="text item">
                     <br>
                     <br>
-                    <p> Highest Department: {{bw.label_x}} </p>
-                    <p> Highest Score: {{round(bw.data_x[0])}} </p>
-                    <p> Lowest Department: {{bw.label_y}}</p>
-                    <p> Lowest Score: {{round(bw.data_y[0])}} </p>
+                    <p> Highest Department: <font id="homedepartfonth">{{bw.label_x}} </font></p>
+                    <p> Highest Score: <font id="homescoreh">{{round(bw.data_x[0])}} </font></p>
+                    <p> Lowest Department: <font id="homedepartfontl">{{bw.label_y}}</font></p>
+                    <p> Lowest Score: <font id="homescorel">{{round(bw.data_y[0])}} </font></p>
                     <br>
                   </div>
                 </el-card>
@@ -101,10 +105,10 @@
                   <div v-for="bw in bestworstO" :key="bw" class="text item">
                     <br>
                     <br>
-                    <p> Highest Department: {{bw.label_x}} </p>
-                    <p> Highest Score: {{round(bw.data_x[0])}} </p>
-                    <p> Lowest Department: {{bw.label_y}}</p>
-                    <p> Lowest Score: {{round(bw.data_y[0])}} </p>
+                    <p> Highest Department: <font id="homedepartfonth">{{bw.label_x}}</font> </p>
+                    <p> Highest Score: <font id="homescoreh"> {{round(bw.data_x[0])}} </font> </p>
+                    <p> Lowest Department: <font id="homedepartfontl">{{bw.label_y}}</font></p>
+                    <p> Lowest Score: <font id="homescorel">{{round(bw.data_y[0])}}</font> </p>
                     <br>
                   </div>
                 </el-card>
@@ -112,7 +116,7 @@
               </div>
 
           </div>
-        </div>
+        
 
         <div class="homeflightrisklevel">
               <h3> Flight Risk Level </h3>
@@ -135,6 +139,7 @@
                     </tr>
                   </table>
                   
+        </div>
         </div>
     
 
@@ -292,11 +297,18 @@ h4{font-family: Georgia; font-size : 16px}
 }
 
 .homerow{
-  position: absolute;
+  position: relative;
   height: 90%;
   width: 100%;
-  top:10%;
-  overflow: scroll
+  overflow: scroll;
+}
+
+.homeflightrisklevel{
+  position : relative;
+  text-align: left;
+  top:5%;
+  width: 100%;
+  height:75%;
 }
 
 .homecolumnlefta,.homecolumnrighta {
@@ -307,12 +319,20 @@ h4{font-family: Georgia; font-size : 16px}
   width: 33%; float: left; padding : 0% 3% 0% 3%;
 }
 
+
+#homeintroductiontop{
+  position:absolute;  
+  top:10%; left:5%; width:90%; height:65%;
+  overflow:scroll
+}
+
 #homeintroductionbelow{
   position:absolute;  padding: 1%;
   top:75%; left:5%; width:90%; height:15%;
   text-align: left;
   background-color: #F0F3F5; color: #646973;
   opacity: 90%;
+  overflow:scroll
 }
 
 #homeintroductionbelow p{
@@ -326,6 +346,7 @@ h4{font-family: Georgia; font-size : 16px}
   transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%);
   background-color: #D7DCE1; color: black;
   cursor: pointer;
+  overflow:scroll
 }
 
 .homedepartment{
@@ -335,6 +356,9 @@ h4{font-family: Georgia; font-size : 16px}
   top: 75%;
   text-align: left;
   height: 80%
+}
+.homedepartmenttitle{
+  height: 70px;
 }
 
 .homebox-card{
@@ -385,15 +409,6 @@ h4{font-family: Georgia; font-size : 16px}
   overflow: scroll;
 }
 
-.homeflightrisklevel{
-  position : absolute;
-  top: 160%;
-  left : 18%;
-  text-align: left;
-  width: 78%;
-  height:70%;
-  float: left
-}
 
 #homeriskleveltable {
   font-family: Georgia;
@@ -427,7 +442,20 @@ h4{font-family: Georgia; font-size : 16px}
     clear: both
   }
 
+#homescoreh {
+  font-family: Georgia; font-size: 16px; font-weight: bold; color:#167D86
+}
 
+#homescorel {
+  font-family: Georgia; font-size: 16px; font-weight: bold; color:#EC0016
+}
 
+#homedepartfonth{
+  font-family: Georgia; font-size: 16px;
+}
+
+#homedepartfontl{
+  font-family: Georgia; font-size: 16px;
+}
 
 </style>
