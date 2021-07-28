@@ -87,7 +87,6 @@ export default {
     setup(){
       const employees = ref ([])
       const error = ref (null)
-
       const load = async () =>{
           try{
               let data = await fetch ('http://127.0.0.1:8000/employee')
@@ -103,7 +102,6 @@ export default {
       load()
       const completionrate = ref ()
       const error2 = ref (null)
-
       const load2 = async () =>{
           try{
               let data = await fetch ('http://127.0.0.1:8000/email/completion_rate')
@@ -135,8 +133,6 @@ export default {
               }
           }
       load3()
-      // const {employees, error, load} = getEmployeeList()
-      // load()
       return{employees,completionrate,completionnumber}
     }
 }
