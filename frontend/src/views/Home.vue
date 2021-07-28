@@ -186,8 +186,8 @@ export default {
       load2()
       const bestworstW = ref ([])
       const error3 = ref (null)
-      // let data_xW = ref()
-      // let data_yW = ref()
+      let data_xW = ref()
+      let data_yW = ref()
 
       const load3 = async () =>{
             try{
@@ -200,10 +200,10 @@ export default {
                 catch (err){
                     error3.value = err.message
                 }
-                // data_xW = Math.round((bestworstW.value[0]["data_x"]*10)/10).toFixed(1);
-                // data_yW = Math.round((bestworstW.value[0]["data_y"]*10)/10).toFixed(1);
-                // console.log("...",data_xW)
-                // console.log("...",data_yW)
+                data_xW = Math.round((bestworstW.value[0]["data_x"]*10)/10).toFixed(1);
+                data_yW = Math.round((bestworstW.value[0]["data_y"]*10)/10).toFixed(1);
+                console.log("...",data_xW)
+                console.log("...",data_yW)
           }
       load3()
       const bestworstC = ref ([])
