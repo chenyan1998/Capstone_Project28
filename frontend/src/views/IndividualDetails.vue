@@ -15,6 +15,7 @@
             </el-tag>
           </el-descriptions-item>
         </el-descriptions>
+        
         <div class="individualdetailschart">
           <apexchart type="radar" :options="chartOptions" :series="series"></apexchart>
         </div>
