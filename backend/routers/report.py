@@ -8,11 +8,10 @@ from typing import List
 
 #Create User Route 
 app = APIRouter(
-    # prefix="/employee",
-    # tags=['Employee']
 )
 
 db = client.report
+#db is a database , the database we used is called report 
 
 #Create report route 
 #Report list , to check who already take this 
