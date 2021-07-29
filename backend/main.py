@@ -1,7 +1,7 @@
 from database import app
 import os
 
-from routers import user,backendstatus,employee,report,surveyemployee,SendEmail2
+from routers import user,backendstatus,employee,report,surveyemployee,SendEmail2,upload_files
 
 
 from fastapi.middleware.cors import CORSMiddleware
@@ -26,5 +26,6 @@ app.include_router(user.app)
 app.include_router(report.app)
 app.include_router(surveyemployee.app)
 app.include_router(SendEmail2.app)
+app.include_router(upload_files.app)
 
 
