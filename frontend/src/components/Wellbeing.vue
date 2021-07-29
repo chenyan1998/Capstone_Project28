@@ -105,7 +105,7 @@ export default {
     let data_W = await fetch ('http://127.0.0.1:8000/report/wellbeing');
     const data = await data_W.json()
     const data_selectedW = data.filter(data =>{
-        return data.department.includes("HSSE")})
+        return data.department.includes("All")})
     this.data_filteredW = data
     this.All = data
     const data_x = data_selectedW[0]["data_x"];
