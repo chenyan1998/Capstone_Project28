@@ -66,10 +66,11 @@ export default {
       UploadService.upload(this.currentFile, event => {
         this.progress = Math.round((100 * event.loaded) / event.total);
       })
-        .then(response => {
-          this.message = response.data.message;
-          return UploadService.getFiles();
-        })
+        // .then(response => {
+        //   this.message = response.data.message;
+        //   return UploadService.getFiles();
+        // })
+        
         .then(files => {
           this.fileInfos = files.data;
         })
