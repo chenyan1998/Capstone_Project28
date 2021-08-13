@@ -1,10 +1,9 @@
 from database import app,client
 from fastapi import APIRouter
-from fastapi import FastAPI, File, UploadFile
+from fastapi import File, UploadFile
 
 #Create User Route 
-app = APIRouter(
-)
+app = APIRouter()
 
 db = client.files
 
@@ -18,9 +17,4 @@ async def create_file(file: bytes = File(...)):
 async def create_upload_file(file: UploadFile = File(...)):
     return {"filename": file.filename}
 
-# @app.post("/files/", status_code=201) 
-# async def create_file_2( file: bytes = File(...), timestamp: str = Form(...), ):
-#     return {
-#         "file_size": len(file),
-#         "timestamp": timestamp
-#     }
+

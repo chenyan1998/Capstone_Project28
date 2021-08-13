@@ -6,10 +6,7 @@ from fastapi.encoders import jsonable_encoder
 from typing import List
 
 #Create User Route 
-app = APIRouter(
-    # prefix="/user",
-    # tags=['Users']
-)
+app = APIRouter()
 
 db = client.user
 
@@ -20,7 +17,6 @@ async def create_user(user: UserModel = Body(...)):
     new_user = await db["students"].insert_one(user)
     created_user = await db["students"].find_one({"_id": new_user.inserted_id})
     return JSONResponse(status_code=status.HTTP_201_CREATED, content=created_user)
-
 
 @app.get(
     "/user", response_description="List all user", response_model=List[UserModel],tags=['Users']
@@ -57,15 +53,7 @@ async def update_user(id: str, user: UpdateUserModel = Body(...)):
         return existing_user
 
     raise HTTPException(status_code=404, detail=f"user {id} not found")
-
-# @app.put("/user/{id}", response_description="Send survey", response_model=UserModel,tags=['Users'])
-# async def send_survey(id: str, surveylink:str):
-#     if (user := await db["students"].find_one({"_id": id})) is not None:
-#         print("Survey sent successfully")
-#         return None
-#     raise HTTPException(status_code=404, detail=f"user {id} not found")
    
-
 @app.delete("/user/{id}", response_description="Delete a user",tags=['Users'])
 async def delete_user(id: str):
     delete_result = await db["students"].delete_one({"_id": id})

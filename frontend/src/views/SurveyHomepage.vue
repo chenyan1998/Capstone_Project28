@@ -78,10 +78,9 @@
 <script>
 import TopNavigationBar from '../components/TopNavigationBar.vue'
 import Sidebar from '../components/Sidebar'
-import UploadFiles from "../components/UploadFiles_tem";
+import UploadFiles from "../components/UploadFiles";
 import {ref} from 'vue'
 export default {
-    
     name: 'ReportHomepage',
     components: {Sidebar, TopNavigationBar,UploadFiles},
     setup(){

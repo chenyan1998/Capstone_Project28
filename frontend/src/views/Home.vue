@@ -112,15 +112,11 @@
                     <br>
                   </div>
                 </el-card>
-
               </div>
-
           </div>
-        
 
         <div class="homeflightrisklevel">
               <h3> Flight Risk Level </h3>
-              <!-- <p>The solution that will be developed is a Flight Risk Indicator Software that will assess an employee’s inputs to an engagement survey and determine if the employee is at risk of leaving the organisation. The output will come in the form of several indicative metrics to highlight the potential reasons for the employee’s engagement, or the lack thereof, with the organisation. Viewing such metrics in conjunction with existing HR tools will better enable the HR team to identify and address the unhappiness with the organisation that an employee is facing, which can help to reduce the turnover rate and result in a better working culture and environment for the organisation.</p> -->
               <p> List of employees identified to have high Flight Risk level </p>
                   <table id ="homeriskleveltable">
                     <tr>
@@ -138,26 +134,20 @@
                         <td>{{employee.employee_risk_level}}</td>
                     </tr>
                   </table>
-                  
         </div>
         </div>
-    
-
 </html>
 </template>
-
 
 <script>
 import Sidebar from '../components/Sidebar'
 import {ref} from 'vue'
 import TopNavigationBar from '../components/TopNavigationBar.vue'
-import UploadFiles from "../components/UploadFiles_tem";
+import UploadFiles from "../components/UploadFiles";
 
 export default {
-
     name: 'Home',
     components: {Sidebar, TopNavigationBar,UploadFiles},
-
     setup(){
       const userlist = ref ([])
       const error = ref (null)
@@ -263,7 +253,6 @@ export default {
         }
         return truncated
       }
-
     return {userlist, employeelist, bestworstW, bestworstC, bestworstP, bestworstO, round} 
     }}
 </script>

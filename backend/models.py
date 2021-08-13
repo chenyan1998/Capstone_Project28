@@ -175,30 +175,6 @@ class IndividualReportModel(BaseModel):
             }
         }
 
-
-
 class EmailSchema(BaseModel):
     email: List[EmailStr]
     
-# class Surveyresult(BaseModel):
-#     id: str = Field(...)
-#     age: str= Field(...)
-#     Year: str= Field(...)
-#     department: str= Field(...)
-#     wellbeing: str= Field(...)
-#     core_values: str= Field(...)
-#     personality: str= Field(...)
-#     opinion: str= Field(...)
-
-#     class Config:
-#         allow_population_by_field_name = True
-#         arbitrary_types_allowed = True
-#         json_encoders = {ObjectId: str}
-#         schema_extra = {
-#             "example": {
-#                 "name": "Jane Doe",
-#                 "metric": "dynamic metric",
-#                 "filter_type": "Age,Years,Departments",
-#                 "report_format":"Tables or charts ",
-#             }
-#         }

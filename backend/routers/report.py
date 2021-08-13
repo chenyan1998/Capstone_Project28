@@ -1,5 +1,4 @@
 from models import ReportModel,IndividualReportModel
-from pymongo import MongoClient
 from database import app,client
 from fastapi import APIRouter,Body, HTTPException, status
 from fastapi.responses import JSONResponse

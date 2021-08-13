@@ -1,15 +1,17 @@
+from typing import List
+from database import app,client
+from models import EmailSchema
 from fastapi import APIRouter
 from starlette.responses import JSONResponse
 from fastapi_mail import FastMail, MessageSchema,ConnectionConfig
-from typing import List
-from models import EmailSchema
+
 
 SURVEY_URL = 'https://www.google.com/'
 
 conf = ConnectionConfig(
-    MAIL_USERNAME = "vkeyfoo@gmail.com",
-    MAIL_PASSWORD = "!1qaz@2wsx",
-    MAIL_FROM = "vkeyfoo@email.com",
+    MAIL_USERNAME = "chenyan20210705@gmail.com",
+    MAIL_PASSWORD = "oqlpkmymmiqwjuuw",
+    MAIL_FROM = "chenyan20210705@gmail.com",
     MAIL_PORT = 587,
     MAIL_SERVER = "smtp.gmail.com",
     MAIL_FROM_NAME="Project 28",
@@ -27,12 +29,14 @@ We are pleased to invite you to join our survey. Below is the survey link.
 {SURVEY_URL}
 Thank you.
 """
+db = client.email2
+# Q1 Haven't put any data to database 
 
-@app.post("/email", response_description="Send email", tags=['Email'])
+@app.post("/emailtype2", response_description="Send email", tags=['Email2'])
 async def simple_send(email: EmailSchema) -> JSONResponse:
     message = MessageSchema(
         subject="Project 28 Survey",
-        recipients=email.dict().get("email"),  # List of recipients, as many as you can pass 
+        recipients= email.dict().get("email"),  # List of recipients, as many as you can pass 
         body=html,
         )
     fm = FastMail(conf)

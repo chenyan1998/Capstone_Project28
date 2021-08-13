@@ -3,7 +3,6 @@
       <TopNavigationBar/>
       <Sidebar :current_path="5"/>
       <div class = "top-left-individual">
-         
          <div id="individual">
               <h3>Employee List</h3>
               <el-dropdown @command="handleLevel">
@@ -44,9 +43,7 @@
                   </td>
               </tr>
           </table>
-
       </div>
-
 </html>
 </template>
 

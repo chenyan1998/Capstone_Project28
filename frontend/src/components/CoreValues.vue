@@ -85,12 +85,7 @@
 
 
 <script>
-
-import {ref} from 'vue'
-import {onMounted, onUnmounted} from 'vue'
-
 export default {
-    
   data() {
     return {
       All:[],

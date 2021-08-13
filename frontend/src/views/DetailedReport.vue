@@ -25,7 +25,6 @@ import TopNavigationBar from '../components/TopNavigationBar.vue'
 import { onMounted, onUnmounted } from 'vue'
 
 export default {
-    // This page is a detailed report page.
     name: 'DetailedReport' ,
     components: { Wellbeing, CoreValues, Personality, Opinion, Sidebar ,TopNavigationBar},
     created() {
