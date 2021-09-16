@@ -1,11 +1,10 @@
 from database import app,client
 from fastapi import APIRouter
-from fastapi import FastAPI, File, UploadFile
-import shutil
+from fastapi import File, UploadFile
+
 
 #Create User Route 
-app = APIRouter(
-)
+app = APIRouter()
 
 db = client.files
 
@@ -28,7 +27,3 @@ async def create_upload_file(file: UploadFile = File(...)):
         shutil.copyfileobj(file1, buffer)
     return {"filename": file.filename}
 
-
-    
-    
-    

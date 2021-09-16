@@ -1,5 +1,4 @@
 from models import ReportModel,IndividualReportModel
-from pymongo import MongoClient
 from database import app,client
 from fastapi import APIRouter,Body, HTTPException, status
 from fastapi.responses import JSONResponse
@@ -41,7 +40,7 @@ async def get_individuals_report(employee_id: int):
     report= await db["RF_Summary_Report"].find({'Employee_id': employee_id}).to_list(1000)
     return report
 
-app.get("/report/individuals/{year}", response_model=List[IndividualReportModel], tags=['Report'])
+@app.get("/report/individuals/year/{year}", response_model=List[IndividualReportModel], tags=['Report'])
 async def get_individuals_report_by_year(year: str):
     report= await db["RF_Summary_Report"].find({'year': year}).to_list(1000)
     return report

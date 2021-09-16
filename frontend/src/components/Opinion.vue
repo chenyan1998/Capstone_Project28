@@ -109,7 +109,7 @@ export default {
     const data = await data_O.json()
     console.log('data',data)
     const data_selectedO = data.filter(data =>{
-        return data.department.includes("HSSE")})
+        return data.department.includes("All")})
     console.log('data_selected',data_selectedO)
     this.data_filteredO = data
     this.All = data

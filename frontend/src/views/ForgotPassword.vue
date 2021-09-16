@@ -7,7 +7,7 @@
           <form class = "forgotpasswordform" method="post" action="">
             <p><input type="text" name="login" value="" placeholder="Username or Email"></p>
             <br>
-            <p class="forgotpasswordsubmit"><input type="submit" name="commit" value="Reset Password" style="font-family: Georgia; font-size: 14px;"></p>
+            <p class="forgotpasswordsubmit"><input type="submit" @click="onSubmit" name="commit" value="Reset Password" style="font-family: Georgia; font-size: 14px;"></p>
           </form>
         </div>
     
@@ -22,7 +22,13 @@
 
 <script>
 export default {
-    name: 'ForgotPassword'
+    name: 'ForgotPassword',
+    methods: {
+      onSubmit(e) {
+        console.log('submit!');
+        e.preventDefault();
+      }
+    }
 }
 </script>
 

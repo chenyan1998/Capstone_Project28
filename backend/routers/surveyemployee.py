@@ -2,17 +2,12 @@ from models import rate
 from typing import Counter, List
 from database import app,client
 from models import SurveyEmployeeModel
-
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from fastapi import APIRouter,Body, HTTPException, status
 
-
 #Create User Route 
-app = APIRouter(
-    # prefix="/BackendStatus",
-    # tags=['BackendStatus']
-)
+app = APIRouter()
 
 db = client.email 
 collection=["email"]
